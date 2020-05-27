@@ -1,0 +1,52 @@
+﻿@model IEnumerable<CardPortfolio.Models.Institution>
+@{
+    ViewData["Title"] = "All Banks";
+}
+
+<h1>Institutions</h1>
+
+<p>@Html.ActionLink("Create New", "Create")</p>
+
+@if (Model != null)
+{
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Institution Name</th>
+                <th>Credit Bureau</th>
+                <th>Score for Best APR</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.CreditBureau</td>
+                    @if (item.ScoreForLowestAPR != null)
+                    {
+                        <td>@item.ScoreForLowestAPR</td>
+                    }
+                    else
+                    {
+                        <td>Unknown</td>
+                    }
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+else
+{
+    <h2>There are currently no institutions fuckwad</h2>
+}

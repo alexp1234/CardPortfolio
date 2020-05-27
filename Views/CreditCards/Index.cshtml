@@ -1,0 +1,65 @@
+﻿@model IEnumerable<CardPortfolio.Models.CreditCard>
+@{
+    ViewData["Title"] = "All Cards";
+}
+
+<h1>All Cards</h1>
+
+@if (User.IsInRole("Administrator")) 
+{
+    <p>@Html.ActionLink("Create New", "Create")</p> 
+}
+
+
+@if (Model != null)
+{
+<table class="table table-bordered dt-responsive" id="dataTable" width="100%" cellspacing="0">
+    <thead>
+        <tr>
+            
+            <th><small>NAME</small></th>
+            <th><small>NETWORK</small></th>
+            <th><small>CATEGORY</small></th>
+
+            <th></th>
+        </tr>
+    </thead>
+
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+               
+                <td>@item.Name</td>
+                <td>@item.CardNetwork</td>
+                <td>@item.CardCategory</td>
+
+               
+                <td>
+
+                    @Html.ActionLink("Details ", "Details", new { id = item.Id })
+                    @if (User.IsInRole("Administrator"))
+                    {
+                    @Html.ActionLink("Delete ", "Delete", new { id = item.Id })
+                    @Html.ActionLink("Edit ", "Edit", new { id = item.Id })
+                     @Html.ActionLink("Cash Back", "AddCashBackToCard", "CashBacks", new {creditCardId = item.Id })
+
+
+                    }
+
+
+
+
+
+
+
+
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+}

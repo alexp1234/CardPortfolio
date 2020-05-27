@@ -1,0 +1,33 @@
+﻿@model CardPortfolio.Models.CreditCard
+
+@{
+    ViewData["Title"] = "Details";
+    var photoPath = "~/images/" + Model.ImagePath;
+}
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>@Model.Name</h3>
+                <hr />
+                <img src="@Url.Content(photoPath)" id="cardDetailsPic" />
+            </div>
+        </div>
+       
+
+            
+                              
+       
+      </div> 
+    <div>
+        @if (User.IsInRole("Administrator"))
+        {
+            @Html.ActionLink("Edit ", "Edit", new { id = Model.Id })
+            @Html.ActionLink("Add Image ", "AddImage", new { id = Model.Id })
+            @Html.ActionLink("Add Cash Back", "AddCashBackToCard", "CashBacks", new { id = Model.Id })
+        }
+
+
+        <a asp-action="Index">Back to List</a>
+    </div>

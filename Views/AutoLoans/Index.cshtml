@@ -1,0 +1,68 @@
+﻿@model IEnumerable<CardPortfolio.Models.AutoLoan>
+@{
+    ViewData["Title"] = "All Auto Loans";
+}
+
+<h1>All Cards</h1>
+
+@if (User.IsInRole("Administrator"))
+{
+    <p>@Html.ActionLink("Create New", "Create")</p>
+}
+
+
+@if (Model != null)
+{
+    <table class="table table-bordered dt-responsive" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+
+                <th>Card Name</th>
+                <th>Card Network</th>
+                <th>Card Category</th>
+                <th></th>
+            </tr>
+        </thead>
+
+
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>@item.Name</td>
+                    <td>@item.AutoLoanCategory</td>
+                    <td>@item.LowApr</td>
+
+                    <td>
+                        @if (User.IsInRole("Administrator"))
+                        {
+                            @Html.ActionLink("Edit ", "Edit", "AutoLoans", new { id = item.Id })
+                            @Html.ActionLink("Delete", "Delete", "AutoLoans", new { id = item.Id })
+
+                        }
+
+                        @Html.ActionLink("Details", "Details", "AutoLoans", new { id = item.Id })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </td>
+
+                </tr>
+
+            }
+        </tbody>
+    </table>
+}

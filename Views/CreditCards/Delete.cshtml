@@ -1,0 +1,122 @@
+﻿@model CardPortfolio.Models.CreditCard
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>CreditCard</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.HasIntroPurchaseOffer)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.HasIntroPurchaseOffer)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IntroPurchaseRate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IntroPurchaseRate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IntroPurchaseLengthInMonths)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IntroPurchaseLengthInMonths)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.HasIntroBalanceTransferOffer)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.HasIntroBalanceTransferOffer)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IntroBalanceTransferRate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IntroBalanceTransferRate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IntroBalanceTransferLengthInMonths)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IntroBalanceTransferLengthInMonths)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LowAPRPurchases)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LowAPRPurchases)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.HighAPRPurchases)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.HighAPRPurchases)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LowAPRBalanceTransfer)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LowAPRBalanceTransfer)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.HighAPRBalanceTransfer)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.HighAPRBalanceTransfer)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LowAPRCashAdvance)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LowAPRCashAdvance)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.HighAPRCashAdvance)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.HighAPRCashAdvance)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.HasSignUpBonus)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.HasSignUpBonus)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CardNetwork)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CardNetwork)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ImagePath)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ImagePath)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

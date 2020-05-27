@@ -1,0 +1,329 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+
+body {
+    margin: 0;
+    font-family: Arial
+}
+
+.card-info-list{
+    list-style-type:none;
+    padding-left:1em;
+        
+    
+}
+
+.card-row-pic{
+    max-height:80%;
+}
+
+.header-row {
+    margin-bottom: 2em;
+    margin-top: 1em;
+}
+.navbar-toggler{
+    background-color:white;
+    margin-right:1em;
+    margin-left:0.25em;
+}
+
+#navHamburger{
+    height:30px;
+    width:20px;
+    
+}
+
+#siteLogo {
+    margin-left: 2em;
+    margin-top:1em;
+}
+
+#homeText{
+    margin-top:-10%;
+}
+
+#homePic{
+    height:350px;  
+    width:100%;
+     margin-top:-15%;
+}
+
+.advertiser-bar{
+    background-color:grey;
+    min-height: 80px;
+    padding-bottom: 20px;
+}
+
+.navbar-custom {
+    background-color: #0099ff;
+    width:100%;
+    
+    
+}
+
+.blue-header {
+    background-color: #0099ff;
+    color:white;
+    font-weight:bold;
+}
+
+.page-message{
+    width:150%;
+    margin-left:-8%;
+    margin-bottom:5%;
+    
+}
+.white-nav {
+    color: white;
+    margin-left:8px;
+}
+
+.btn-green {
+    background-color: #73e600;
+    color:white;
+    font-weight: bold;
+}
+
+.btn-custom {
+    width: 100%;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+.btn-wide {
+    min-width: 100%;
+    background-color: #e7e7e7;
+    color: black;
+    margin-top: 2%;
+}
+
+.bt-info{
+    margin-left:-5%;
+    
+}
+
+.info-box{
+    margin-top:4px;
+}
+
+#index-post-header{
+    max-height: 50%;
+    max-width: 100%;
+}
+.blog-card {
+    max-width: 55%;
+    margin-left: 20%;
+    margin-top: 5%;
+}
+
+textarea {
+    width: 300px;
+    height: 150px;
+}
+
+.top-input {
+    margin-top: 5%;
+}
+
+.login-screen {
+    max-width: 50%;
+}
+
+.card-info-list li:before{
+    content:"-";
+    position:absolute;
+    margin-left:-1em;
+    
+}
+
+.details-section{
+    margin-top:2%;
+    margin-left:5%;
+}
+
+
+
+#institionDetailsCardPic, #userInstitutionPic{
+    margin-bottom:5%;
+    margin-top:0%;
+}
+
+#totalLimitsHeader {
+    margin-top:18%;
+    min-width:115%;
+    margin-left:-2%;
+}
+
+.cardRowHeader{
+    min-width: 115%;
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+}
+
+.nav-fa {
+    margin-right:3px;
+}
+
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+    color: #0366d6;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #ffffff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+    font-size: x-small;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+    margin-top: 10%;
+}
+
+#institutionLogo {
+    max-width: 20%;
+    max-height: 20%;
+}
+
+#cardDetailsPic{
+    max-width:50%;
+    max-height:50%;
+    min-height:30%;
+    min-width:30%
+}
+
+#cardRow {
+    max-width: 100%;
+}
+
+.collapsible {
+    background-color: #73e600;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    margin-top:2%;
+}
+
+    .active, .collapsible:hover {
+        background-color: #555;
+    }
+
+.content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+}
+
+
+/** Trying w3 example */
+
+.column {
+    float: left;
+    width: 75%;
+    padding: 2% 2%;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #fff;
+}
+
+.column:hover .overlay {
+    opacity: 1;
+}
+
+.text {
+    color: black;
+    font-size: 2em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+

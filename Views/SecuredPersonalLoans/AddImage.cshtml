@@ -1,0 +1,34 @@
+﻿@model CardPortfolio.ViewModels.AddSecuredPersonalLoanImageViewModel
+@{
+    ViewData["Title"] = "Add Image for Secured Loan";
+
+}
+
+<h1>Add Secured Loan Image</h1>
+
+<!-- Old Way Below -->
+<form enctype="multipart/form-data" method="post">
+    @Html.HiddenFor(m => m.Id)
+    <div class="form-group">
+        <label asp-for="Image"></label>
+        <div class="col-sm-10">
+            <div class="custom-file">
+                <input asp-for="Image" class="form-control custom-file-input" />
+                <label class="custom-file-label">Choose File...</label>
+            </div>
+        </div>
+
+        <span class="text-danger" asp-validation-for="Image"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    @section Scripts {
+        <script>
+            $(document).ready(function () {
+                $('.custom-file-input').on("change", function () {
+                    var fileName = $(this).val().split("\\").pop();
+                    $(this).next('.custom-file-label').html(fileName);
+                });
+            });
+        </script>
+    }
+</form>

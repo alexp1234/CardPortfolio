@@ -1,0 +1,18 @@
+﻿@model CardPortfolio.Models.CheckingAccount
+@{
+    ViewData["Title"] = "Add Checking Account";
+
+}
+
+@Html.HiddenFor(m => m.Id)
+
+<form method="post">
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Id, "Checking Account Name", htmlAttributes: new { @class = "control-label" })
+        @Html.DropDownList("CheckingAccountId", null, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Checking Account</button>
+</form>

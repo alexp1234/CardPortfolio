@@ -1,0 +1,177 @@
+﻿@model CardPortfolio.Models.BlogPost
+@{
+    ViewData["Title"] = "Details";
+    var photoPath = "~/images/" + Model.ImageUrl;
+}
+
+
+
+
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Post Content Column -->
+            <div class="col-lg-8">
+
+                <!-- Title -->
+                <h1 class="mt-4">@Model.Title</h1>
+
+                <!-- Author -->
+                <p class="lead">
+                    by
+                    <a href="#">WalletBailout</a>
+                </p>
+
+                <hr>
+
+                <!-- Date/Time -->
+                <p>Posted on @Model.CreationDate  </p>
+                <a href="#">@Model.BlogPostCategory</a>
+                <hr>
+
+                <!-- Preview Image -->
+                <img class="img-fluid rounded"  src="@Url.Content(photoPath)" id="carLoanLogo"  alt="">
+
+                <hr>
+
+            @Html.Raw(Model.BodyText)
+
+             
+
+              
+
+              
+
+            </div>
+
+            <!-- Sidebar Widgets Column -->
+            <div class="col-md-4">
+
+                <!-- Search Widget -->
+                <div class="card my-4">
+                    <form asp-action="Index" method="get">
+                        <h5 class="card-header">Search</h5>
+                        <div class="card-body">
+                            <div class="input-group">
+                                <input type="text" name="SearchString" value="@ViewData["currentFilter"]" class="form-control" placeholder="Search for...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-secondary" type="submit" value="Search">Go!</button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Categories Widget -->
+                <div class="card my-4">
+                    <h5 class="card-header">Categories</h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <span><a href="#">Credit Cards</a></span>
+                                    </li>
+                                    <li>
+                                        <span><a href="#">Cash Back Cards</a></span>
+
+                                    </li>
+                                    <li>
+                                        <span><a href="#">Sign Up Bonus</a></span>
+
+                                    </li>
+                                    <li>
+                                        <span><a href="#">Cash Advance cards</a></span>
+
+                                    </li>
+                                    <li>
+                                        <span><a href="#">Balance Transfer Cards</a></span>
+
+                                    </li>
+                                    <li>
+                                        <span><a href="#">Intro Offers</a></span>
+
+                                    </li>
+                                    <li>
+                                        <span><a href="#">Sign Up Bonuses</a></span>
+
+                                    </li>
+                                    <li>
+                                        <span><a href="#">Travel Cards</a></span>
+
+                                    </li>
+                                    <li>
+                                        <span><a href="#">Savings Accounts</a></span>
+
+                                    </li>
+                                    <li>
+                                        <span><a href="#">Checking Accounts</a></span>
+
+                                    </li>
+                                    <li>
+                                        <span><a href="#">Certificate Accounts</a></span>
+
+                                    </li>
+                                    <li>
+                                        <span><a href="#">Money Market Accounts</a></span>
+
+                                    </li>
+                                    <li>
+                                        <span><a href="#">Mortgages</a></span>
+
+                                    </li>
+                                    <li>
+                                        <span><a href="#">AutoLoans</a></span>
+
+                                    </li>
+                                    <li>
+                                        <span><a href="#">Home Equity Loans</a></span>
+
+                                    </li>
+                                    <li>
+                                        <span><a href="#">HELOCS</a></span>
+
+                                    </li>
+                                    <li>
+                                        <span><a href="#">Unsecured Personal Loans</a></span>
+
+                                    </li>
+                                    <li>
+                                        <span><a href="#">Secured Personal Loans</a></span>
+
+                                    </li>
+                                    <li>
+                                        <span><a href="#">Unsecured Lines of Credit</a></span>
+
+                                    </li>
+                                    <li>
+                                        <span><a href="#">Secured Lines of Credit</a></span>
+
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Side Widget -->
+                <div class="card my-4">
+                    <h5 class="card-header">Side Widget</h5>
+                    <div class="card-body">
+                        You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+
+
+

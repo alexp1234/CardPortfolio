@@ -1,0 +1,18 @@
+﻿@model CardPortfolio.Models.CertificateAccount
+@{
+    ViewData["Title"] = "Add Certificate Account";
+
+}
+
+@Html.HiddenFor(m => m.Id)
+
+<form method="post">
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Id, "Certificate Name", htmlAttributes: new { @class = "control-label" })
+        @Html.DropDownList("CertificateAccountId", null, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Certificate Account</button>
+</form>

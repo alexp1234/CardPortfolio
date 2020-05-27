@@ -1,0 +1,117 @@
+﻿@model CardPortfolio.Models.Institution
+
+@{
+    ViewData["Title"] = Model.Name;
+    var photoPath = "~/images/" + Model.ImagePath;
+   
+}
+
+
+    <div class="container-fluid">
+
+        <img src="@Url.Content(photoPath)" id="institutionLogo" />
+        <p class="alert-heading">@Model.Description</p>
+
+        @foreach (var card in ViewBag.CardList)
+        {
+            var cardPhotoPath = "~/images/" + card.ImagePath;
+
+            <div class="card-header">
+                <h3>@card.Name</h3>
+            </div>
+            <div class="card-body">
+
+
+                <!-- Features of Card-->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="@Url.Content(cardPhotoPath)" id="institionDetailsCardPic" />
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="card-info-list">
+                                @if (card.HasIntroPurchaseOffer)
+                                {
+                                    <li>@card.IntroPurchaseRate% intro purchase offer for @card.IntroPurchaseLengthInMonths months </li>
+                                }
+                                @if (card.HasIntroBalanceTransferOffer)
+                                {
+                                    @if (card.HasIntroBalanceTransferFee)
+                                    {
+                                        <li>@card.IntroBalanceTransferRate% on Balance Transfers for @card.IntroBalanceTransferLengthInMonths months</li>
+                                        <li> @card.IntroBalanceTransferFee% Intro Balance Transfer Fee</li>
+                                    }
+                                    else
+                                    {
+                                        <li>@card.IntroBalanceTransferRate% on Balance Transfers for @card.IntroBalanceTransferLengthInMonths months </li>
+                                        <li>@card.RegularBalanceTransferFee% Balance Transfer Fee</li>
+                                    }
+                                    @if (card.HasSignUpBonus && card.SignUpBonusCategory == SignUpBonusCategory.Cash)
+                                    {
+                                        <li>$@card.SignUpBonusAmount Sign Up Bonus when you spend $@card.SignUpBonusSpendRequirement</li>
+                                    }
+                                }
+                                @if (card.LowAPRPurchases == card.LowAPRBalanceTransfer && card.HighAPRPurchases == card.HighAPRBalanceTransfer)
+                                {
+                                    <li>
+                                        @card.LowAPRPurchases% - @card.HighAPRPurchases% Regular APR on Purchases and Balance Transfers
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        @card.LowAPRPurchases% - @card.HighAPRPurchases% Regular APR on Purchases
+                                    </li>
+                                    <li>
+                                        @card.LowAPRBalanceTransfer% - @card.HighAPRBalanceTransfer% Regular APR on Balance Transfers
+                                    </li>
+                                }
+                                <li>
+                                    @card.LowAPRCashAdvance% - @card.HighAPRCashAdvance% Regular APR on Cash Advances
+                                </li>
+
+
+                            </ul>
+                        </div>
+
+
+                        <hr />
+                    </div>
+                    @Html.ActionLink("Card Details", "CreditCards", new { id = card.Id })
+
+                </div>
+
+            </div>
+        }
+
+
+        @if (User.IsInRole("Administrator"))
+        {
+            @Html.ActionLink("Add Auto Loan |", "AddAutoLoan", "Institutions", new { id = Model.Id })
+            @Html.ActionLink(" Add HELOC |", "AddHomeEquityLineOfCredit", "Institutions", new { id = Model.Id })
+            @Html.ActionLink(" Add HELOAN |", "AddHomeEquityLoan", "Institutions", new { id = Model.Id })
+            @Html.ActionLink(" Add Mortgage |", "AddMortgage", "Institutions", new { id = Model.Id })
+            @Html.ActionLink(" Add Secured LOC |", "AddSecuredLoc", "Institutions", new { id = Model.Id })
+            @Html.ActionLink(" Add Secured Loan |", "AddSecuredLoan", "Institutions", new { id = Model.Id })
+            @Html.ActionLink(" Add Unsecured Line Of Credit |", "AddUnsecuredLineOfCredit", new { id = Model.Id })
+            @Html.ActionLink(" Add Unsecured Loan |", "AddUnsecuredLoan", new { id = Model.Id })
+            @Html.ActionLink(" Add Certificate Account |", "AddCertificateAccount", new {id = Model.Id})
+            @Html.ActionLink(" Add Checking Account |", "AddCheckingAccount", new { id = Model.Id})
+            @Html.ActionLink(" Add Money Market Account |", "AddMoneyMarketAccount", new { id = Model.Id})
+            @Html.ActionLink(" Add Savings Account |", "AddSavingsAccount", new  {id = Model.Id })
+            @Html.ActionLink("Add Image |", "AddImage", new { id = Model.Id})
+            @Html.ActionLink("Edit |", "Edit", new { id = Model.Id})
+            @Html.ActionLink("Delete |", "Delete", new {id = Model.Id })
+
+        
+        }
+
+
+
+
+
+
+
+
+
+    </div>

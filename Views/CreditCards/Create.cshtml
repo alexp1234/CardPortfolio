@@ -1,0 +1,205 @@
+﻿@model CardPortfolio.Models.CreditCard
+
+@{
+    ViewData["Title"] = "Create Credit Card";
+}
+
+<h1>Create</h1>
+
+<h4>CreditCard</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ForeignTransactionFee" class="control-label"></label>
+                <input asp-for="ForeignTransactionFee" class="form-control" />
+                <span asp-validation-for="ForeignTransactionFee" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="HasIntroPurchaseOffer" /> @Html.DisplayNameFor(model => model.HasIntroPurchaseOffer)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="IntroPurchaseRate" class="control-label"></label>
+                <input asp-for="IntroPurchaseRate" class="form-control" />
+                <span asp-validation-for="IntroPurchaseRate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IntroPurchaseLengthInMonths" class="control-label"></label>
+                <input asp-for="IntroPurchaseLengthInMonths" class="form-control" />
+                <span asp-validation-for="IntroPurchaseLengthInMonths" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="HasIntroBalanceTransferOffer" /> @Html.DisplayNameFor(model => model.HasIntroBalanceTransferOffer)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="IntroBalanceTransferRate" class="control-label"></label>
+                <input asp-for="IntroBalanceTransferRate" class="form-control" />
+                <span asp-validation-for="IntroBalanceTransferRate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IntroBalanceTransferLengthInMonths" class="control-label"></label>
+                <input asp-for="IntroBalanceTransferLengthInMonths" class="form-control" />
+                <span asp-validation-for="IntroBalanceTransferLengthInMonths" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LowAPRPurchases" class="control-label"></label>
+                <input asp-for="LowAPRPurchases" class="form-control" />
+                <span asp-validation-for="LowAPRPurchases" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HighAPRPurchases" class="control-label"></label>
+                <input asp-for="HighAPRPurchases" class="form-control" />
+                <span asp-validation-for="HighAPRPurchases" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LowAPRBalanceTransfer" class="control-label"></label>
+                <input asp-for="LowAPRBalanceTransfer" class="form-control" />
+                <span asp-validation-for="LowAPRBalanceTransfer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HighAPRBalanceTransfer" class="control-label"></label>
+                <input asp-for="HighAPRBalanceTransfer" class="form-control" />
+                <span asp-validation-for="HighAPRBalanceTransfer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LowAPRCashAdvance" class="control-label"></label>
+                <input asp-for="LowAPRCashAdvance" class="form-control" />
+                <span asp-validation-for="LowAPRCashAdvance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HighAPRCashAdvance" class="control-label"></label>
+                <input asp-for="HighAPRCashAdvance" class="form-control" />
+                <span asp-validation-for="HighAPRCashAdvance" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="HasSignUpBonus" /> @Html.DisplayNameFor(model => model.HasSignUpBonus)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="SignUpBonusCategory" class="control-label"></label>
+                <select asp-for="SignUpBonusCategory" asp-items="ViewBag.SignUpBonusList" class="form-control"></select>
+                <span asp-validation-for="SignUpBonusCategory" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SignUpBonusAmount" class="control-label"></label>
+                <input asp-for="SignUpBonusAmount" class="form-control" />
+                <span asp-validation-for="SignUpBonusAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SignUpBonusSpendRequirement" class="control-label"></label>
+                <input asp-for="SignUpBonusSpendRequirement" class="form-control" />
+                <span asp-validation-for="SignUpBonusSpendRequirement" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CardNetwork" class="control-label"></label>
+                <select asp-for="CardNetwork" asp-items="ViewBag.NetworkList" class="form-control"></select>
+                <span asp-validation-for="CardNetwork" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CardCategory" class="control-label"></label>
+                <select asp-for="CardCategory" asp-items="ViewBag.CategoryList" class="form-control"></select>
+                <span asp-validation-for="CardCategory" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnnualFee" class="control-label"></label>
+                <input asp-for="AnnualFee" class="form-control" />
+                <span asp-validation-for="AnnualFee" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="HasIntroBalanceTransferFee" />@Html.DisplayNameFor(model => model.HasIntroBalanceTransferFee)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="IntroBalanceTransferFee" class="control-label"></label>
+                <input asp-for="IntroBalanceTransferFee" class="form-control" />
+                <span asp-validation-for="IntroBalanceTransferFee" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CashAdvanceFee" class="control-label"></label>
+                <input asp-for="CashAdvanceFee" class="form-control" />
+                <span asp-validation-for="CashAdvanceFee" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RegularBalanceTransferFee" class="control-label"></label>
+                <input asp-for="RegularBalanceTransferFee" class="form-control" />
+                <span asp-validation-for="RegularBalanceTransferFee" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsFixedRate" />@Html.DisplayNameFor(model => model.IsFixedRate)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="MinimumCreditLine" class="control-label"></label>
+                <input asp-for="MinimumCreditLine" class="form-control" />
+                <span asp-validation-for="MinimumCreditLine" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaximumCreditLine" class="control-label"></label>
+                <input asp-for="MaximumCreditLine" class="form-control" />
+                <span asp-validation-for="MaximumCreditLine" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="HasCashBack" />@Html.DisplayNameFor(model => model.HasCashBack)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="MinimumPaymentPercent" class="control-label"></label>
+                <input asp-for="MinimumPaymentPercent" class="form-control" />
+                <span asp-validation-for="MinimumPaymentPercent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MinimumPaymentInDollars" class="control-label"></label>
+                <input asp-for="MinimumPaymentInDollars" class="form-control" />
+                <span asp-validation-for="MinimumPaymentInDollars" class="text-danger"></span>
+            </div>
+
+
+
+            <div class="form-group">
+                <label asp-for="ImagePath" class="control-label"></label>
+                <input asp-for="ImagePath" class="form-control" />
+                <span asp-validation-for="ImagePath" class="text-danger"></span>
+            </div>
+            <!-- New Properties Below-->
+
+
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Url" class="control-label"></label>
+                <input asp-for="Url" class="form-control" />
+                <span asp-validation-for="Url" class="text-danger"></span>
+            </div>
+
+
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    
+    <a asp-action="Index">Back to List</a>
+</div>

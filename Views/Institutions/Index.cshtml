@@ -1,0 +1,61 @@
+﻿@model IEnumerable<CardPortfolio.Models.Institution>
+@{
+    ViewData["Title"] = "Institutions";
+}
+
+<h1>Institutions</h1>
+
+@if (User.IsInRole("Administrator"))
+{
+    <p>@Html.ActionLink("Create New", "Create")</p>
+
+}
+
+@if (Model != null)
+{
+    <table class="table table-bordered dt-responsive" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Institution Name</th>
+                <th>Institution Type</th>
+                <th>Credit Bureau</th>
+                <th>Score for Best APR</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.InstitutionType</td>
+                    <td>@item.CreditBureau</td>
+                    @if (item.ScoreForLowestAPR != null)
+                    {
+                        <td>@item.ScoreForLowestAPR</td>
+                    }
+                    else
+                    {
+                        <td>Unknown</td>
+                    }
+                <td>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        @Html.ActionLink("Edit ", "Edit", new { id = item.Id })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    }
+                    @Html.ActionLink("Details", "Details", "Institutions", new {id = item.Id })
+                </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+else
+{
+    <h2>Coming Soon...</h2>
+}

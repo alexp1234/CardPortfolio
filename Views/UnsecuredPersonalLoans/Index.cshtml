@@ -1,0 +1,70 @@
+﻿@model IEnumerable<CardPortfolio.Models.UnsecuredPersonalLoan>
+@{
+    ViewData["Title"] = "Unsecured Loan";
+}
+
+<h1>Unsecured Loan</h1>
+
+@if (User.IsInRole("Administrator"))
+{
+    <p>@Html.ActionLink("Create New", "Create")</p>
+}
+
+
+@if (Model != null)
+{
+    <table class="table table-bordered dt-responsive" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+
+                <th><small>LOAN NAME</small></th>
+                <th><small>LOW APR</small></th>
+                <th><small>HIGH APR</small></th>
+                <th><small>MAX TERM</small></th>
+                <th><small>MIN AMOUNT</small></th>
+                <th><small>MAX AMOUNT</small></th>
+                <th></th>
+            </tr>
+        </thead>
+
+
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>@item.Name</td>
+                    <td>@item.LowApr</td>
+                    <td>@item.HighApr</td>
+                    <td>@item.MaximumTermInMonths</td>
+                    <td>@item.MinimumAmount</td>
+                    <td>@item.MaximumAmount</td>
+
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.Id })
+                        @if (User.IsInRole("Administrator"))
+                        {
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+}

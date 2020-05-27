@@ -1,0 +1,160 @@
+﻿@model PaginatedList<CardPortfolio.Models.CreditCard>
+@{
+    ViewData["Title"] = "Hotel Sign Up Bonus";
+}
+
+<div class="row header-row blue-header">
+    <h1>@ViewBag.PageHeader</h1>
+
+</div>
+@if (Model.Count() != 0)
+{
+
+    <div class="container-fluid">
+
+        @foreach (var card in Model)
+        {
+            var photoPath = "~/images/" + card.ImagePath;
+
+
+            <div class="card-header cardRowHeader">
+                <h3>@card.Name</h3>
+            </div>
+            <div class="card-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="@Url.Content(photoPath)" class="card-row-pic" />
+                        </div>
+                        <div class="col-md-6 info-box">
+                            <!-- highlights Section-->
+                            <div class="card-header">
+                                <p class="h4"><i class="fas fa-highlighter"></i>&nbsp; Highlights</p> <hr />
+                                <ul class="card-info-list">
+                                    <li>$@card.SignUpBonusAmount cash value bonus when you spend $@card.SignUpBonusSpendRequirement </li>
+                                    @if (card.AnnualFee != 0 && card.AnnualFee != null)
+                                    {
+                                        <li>Annual Fee: $@card.AnnualFee</li>
+                                    }
+                                    else
+                                    {
+                                        <li>No Annual Fee:</li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="collapsible">More Info</button>
+                    <div class="content">
+                        <div class="row details-section">
+                            <div class="col-md-5 bt-info">
+                                <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Interest Rate Information <hr /></p>
+                                <ul class="card-info-list">
+                                    <li>Purchase: @card.LowAPRPurchases% to @card.HighAPRPurchases%  </li>
+                                    <li>Balance Transfer: @card.LowAPRBalanceTransfer% to @card.HighAPRBalanceTransfer%</li>
+                                    <li>Cash Advance: @card.LowAPRCashAdvance% to @card.HighAPRCashAdvance%</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-5 bt-info">
+                                <p class="h5"> &nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Fee Information <hr /></p>
+                                <ul class="card-info-list">
+                                    <li>Annual Fee: $@card.AnnualFee </li>
+                                    <li>Balance Transfer: @card.RegularBalanceTransferFee% of each transaction</li>
+                                    <li>Cash Advance: @card.CashAdvanceFee% of each advance</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row details-section">
+                            @if (card.HasCashBack)
+                            {
+                                <div class="col-md-5 bt-info">
+                                    <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Cash Back <hr /></p>
+                                    <ul class="card-info-list">
+                                        <li>@card.Description</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-2"></div>
+                            }
+                            else
+                            {
+                                <div class="col-md-5 bt-info">
+                                    <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Cash Back <hr /></p>
+                                    <ul class="card-info-list">
+                                        <li>No Cash Back</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-2"></div>
+                            }
+                            @if (card.HasSignUpBonus)
+                            {
+                                <div class="col-md-5 bt-info">
+                                    <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Sign Up Bonus  <hr /></p>
+                                    <ul class="card-info-list">
+                                        <li>Spend Requirement: $@card.SignUpBonusSpendRequirement</li>
+                                        <li>Bonus Amount: $@card.SignUpBonusAmount</li>
+                                    </ul>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-md-5 bt-info">
+                                    <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Sign Up Bonus  <hr /></p>
+                                    <ul class="card-info-list">
+                                        <li>No Sign Up Bonus</li>
+                                    </ul>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        }
+    </div>
+
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+
+
+    <ul class="pagination justify-content-center mb-5">
+        <li class="page-item">
+            <a asp-action="HotelPointsCards"
+               asp-route-sortOrder="@ViewData["CurrentSort"]"
+               asp-route-pageNumber="@(Model.PageIndex - 1)"
+               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+               class="btn btn-green @prevDisabled">
+                Previous
+            </a>
+        </li>
+        &nbsp;
+        <li class="page-item disabled">
+            <a asp-action="HotelPointsCards"
+               asp-route-sortOrder="@ViewData["CurrentSort"]"
+               asp-route-pageNumber="@(Model.PageIndex + 1)"
+               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+               class="btn btn-green btn-custom @nextDisabled">
+                Next
+            </a>
+        </li>
+    </ul>
+}
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    }
+</script>

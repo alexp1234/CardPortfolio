@@ -1,0 +1,29 @@
+﻿@model CardPortfolio.Models.BlogPost
+@{
+    ViewData["Title"] = "Publish Blog Post";
+}
+
+<h1>Publish</h1>
+
+
+
+<h3>Are you sure you want to publish this?</h3>
+<div>
+    <h4>Blog Post</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Abstract)
+        </dd>
+
+
+    </dl>
+
+    <form asp-action="Publish">
+        <input type="submit" value="Publish" class="btn btn-danger" /> |
+        <a asp-action="UnpublishedPosts">All Unpublished Posts</a>
+    </form>
+</div>

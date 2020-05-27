@@ -1,0 +1,244 @@
+﻿@model PaginatedList<CardPortfolio.Models.BlogPost>
+@{
+    ViewData["Title"] = "Home";
+}
+
+<!-- Navigation -->
+<!-- Page Content -->
+    <div class="container">
+        @if (User.IsInRole("Administrator"))
+        {
+            <div class="card-header">
+                Admin | @Html.ActionLink(" Create New Post |", "Create", "BlogPosts")
+                @Html.ActionLink(" View Unpublished Posts |", "UnpublishedPosts", "BlogPosts")
+                @Html.ActionLink(" View Published Posts |", "PublishedPosts", "BlogPosts")
+
+            </div>
+
+
+        }
+        <div class="card-header page-message">
+            <h3>@ViewBag.PageHeader</h3>
+        </div>
+
+        <div class="row">
+
+            <!-- Blog Entries Column -->
+            <div class="col-md-8">
+
+
+
+                @foreach (var post in Model)
+                {
+                    <!-- Blog Post -->
+                    <div class="card mb-4 blog-card">
+                        @if (post.ImageUrl != null)
+                        {
+                            var photoPath = "~/images/" + post.ImageUrl;
+                            <div class="container-fluid" id="index-post-header">
+                                <img class="card-img-top" src="@Url.Content(photoPath)" alt="Card image cap" />
+                            </div>
+                        }
+
+                        else
+                        {
+                            <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap" />
+                        }
+
+                        <div class="card-body">
+                            <h2 class="card-title">@post.Title</h2>
+                            <p class="card-text">@post.Abstract</p>
+                            <a asp-items="" asp-action="Details" asp-controller="BlogPosts" asp-route-id="@post.Id" class="btn btn-green">Read More &rarr;</a>
+                        </div>
+                        <div class="card-footer text-muted">
+                            Posted on @post.CreationDate
+                            <a href="#">WalletBailout</a>
+                        </div>
+                    </div>
+                }
+
+
+
+                @{ 
+                    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+                }
+
+                <!-- Pagination -->
+
+                <ul class="pagination justify-content-center mb-5">
+                    <li class="page-item">
+                        <a asp-action="Index"
+                           asp-route-sortOrder="@ViewData["CurrentSort"]"
+                           asp-route-pageNumber="@(Model.PageIndex - 1)"
+                           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                           class="btn btn-green @prevDisabled">
+                            Previous
+                        </a>
+                    </li>
+                    &nbsp;
+                    <li class="page-item disabled">
+                        <a asp-action="Index"
+                           asp-route-sortOrder="@ViewData["CurrentSort"]"
+                           asp-route-pageNumber="@(Model.PageIndex + 1)"
+                           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                           class="btn btn-green btn-custom @nextDisabled">
+                            Next
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+
+
+
+            <!-- Sidebar Widgets Column -->
+            <div class="col-md-4">
+
+                <!-- Search Widget -->
+                <div class="card my-4">
+                    <form asp-action="Index" method="get">
+                        <h5 class="card-header blue-header">Search</h5>
+                        <div class="card-body">
+                            <div class="input-group">
+                                <input type="text" name="SearchString" value="@ViewData["currentFilter"]" class="form-control" placeholder="Search for...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-green" type="submit" value="Search">Go!</button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Categories Widget -->
+                <div class="card my-4">
+                    <h5 class="card-header blue-header">Categories</h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <ul class="list-unstyled mb-0">
+
+                                    <li>
+                                        <span>@Html.ActionLink("Credit Cards", "Index", "BlogPosts", new { categoryName = "Credit Cards" })</span>
+                                    </li>
+                                    <li>
+                                        <span>@Html.ActionLink("Cash Back Cards", "Index", "BlogPosts", new { categoryName = "Cash Back" })</span>
+
+                                    </li>
+                                    <li>
+                                        <span>@Html.ActionLink("Sign Up Bonus", "Index", "BlogPosts", new { categoryName = "Sign Up Bonus" })</span>
+                                    </li>
+                                    <li>
+                                        <span>@Html.ActionLink("Cash Advance", "Index", "BlogPosts", new { categoryName = "Cash Advance" })</span>
+                                    </li>
+                                    <li>
+                                        <span>@Html.ActionLink("Balance Transfer Cards", "Index", "BlogPosts", new { categoryName = "Balance Transfer" })</span>
+                                    </li>
+                                    <li>
+                                        <span>@Html.ActionLink("Intro Offers", "Index", "BlogPosts", new { categoryName = "Intro Offer" })</span>
+
+                                    </li>
+                                    <li>
+                                        <span>@Html.ActionLink("Sign Up Bonuses", "Index", "BlogPosts", new { categoryName = "Sign Up Bonus" })</span>
+
+
+                                    </li>
+                                    <li>
+                                        <span>@Html.ActionLink("Travel Cards", "Index", "BlogPosts", new { categoryName = "Travel Cards" })</span>
+
+
+                                    </li>
+                                    <li>
+                                        <span>@Html.ActionLink("Savings Account", "Index", "BlogPosts", new { categoryName = "Savings Account" })</span>
+
+
+                                    </li>
+                                    <li>
+                                        <span>@Html.ActionLink("Checking Accounts", "Index", "BlogPosts", new { categoryName = "Checking Accounts" })</span>
+
+
+                                    </li>
+                                    <li>
+
+                                        <span>@Html.ActionLink("Certificate Accounts", "Index", "BlogPosts", new { categoryName = "Certificate Accounts" })</span>
+                                    </li>
+                                    <li>
+                                        <span>@Html.ActionLink("Money Market Accounts", "Index", "BlogPosts", new { categoryName = "Money Market Accounts" })</span>
+
+                                    </li>
+                                    <li>
+                                        <span>@Html.ActionLink("Mortgages", "Index", "BlogPosts", new { categoryName = "Mortgages" })</span>
+
+                                    </li>
+                                    <li>
+                                        <span>@Html.ActionLink("Auto Loans", "Index", "BlogPosts", new { categoryName = "Auto Loans" })</span>
+
+                                    </li>
+                                    <li>
+                                        <span>@Html.ActionLink("Home Equity Loans", "Index", "BlogPosts", new { categoryName = "Home Equity Loans" })</span>
+
+                                    </li>
+                                    <li>
+                                        <span>@Html.ActionLink("HELOCs", "Index", "BlogPosts", new { categoryName = "Home Equity Lines of Credit" })</span>
+
+                                    </li>
+                                    <li>
+                                        <span>@Html.ActionLink("Unsecured Personal Loans", "Index", "BlogPosts", new { categoryName = "Unsecured Personal Loans" })</span>
+
+                                    </li>
+                                    <li>
+                                        <span>@Html.ActionLink("Secured Personal Loans", "Index", "BlogPosts", new { categoryName = "Secured Personal Loans" })</span>
+
+                                    </li>
+                                    <li>
+                                        <span>@Html.ActionLink("Unsecured Lines of Credit", "Index", "BlogPosts", new { categoryName = "Unsecured Lines of Credit" })</span>
+
+                                    </li>
+                                    <li>
+                                        <span>@Html.ActionLink("Secured Lines of Credit", "Index", "BlogPosts", new { categoryName = "Secured Lines of Credit" })</span>
+
+                                    </li>
+
+
+
+
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Side Widget -->
+                <div class="card my-4">
+                    <h5 class="card-header blue-header">@ViewBag.ThreeLabel</h5>
+                    <div class="card-body">
+                        @foreach (var post in ViewBag.RecentPosts)
+                        {
+                            if (post.ImageUrl != null)
+                            {
+                                var photoPath = "~/images/" + post.ImageUrl;
+                                <p>Title @post.Title</p>
+                                <img class="img-thumbnail" src="@Url.Content(photoPath)" alt="Card image cap" />
+                                <p>Creation Date @post.CreationDate</p>
+                            }
+                            else
+                            {
+                                <a asp-route-id="@post.Id" asp-controller="BlogPosts" asp-action="Details">@post.Title</a>
+                                <img class="img-thumbnail" src="http://placehold.it/750x300" alt="Card image cap" />
+                                <p> @post.CreationDate</p>
+                            }
+
+                        }
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+
+
+

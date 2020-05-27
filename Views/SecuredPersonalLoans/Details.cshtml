@@ -1,0 +1,18 @@
+﻿@model CardPortfolio.Models.SecuredPersonalLoan
+
+@{
+    ViewData["Title"] = Model.Name;
+    var photoPath = "~/images/" + Model.ImageUrl;
+
+}
+
+
+<div class="container-fluid">
+
+    <img src="@Url.Content(photoPath)" id="carLoanLogo" />
+    <p class="alert-heading">@Model.Name</p>
+
+
+</div>
+
+@Html.ActionLink("Add Image", "AddImage", "SecuredPersonalLoans", new { id = Model.Id })

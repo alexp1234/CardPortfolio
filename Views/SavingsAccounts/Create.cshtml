@@ -1,0 +1,86 @@
+﻿@model CardPortfolio.Models.SavingsAccount
+
+@{
+    ViewData["Title"] = "Create Savings Account";
+}
+
+<h1>Create</h1>
+
+<h4>Savings Account</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InterestRate" class="control-label"></label>
+                <input asp-for="InterestRate" class="form-control" />
+                <span asp-validation-for="InterestRate" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="HasMinimumToOpenAccount" /> @Html.DisplayNameFor(model => model.HasMinimumToOpenAccount)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="MinimumToOpenAccount" class="control-label"></label>
+                <input asp-for="MinimumToOpenAccount" class="form-control" />
+                <span asp-validation-for="MinimumToOpenAccount" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="HasMonthlyFee" /> @Html.DisplayNameFor(model => model.HasMonthlyFee)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="MonthlyFee" class="control-label"></label>
+                <input asp-for="MonthlyFee" class="form-control" />
+                <span asp-validation-for="MonthlyFee" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BalanceToAvoidFee" class="control-label"></label>
+                <input asp-for="BalanceToAvoidFee" class="form-control" />
+                <span asp-validation-for="BalanceToAvoidFee" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="HasMinimumAmountForApr" /> @Html.DisplayNameFor(model => model.HasMinimumAmountForApr)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="MinimumAmountForApr" class="control-label"></label>
+                <input asp-for="MinimumAmountForApr" class="form-control" />
+                <span asp-validation-for="MinimumAmountForApr" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="HasMaximumAmountForApr" /> @Html.DisplayNameFor(model => model.HasMaximumAmountForApr)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaximumAmountForApr" class="control-label"></label>
+                <input asp-for="MaximumAmountForApr" class="form-control" />
+                <span asp-validation-for="MaximumAmountForApr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AprIfAmountNotMet" class="control-label"></label>
+                <input asp-for="AprIfAmountNotMet" class="form-control" />
+                <span asp-validation-for="AprIfAmountNotMet" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

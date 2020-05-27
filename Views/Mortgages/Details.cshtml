@@ -1,0 +1,22 @@
+﻿@model CardPortfolio.Models.Mortgage
+
+@{
+    ViewData["Title"] = Model.Name;
+    var photoPath = "~/images/" + Model.ImageUrl;
+
+}
+
+
+<div class="container-fluid">
+
+    <img src="@Url.Content(photoPath)" id="loanLogo" />
+    <p class="alert-heading">@Model.Name</p>
+
+
+</div>
+
+@if (User.IsInRole("Administrator"))
+{
+    @Html.ActionLink("Add Image", "AddImage", "Mortgages", new { id = Model.Id })
+
+}

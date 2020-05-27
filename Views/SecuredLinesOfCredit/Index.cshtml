@@ -1,0 +1,63 @@
+﻿@model IEnumerable<CardPortfolio.Models.SecuredLineOfCredit>
+@{
+    ViewData["Title"] = "Secured Lines Of Credit";
+}
+
+<h1>Secured Lines of Credit</h1>
+
+@if (User.IsInRole("Administrator"))
+{
+    <p>@Html.ActionLink("Create New", "Create")</p>
+
+}
+
+@if (Model != null)
+{
+    <table class="table table-bordered dt-responsive" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+
+                <th>Secured Line Of Credit Name Name</th>
+                <th>LOW APR</th>
+                <th></th>
+            </tr>
+        </thead>
+
+
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>@item.Name</td>
+                    <td>@item.LowApr</td>
+
+                    <td>
+                        @if (User.IsInRole("Administrator"))
+                        {
+                            @Html.ActionLink("Edit ", "Edit", new { id = item.Id })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        }
+
+                        @Html.ActionLink("Details ", "Details", new { id = item.Id })
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+}

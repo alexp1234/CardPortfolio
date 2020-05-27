@@ -1,0 +1,84 @@
+﻿@model CardPortfolio.Models.Mortgage
+@{
+    ViewData["Title"] = "Create Mortgage";
+}
+<h1>Create</h1>
+
+<h4>Mortgage Loan</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MortgageType" class="control-label"></label>
+                <select asp-for="MortgageType" asp-items="ViewBag.MortgageTypeList" class="form-control"></select>
+                <span asp-validation-for="MortgageType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LowApr" class="control-label"></label>
+                <input asp-for="LowApr" class="form-control" />
+                <span asp-validation-for="LowApr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HighApr" class="control-label"></label>
+                <input asp-for="HighApr" class="form-control" />
+                <span asp-validation-for="HighApr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MinimumAmount" class="control-label"></label>
+                <input asp-for="MinimumAmount" class="form-control" />
+                <span asp-validation-for="MinimumAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaximumAmount" class="control-label"></label>
+                <input asp-for="MaximumAmount" class="form-control" />
+                <span asp-validation-for="MaximumAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MinimumTermInMonths" class="control-label"></label>
+                <input asp-for="MinimumTermInMonths" class="form-control" />
+                <span asp-validation-for="MinimumTermInMonths" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaximumTermInMonths" class="control-label"></label>
+                <input asp-for="MaximumTermInMonths" class="form-control" />
+                <span asp-validation-for="MaximumTermInMonths" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="HasFees" /> @Html.DisplayNameFor(model => model.HasFees)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="OriginationFee" class="control-label"></label>
+                <input asp-for="OriginationFee" class="form-control" />
+                <span asp-validation-for="OriginationFee" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LoanToValue" class="control-label"></label>
+                <input asp-for="LoanToValue" class="form-control" />
+                <span asp-validation-for="LoanToValue" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DownPaymentPercentage" class="control-label"></label>
+                <input asp-for="DownPaymentPercentage" class="form-control" />
+                <span asp-validation-for="DownPaymentPercentage" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
