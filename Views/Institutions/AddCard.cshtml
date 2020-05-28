@@ -1,11 +1,11 @@
 ﻿@model CardPortfolio.Models.CreditCard
 @{
     ViewData["Title"] = "AddCard";
-    var photoPath = "~/images/" + Model.ImagePath;
+    
 }
 
 @Html.HiddenFor(m => m.Id)
-<img src="@Url.Content(photoPath)" />
+
 
 <form method="post">
 
