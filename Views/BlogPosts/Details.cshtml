@@ -53,12 +53,12 @@
                 <!-- Search Widget -->
                 <div class="card my-4">
                     <form asp-action="Index" method="get">
-                        <h5 class="card-header">Search</h5>
+                        <h5 class="card-header blue-header">Search</h5>
                         <div class="card-body">
                             <div class="input-group">
                                 <input type="text" name="SearchString" value="@ViewData["currentFilter"]" class="form-control" placeholder="Search for...">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-secondary" type="submit" value="Search">Go!</button>
+                                    <button class="btn btn-green" type="submit" value="Search">Go!</button>
                                 </span>
                             </div>
                         </div>
@@ -67,102 +67,124 @@
 
                 <!-- Categories Widget -->
                 <div class="card my-4">
-                    <h5 class="card-header">Categories</h5>
+                    <h5 class="card-header blue-header">Categories</h5>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-8">
                                 <ul class="list-unstyled mb-0">
+
                                     <li>
-                                        <span><a href="#">Credit Cards</a></span>
+                                        <span>@Html.ActionLink("Credit Cards", "Index", "BlogPosts", new { categoryName = "Credit Cards" })</span>
                                     </li>
                                     <li>
-                                        <span><a href="#">Cash Back Cards</a></span>
+                                        <span>@Html.ActionLink("Cash Back Cards", "Index", "BlogPosts", new { categoryName = "Cash Back" })</span>
 
                                     </li>
                                     <li>
-                                        <span><a href="#">Sign Up Bonus</a></span>
+                                        <span>@Html.ActionLink("Sign Up Bonus", "Index", "BlogPosts", new { categoryName = "Sign Up Bonus" })</span>
+                                    </li>
+                                    <li>
+                                        <span>@Html.ActionLink("Cash Advance", "Index", "BlogPosts", new { categoryName = "Cash Advance" })</span>
+                                    </li>
+                                    <li>
+                                        <span>@Html.ActionLink("Balance Transfer Cards", "Index", "BlogPosts", new { categoryName = "Balance Transfer" })</span>
+                                    </li>
+                                    <li>
+                                        <span>@Html.ActionLink("Intro Offers", "Index", "BlogPosts", new { categoryName = "Intro Offer" })</span>
 
                                     </li>
                                     <li>
-                                        <span><a href="#">Cash Advance cards</a></span>
+                                        <span>@Html.ActionLink("Sign Up Bonuses", "Index", "BlogPosts", new { categoryName = "Sign Up Bonus" })</span>
+
 
                                     </li>
                                     <li>
-                                        <span><a href="#">Balance Transfer Cards</a></span>
+                                        <span>@Html.ActionLink("Travel Cards", "Index", "BlogPosts", new { categoryName = "Travel Cards" })</span>
+
 
                                     </li>
                                     <li>
-                                        <span><a href="#">Intro Offers</a></span>
+                                        <span>@Html.ActionLink("Savings Account", "Index", "BlogPosts", new { categoryName = "Savings Account" })</span>
+
 
                                     </li>
                                     <li>
-                                        <span><a href="#">Sign Up Bonuses</a></span>
+                                        <span>@Html.ActionLink("Checking Accounts", "Index", "BlogPosts", new { categoryName = "Checking Accounts" })</span>
+
 
                                     </li>
                                     <li>
-                                        <span><a href="#">Travel Cards</a></span>
+
+                                        <span>@Html.ActionLink("Certificate Accounts", "Index", "BlogPosts", new { categoryName = "Certificate Accounts" })</span>
+                                    </li>
+                                    <li>
+                                        <span>@Html.ActionLink("Money Market Accounts", "Index", "BlogPosts", new { categoryName = "Money Market Accounts" })</span>
 
                                     </li>
                                     <li>
-                                        <span><a href="#">Savings Accounts</a></span>
+                                        <span>@Html.ActionLink("Mortgages", "Index", "BlogPosts", new { categoryName = "Mortgages" })</span>
 
                                     </li>
                                     <li>
-                                        <span><a href="#">Checking Accounts</a></span>
+                                        <span>@Html.ActionLink("Auto Loans", "Index", "BlogPosts", new { categoryName = "Auto Loans" })</span>
 
                                     </li>
                                     <li>
-                                        <span><a href="#">Certificate Accounts</a></span>
+                                        <span>@Html.ActionLink("Home Equity Loans", "Index", "BlogPosts", new { categoryName = "Home Equity Loans" })</span>
 
                                     </li>
                                     <li>
-                                        <span><a href="#">Money Market Accounts</a></span>
+                                        <span>@Html.ActionLink("HELOCs", "Index", "BlogPosts", new { categoryName = "Home Equity Lines of Credit" })</span>
 
                                     </li>
                                     <li>
-                                        <span><a href="#">Mortgages</a></span>
+                                        <span>@Html.ActionLink("Unsecured Personal Loans", "Index", "BlogPosts", new { categoryName = "Unsecured Personal Loans" })</span>
 
                                     </li>
                                     <li>
-                                        <span><a href="#">AutoLoans</a></span>
+                                        <span>@Html.ActionLink("Secured Personal Loans", "Index", "BlogPosts", new { categoryName = "Secured Personal Loans" })</span>
 
                                     </li>
                                     <li>
-                                        <span><a href="#">Home Equity Loans</a></span>
+                                        <span>@Html.ActionLink("Unsecured Lines of Credit", "Index", "BlogPosts", new { categoryName = "Unsecured Lines of Credit" })</span>
 
                                     </li>
                                     <li>
-                                        <span><a href="#">HELOCS</a></span>
+                                        <span>@Html.ActionLink("Secured Lines of Credit", "Index", "BlogPosts", new { categoryName = "Secured Lines of Credit" })</span>
 
                                     </li>
-                                    <li>
-                                        <span><a href="#">Unsecured Personal Loans</a></span>
 
-                                    </li>
-                                    <li>
-                                        <span><a href="#">Secured Personal Loans</a></span>
 
-                                    </li>
-                                    <li>
-                                        <span><a href="#">Unsecured Lines of Credit</a></span>
 
-                                    </li>
-                                    <li>
-                                        <span><a href="#">Secured Lines of Credit</a></span>
-
-                                    </li>
 
                                 </ul>
                             </div>
+
                         </div>
                     </div>
                 </div>
 
                 <!-- Side Widget -->
                 <div class="card my-4">
-                    <h5 class="card-header">Side Widget</h5>
+                    <h5 class="card-header blue-header">"Similar Posts"</h5>
                     <div class="card-body">
-                        You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+                        @foreach (var post in ViewBag.SimilarPosts)
+                        {
+                            if (post.ImageUrl != null)
+                            {
+                                var path = "~/images/" + post.ImageUrl;
+                                <p>Title @post.Title</p>
+                                <img class="img-thumbnail" src="@Url.Content(path)" alt="Card image cap" />
+                                <p>Creation Date @post.CreationDate</p>
+                            }
+                            else
+                            {
+                                <a asp-route-id="@post.Id" asp-controller="BlogPosts" asp-action="Details">@post.Title</a>
+                                <img class="img-thumbnail" src="http://placehold.it/750x300" alt="Card image cap" />
+                                <p> @post.CreationDate</p>
+                            }
+
+                        }
                     </div>
                 </div>
 

@@ -44,15 +44,71 @@ body {
 }
 
 #homePic{
-    height:350px;  
-    width:100%;
-     margin-top:-15%;
+    
+    width:120%;
+    margin-left:-10%;
+     margin-top:0%;
 }
 
+.image-container {
+    position: relative;
+    text-align: center;
+    color: white;
+    
+}
+
+.top-right {
+    position: absolute;
+    bottom:40%;
+    right: 0px;
+    
+    
+}
+
+
+
+.background-grey-row{
+    background-color:lightgrey;
+    width: 120%;
+    margin-left:-10%;
+    
+    
+}
+
+.white-card{
+    max-width: 50%;
+    margin-left:20%;
+    margin-top: 5%;
+    margin-bottom: 10%;
+}
+
+
+.btn-learn-more{
+   
+}
+
+    .top-right h3 {
+        font-size: 215%;
+        
+        color: white;
+        font-weight:bold;
+        font-family: Arial;
+    }
+
+
 .advertiser-bar{
-    background-color:grey;
+    background-color:white;
     min-height: 80px;
     padding-bottom: 20px;
+   
+}
+
+.laurens-dumb-spacing{
+    margin-bottom: 1%;
+}
+
+.black-nav{
+    color:black;
 }
 
 .navbar-custom {

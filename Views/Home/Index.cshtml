@@ -2,44 +2,54 @@
     ViewData["Title"] = "Home Page";
 }
 
-<header class="w3-container w3-center" style="padding:128px 16px">
-    <h1 id="homeText">Home</h1>
-</header>
-<div class="w3-container w3-center">
-    <a href="https://placeholder.com"><img src="https://via.placeholder.com/350" id="homePic" /></a>
-</div>
-<div class="w3-row-padding w3-padding-64 w3-container">
-    <div class="w3-content">
-        <div class="w3-twothird">
-            <h1>Why this Site Exists</h1>
-            <h5 class="w3-padding-32">Unfortunately, many sites today that claim to show the best credit cards by category are only showing cards from lenders paying them advertising fees.</h5>
 
-            <p class="w3-text-grey">
-                This means that consumers can often miss out on the best lending products issued by smaller banks and Credit Unions that can't afford to pay these fees. That's where we're different. We have aggregated the largest public database of lending products issued by a wide variety of financial instiutions and allow you to see an unbiased collection of the best products for you.
-            </p>
-        </div>
-
-        <div class="w3-third w3-center">
-            <i class="fas fa-wallet w3-padding-64 w3-large"></i>
-        </div>
+<div class="row image-container">
+    <img src="~/images/site/blake-wisz-tE6th1h6Bfk-unsplash.jpg"  id="homePic" />
+    <div class="top-right">
+        <h3 class="laurens-dumb-spacing">FIND THE </h3> <h3 class="laurens-dumb-spacing">PERFECT CARD</h3> <h3 class="laurens-dumb-spacing">FOR YOUR</h3><h3>LIFESTYLE</h3>
+        <form method="get" asp-action="Index" asp-controller="CreditCards">
+        <button class="btn btn-green btn-learn-more">Learn More</button>
+        </form>
     </div>
 </div>
 
-<!-- Second Grid -->
-<div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
-    <div class="w3-content">
-        <div class="w3-third w3-center">
-            <i class="fas fa-piggy-bank w3-padding-64 w3-large"></i>
+<div class="row background-grey-row">
+    <div class="col-sm-6">
+        <div class="card white-card">
+            <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
         </div>
-
-        <div class="w3-twothird">
-            <h1>How to Use WalletBailout</h1>
-            <h5 class="w3-padding-32">WalletBailout contains information on a wide varierty of consumer products including loans, various types of credit, and deposit accounts.</h5>
-
-            <p class="w3-text-grey">
-             Simply use the navigation bar to navigate to the content you want or check out our blog for our top picks from each category. The content is updated monthly, and new products are added every day, making us the largest free, unbiased database of consumer products allowing you to find the products that work for you. Or if you'd rather check out our thoughts on products in each category, head over to our <a asp-action="Index" asp-controller="BlogPosts">Blog.</a>
-            </p>
+    </div>
+    <div class="col-sm-6">
+        <div class="card white-card">
+            <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
         </div>
     </div>
 </div>
-
+<div class="row background-grey-row">
+    <div class="col-sm-6">
+        <div class="card white-card">
+            <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card white-card">
+            <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    </div>
+</div>

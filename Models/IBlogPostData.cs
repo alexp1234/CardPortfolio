@@ -22,7 +22,7 @@ namespace CardPortfolio.Models
         IEnumerable<BlogPost> GetUnpublishedPosts();
         IEnumerable<BlogPost> GetThreeRecentPosts();
 
+        IEnumerable<BlogPost> GetThreeCategoryPosts(BlogPostCategory blogPostCategory, int id);
         IEnumerable<BlogPost> GetThreeCategoryPosts(BlogPostCategory blogPostCategory);
-
     }
 }

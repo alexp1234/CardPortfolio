@@ -33,7 +33,7 @@ namespace CardPortfolio.Models
         IEnumerable<CertificateAccount> GetInstitutionsCds(int id);
         IEnumerable<CheckingAccount> GetInstitutionsCheckingAccounts(int id);
         IEnumerable<MoneyMarketAccount> GetInstitutionsMoneyMarketAccount(int id);
-        IEnumerable<SavingsAccount> GetInstitutionsSavingsAccounts(int id)
+        IEnumerable<SavingsAccount> GetInstitutionsSavingsAccounts(int id);
 
         int Commit();
     }

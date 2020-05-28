@@ -59,11 +59,16 @@ namespace CardPortfolio.Models
            
         }
 
+        public IEnumerable<BlogPost> GetThreeCategoryPosts(BlogPostCategory blogPostCategory, int id)
+        {
+            var post = _db.BlogPosts.Find(id);
+            return _db.BlogPosts.Where(p => p.BlogPostCategory == blogPostCategory && p.IsPublished && p != post).OrderByDescending(p => p.CreationDate).Take(3);
+        }
+
         public IEnumerable<BlogPost> GetThreeCategoryPosts(BlogPostCategory blogPostCategory)
         {
             return _db.BlogPosts.Where(p => p.BlogPostCategory == blogPostCategory && p.IsPublished).OrderByDescending(p => p.CreationDate).Take(3);
         }
-
         public IEnumerable<BlogPost> GetThreeRecentPosts()
         {
             var posts = _db.BlogPosts.Where(p => p.IsPublished).OrderByDescending(p => p.CreationDate).Take(3).ToList();

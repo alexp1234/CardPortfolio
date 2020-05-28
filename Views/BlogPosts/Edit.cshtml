@@ -1,113 +1,132 @@
 ﻿@model CardPortfolio.Models.BlogPost
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
 
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.tiny.cloud/1/kj2vrbx9o6ylynvcdkdtbs5d15r656mpphn6urc8wwtum0je/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+</head>
+<body>
 
-<!-- Page Content -->
-<div class="container">
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'a11ychecker advcode casechange formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
+            toolbar: 'a11ycheck addcomment showcomments casechange checklist code formatpainter pageembed permanentpen table',
+            toolbar_mode: 'floating',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+        });
+    </script>
 
-    <div class="row">
+    <!-- Page Content -->
+    <div class="container">
 
-        <!-- Blog Entries Column -->
-        <div class="col-md-8">
+        <div class="row">
 
-            <form asp-action="Edit">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group top-input">
-                    <label asp-for="Title" class="control-label"></label>
-                    <input asp-for="Title" class="form-control" />
-                    <span asp-validation-for="Title" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Abstract" class="control-label"></label>
-                    <input asp-for="Abstract" class="form-control" />
-                    <span asp-validation-for="Abstract" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="BlogPostCategory" class="control-label"></label>
-                    <select asp-for="BlogPostCategory" asp-items="ViewBag.BlogPostCategoryList" class="form-control"></select>
-                    <span asp-validation-for="BlogPostCategory" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="BodyText" class="control-label"></label>
-                    <textarea asp-for="BodyText" class="form-control body-text" rows="30" cols="10"></textarea>
-                    <span asp-validation-for="BodyText" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Save Changes" class="btn btn-primary" />
-                </div>
+            <!-- Blog Entries Column -->
+            <div class="col-md-8">
 
-            </form>
-
-
-
-        </div>
-
-        <!-- Sidebar Widgets Column -->
-        <div class="col-md-4">
-
-            <!-- Search Widget -->
-            <div class="card my-4">
-                <h5 class="card-header">Search</h5>
-                <div class="card-body">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-secondary" type="button">Go!</button>
-                        </span>
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group top-input">
+                        <label asp-for="Title" class="control-label"></label>
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label asp-for="Abstract" class="control-label"></label>
+                        <input asp-for="Abstract" class="form-control" />
+                        <span asp-validation-for="Abstract" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BlogPostCategory" class="control-label"></label>
+                        <select asp-for="BlogPostCategory" asp-items="ViewBag.BlogPostCategoryList" class="form-control"></select>
+                        <span asp-validation-for="BlogPostCategory" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BodyText" class="control-label"></label>
+                        <textarea asp-for="BodyText" class="form-control body-text" rows="30" cols="10"></textarea>
+                        <span asp-validation-for="BodyText" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Submit Changes" class="btn btn-primary" />
+                    </div>
+
+                </form>
+
+
+
             </div>
 
-            <!-- Categories Widget -->
-            <div class="card my-4">
-                <h5 class="card-header">Categories</h5>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled mb-0">
-                                <li>
-                                    <a href="#">Web Design</a>
-                                </li>
-                                <li>
-                                    <a href="#">HTML</a>
-                                </li>
-                                <li>
-                                    <a href="#">Freebies</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled mb-0">
-                                <li>
-                                    <a href="#">JavaScript</a>
-                                </li>
-                                <li>
-                                    <a href="#">CSS</a>
-                                </li>
-                                <li>
-                                    <a href="#">Tutorials</a>
-                                </li>
-                            </ul>
+            <!-- Sidebar Widgets Column -->
+            <div class="col-md-4">
+
+                <!-- Search Widget -->
+                <div class="card my-4">
+                    <h5 class="card-header">Search</h5>
+                    <div class="card-body">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search for...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-secondary" type="button">Go!</button>
+                            </span>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Side Widget -->
-            <div class="card my-4">
-                <h5 class="card-header">Side Widget</h5>
-                <div class="card-body">
-                    You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+                <!-- Categories Widget -->
+                <div class="card my-4">
+                    <h5 class="card-header">Categories</h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <a href="#">Web Design</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">HTML</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Freebies</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-6">
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <a href="#">JavaScript</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">CSS</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Tutorials</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Side Widget -->
+                <div class="card my-4">
+                    <h5 class="card-header">Side Widget</h5>
+                    <div class="card-body">
+                        You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+                    </div>
+                </div>
+
             </div>
 
         </div>
+
 
     </div>
 
-
-</div>
-
+</body>
+</html>

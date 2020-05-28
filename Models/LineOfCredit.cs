@@ -16,12 +16,12 @@ namespace CardPortfolio.Models
         public int? MinimumTermInMonths { get; set; } //
         public int? MaximumTermInMonths { get; set; } //
         public string ImageUrl { get; set; }
-        public bool HasOriginationFee { get; set; } //
-        public double? OriginationFee { get; set; } //
-        public bool HasAnnualFee { get; set; } // 
-        public double? AnnualFee { get; set; } // 
-        public bool HasAdvanceFee { get; set; }
-        public double? AdvanceFee { get; set; }
+        public bool HasOriginationFee { get; set; } //fee
+        public double? OriginationFee { get; set; } //fee
+        public bool HasAnnualFee { get; set; } // fee
+        public double? AnnualFee { get; set; } // fee
+        public bool HasAdvanceFee { get; set; } // fee
+        public double? AdvanceFee { get; set; } //fee
         public string Name { get; set; }//
         public bool ArePaymentsInterestOnly { get; set; }
         public double? MinimumPayment { get; set; }

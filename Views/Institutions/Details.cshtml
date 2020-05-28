@@ -12,6 +12,8 @@
         <img src="@Url.Content(photoPath)" id="institutionLogo" />
         <p class="alert-heading">@Model.Description</p>
 
+        <!-- Credit Card Section-->
+        <div class="card-header"><h3>Cards</h3></div>
         @foreach (var card in ViewBag.CardList)
         {
             var cardPhotoPath = "~/images/" + card.ImagePath;
@@ -22,7 +24,7 @@
             <div class="card-body">
 
 
-                <!-- Features of Card-->
+                <!-- Card Section-->
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6">
@@ -78,12 +80,118 @@
                         <hr />
                     </div>
                     @Html.ActionLink("Card Details", "Details", "CreditCards", new { id = card.Id })
-                    @Html.ActionLink("Remove Card", "RemoveCard", "CreditCards", new { id = card.Id})
+                    @Html.ActionLink("Remove Card", "RemoveCard", "CreditCards", new { id = card.Id })
 
                 </div>
 
             </div>
         }
+
+        <!-- Unsecured Personal Loan Section-->
+
+        @if (ViewBag.UnsecuredLoanList.Count == 0)
+        {
+            <div class="card-header"><h3>Unsecured Personal Loans</h3></div>
+            <p>No current information on unsecured personal loans from @Model.Name, check back soon.</p>
+        }
+        else
+        {
+
+
+            @foreach (var loan in ViewBag.UnsecuredLoanList)
+            {
+
+                var cardPhotoPath = "~/images/" + loan.ImageUrl;
+
+                <div class="card-header">
+                    <h3>Personal Loans</h3>
+                </div>
+                <div class="card-body">
+
+
+                    <!-- Features of loan Turn into DropDown-->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>@loan.Name</p>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="card-info-list">
+                                    @if (loan.HighApr == null)
+                                    {
+                                        <li>APR Range: As Low as @loan.LowApr%</li>
+                                    }
+                                    else
+                                    {
+                                        <li>APR Range: @loan.LowApr% to @loan.HighApr%</li>
+                                    }
+
+                                    <li>Term: @loan.MinimumTermInMonths months to @loan.MaximumTermInMonths months</li>
+                                </ul>
+                            </div>
+                            <hr />
+                        </div>
+                        @Html.ActionLink("Loan Details", "Details", "UnsecuredLoans", new { id = loan.Id })
+                        @Html.ActionLink("Remove Loan", "RemoveLoan", "UnsecuredLoans", new { id = loan.Id })
+
+                    </div>
+
+                </div>
+            }
+
+        }
+
+
+        <!-- Unsecured Lines of Credit Section-->
+        @foreach (var loan in ViewBag.UnsecuredLocList)
+        {
+            <div class="card-header"><h3>Unsecured Personal Loans</h3></div>
+            @if (ViewBag.UnsecuredLoanList.Count == 0)
+            {
+                <p>No current information on unsecured lines of credit from @Model.Name, check back soon.</p>
+            }
+            @foreach (var uloc in ViewBag.UnsecuredLocList)
+            {
+                {
+                    var cardPhotoPath = "~/images/" + uloc.ImagePath;
+
+                    <div class="card-header">
+                        <h3>@uloc.Name</h3>
+                    </div>
+                    <div class="card-body">
+
+
+                        <!-- Features of Card-->
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <img src="@Url.Content(cardPhotoPath)" id="institionDetailsCardPic" />
+                                </div>
+                                <div class="col-md-6">
+                                    <ul class="card-info-list">
+                                        <li>APR Range: @uloc.LowApr% to @uloc.HighApr%</li>
+                                        <li>Term: @uloc.MinimumTermInMonths months to @uloc.MaximumTermInMonths months</li>
+                                        <li>Amount: $@uloc.MinimumAmount to $@uloc.MaximumAmount </li>
+                                        <li>Fee Information: ADD SECTION HERE</li>
+                                    </ul>
+                                </div>
+
+
+                                <hr />
+                            </div>
+                            @Html.ActionLink("Loan Details", "Details", "UnsecuredLoans", new { id = loan.Id })
+                            @Html.ActionLink("Remove Loan", "RemoveLoan", "UnsecuredLoans", new { id = loan.Id })
+
+                        </div>
+
+                    </div>
+                }
+
+            }
+
+        }
+
+
 
 
         @if (User.IsInRole("Administrator"))
@@ -96,16 +204,16 @@
             @Html.ActionLink(" Add Secured Loan |", "AddSecuredLoan", "Institutions", new { id = Model.Id })
             @Html.ActionLink(" Add Unsecured Line Of Credit |", "AddUnsecuredLineOfCredit", new { id = Model.Id })
             @Html.ActionLink(" Add Unsecured Loan |", "AddUnsecuredLoan", new { id = Model.Id })
-            @Html.ActionLink(" Add Certificate Account |", "AddCertificateAccount", new {id = Model.Id})
-            @Html.ActionLink(" Add Checking Account |", "AddCheckingAccount", new { id = Model.Id})
-            @Html.ActionLink(" Add Money Market Account |", "AddMoneyMarketAccount", new { id = Model.Id})
-            @Html.ActionLink(" Add Savings Account |", "AddSavingsAccount", new  {id = Model.Id })
-            @Html.ActionLink("Add Card |", "AddCard", new { id = Model.Id})
-            @Html.ActionLink("Add Image |", "AddImage", new { id = Model.Id})
-            @Html.ActionLink("Edit |", "Edit", new { id = Model.Id})
-            @Html.ActionLink("Delete |", "Delete", new {id = Model.Id })
+            @Html.ActionLink(" Add Certificate Account |", "AddCertificateAccount", new { id = Model.Id })
+            @Html.ActionLink(" Add Checking Account |", "AddCheckingAccount", new { id = Model.Id })
+            @Html.ActionLink(" Add Money Market Account |", "AddMoneyMarketAccount", new { id = Model.Id })
+            @Html.ActionLink(" Add Savings Account |", "AddSavingsAccount", new { id = Model.Id })
+            @Html.ActionLink("Add Card |", "AddCard", new { id = Model.Id })
+            @Html.ActionLink("Add Image |", "AddImage", new { id = Model.Id })
+            @Html.ActionLink("Edit |", "Edit", new { id = Model.Id })
+            @Html.ActionLink("Delete |", "Delete", new { id = Model.Id })
 
-        
+
         }
 
 

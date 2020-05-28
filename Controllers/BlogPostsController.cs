@@ -292,8 +292,10 @@ namespace CardPortfolio.Controllers
         public IActionResult Details(int id)
         {
             var post = _blogPostData.GetBlogPostById(id);
+
             if(post != null)
             {
+                ViewBag.SimilarPosts = _blogPostData.GetThreeCategoryPosts(post.BlogPostCategory, id);
                 if (post.IsPublished)
                 {
                     return View(post);

@@ -147,7 +147,7 @@ namespace CardPortfolio.Controllers
         // POST: AutoLoans/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Administrator")]
         public IActionResult Delete()
         {
             int id = (int)TempData["HomeEquityLoanId"];

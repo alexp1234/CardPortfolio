@@ -264,5 +264,59 @@ namespace CardPortfolio.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: AutoLoans/RemoveLoan/5
+        [Authorize(Roles ="Administrator")]
+        public IActionResult RemoveLoan(int id)
+        {
+            var loan = _autoLoanData.GetAutoLoanById(id);
+            if(loan != null)
+            {
+                TempData["AutoLoanId"] = id;
+                return View(loan);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
+        // POST: AutoLoans/RemoveLoan/5
+        [Authorize(Roles ="Administrator")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult RemoveLoan()
+        {
+            if (ModelState.IsValid)
+            {
+                var id = (int)TempData["AutoLoanId"];
+                var loan = _autoLoanData.GetAutoLoanById(id);
+                if (loan != null)
+                {
+                    var institutionId = loan.InstitutionId;
+                    loan.InstitutionId = null;
+                    var commitStatus = _autoLoanData.Commit();
+                    if (commitStatus == 0)
+                    {
+                        // commit succeeded
+                        return RedirectToAction("Details", "Institutions", new { id = institutionId });
+
+                    }
+                    else
+                    {
+                        // commit failed;
+                        return RedirectToAction("Index");
+                    }
+                }
+                else
+                {
+                    // loan is null
+                    return RedirectToAction("Index");
+                }
+            }
+            // Model state not valid
+            return View();
+        }
+
+
     }
 }
