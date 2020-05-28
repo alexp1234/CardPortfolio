@@ -593,3 +593,4 @@ C:\Users\Ajpic\source\repos\CardPortfolio\bin\Debug\netcoreapp3.1\System.Web.Web
 C:\Users\Ajpic\source\repos\CardPortfolio\bin\Debug\netcoreapp3.1\Microsoft.Web.Infrastructure.dll
 C:\Users\Ajpic\source\repos\CardPortfolio\obj\Debug\netcoreapp3.1\CardPortfolio.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Ajpic\source\repos\CardPortfolio\obj\Debug\netcoreapp3.1\CardPortfolio.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Ajpic\source\repos\CardPortfolio\obj\Debug\netcoreapp3.1\Razor\Views\CreditCards\RemoveCard.cshtml.g.cs

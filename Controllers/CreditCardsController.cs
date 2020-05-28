@@ -441,7 +441,63 @@ namespace CardPortfolio.Controllers
             return View(institutionCards);
         }
       
+        // GET: CreditCards/RemoveCard/5
+        [Authorize(Roles ="Administrator")]
+        public IActionResult RemoveCard(int id)
+        {
+            var card = _creditCardData.GetById(id);
+            if(card != null)
+            {
+                TempData["CardId"] = id;
+                ViewBag.Title = card.Name;
+                return View(card);
+            }
+            else
+            {
+               
+                return RedirectToAction("Index");
 
+            }
+        }
+
+        
+        // POST: CreditCards/RemoveCard/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
+        public IActionResult RemoveCard()
+        {
+            if (ModelState.IsValid)
+            {
+                var id = (int)TempData["CardId"];
+                var card = _creditCardData.GetById(id);
+
+                if (card != null)
+                {
+                    var institutionId = card.InstitutionId;
+                    card.InstitutionId = null;
+                    var commitStatus = _creditCardData.Commit();
+                    if (commitStatus == 0)
+                    {
+                        // commit succeeded
+                        return RedirectToAction("Details", "Institutions", new { id = institutionId });
+                    }
+                    else
+                    {
+                        // commit failed
+                        return RedirectToAction("Index");
+                    }
+                }
+                else
+                {
+                    // card is null
+                    return RedirectToAction("Index");
+                }
+
+            }
+            // if model state is not valid
+            return View();
+        }
 
     }
 }

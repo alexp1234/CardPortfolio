@@ -797,7 +797,21 @@ namespace CardPortfolio.Controllers
 
 
             var institution = _institutionData.GetById(id);
-            if (institution != null) ViewBag.CardList = _institutionData.GetInstitutionsCreditCards(institution.Id);
+            if (institution != null)
+            {
+                ViewBag.CardList = _institutionData.GetInstitutionsCreditCards(institution.Id);
+                ViewBag.UnsecuredLoanList = _institutionData.GetInstitutionsUnsecuredPersonalLoans(institution.Id);
+                ViewBag.UnsecuredLocList = _institutionData.GetInstitutionsUnsecuredLinesOfCredit(institution.Id);
+                ViewBag.SecuredLoanList = _institutionData.GetInstitutionsSecuredPersonalLoans(institution.Id);
+                ViewBag.SecuredLocList = _institutionData.GetInstitutionsSecuredLinesOfCredit(institution.Id);
+                ViewBag.AutoLoanList = _institutionData.GetInstitutionsAutoLoans(institution.Id);
+                ViewBag.MortgageList = _institutionData.GetInstitutionsMortgages(institution.Id);
+                ViewBag.SavingsAccountList = _institutionData.GetInstitutionsSavingsAccounts(institution.Id);
+                ViewBag.CertificateAccountList = _institutionData.GetInstitutionsCds(institution.Id);
+                ViewBag.CheckingAccountList = _institutionData.GetInstitutionsCheckingAccounts(institution.Id);
+                ViewBag.MoneyMarketAccountList = _institutionData.GetInstitutionsMoneyMarketAccount(institution.Id);
+
+            }
 
             return View(institution);
         }
