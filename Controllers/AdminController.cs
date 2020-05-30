@@ -14,7 +14,5 @@ namespace CardPortfolio.Controllers
         {
             return View();
         }
-
-
     }
 }

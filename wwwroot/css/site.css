@@ -18,6 +18,8 @@ body {
     max-height:80%;
 }
 
+
+
 .header-row {
     margin-bottom: 2em;
     margin-top: 1em;
@@ -86,8 +88,9 @@ body {
 
 .advertiser-bar{
     background-color:white;
-    min-height: 80px;
-    padding-bottom: 20px;
+    max-height: 80px;
+    margin-top:-1%;
+    
    
 }
 
