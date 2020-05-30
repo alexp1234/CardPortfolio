@@ -3,32 +3,37 @@
 }
 
 
-<div class="row image-container">
-    <img src="~/images/site/blake-wisz-tE6th1h6Bfk-unsplash.jpg"  id="homePic" />
-    <div class="top-right">
-        <h3 class="laurens-dumb-spacing">FIND THE </h3> <h3 class="laurens-dumb-spacing">PERFECT CARD</h3> <h3 class="laurens-dumb-spacing">FOR YOUR</h3><h3>LIFESTYLE</h3>
-        <form method="get" asp-action="Index" asp-controller="CreditCards">
-        <button class="btn btn-green btn-learn-more">Learn More</button>
-        </form>
+    <div class="row image-container">
+        <img src="~/images/site/blake-wisz-tE6th1h6Bfk-unsplash.jpg" id="homePic" />
+        <div class="top-right .text-center">
+            <h3 class="responsive-text">FIND THE <br />PERFECT CARD <br /> FOR YOU</h3>
+            <form method="get" asp-action="Index" asp-controller="CreditCards">
+<!-- button here-->
+            </form>
+        </div>
+        
     </div>
-</div>
 
 <div class="row background-grey-row">
     <div class="col-sm-6">
         <div class="card white-card">
             <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <h5 class="card-title">Credit Cards</h5>
+                <p class="card-text">Whether you're looking for a great sign up bonus, amazing balance transfer offer, or all-around low rate card, we've got you covered.</p>
+                <form method="get" asp-action="Index" asp-controller="CreditCards">
+                <button class="btn btn-green">View Cards</button>
+                </form>
             </div>
         </div>
     </div>
     <div class="col-sm-6">
         <div class="card white-card">
             <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <h5 class="card-title">Banks and Credit Unions</h5>
+                <p class="card-text">Looking to join a new bank or Credit Union? Our site has information on Banks and Credit Unions, including Credit Unions anyone can join.</p>
+                <form method="get" asp-action="Index" asp-controller="Institutions">
+                    <button class="btn btn-green btn-card">View Institutions</button>
+                </form>
             </div>
         </div>
     </div>
@@ -37,18 +42,23 @@
     <div class="col-sm-6">
         <div class="card white-card">
             <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <h5 class="card-title">Blog</h5>
+                <p class="card-text">Want to know our thoughts on the best cards, loans, and deposit accounts? We take no money from companies to promote their products, so you know your getting our honest opinion.</p>
+                <form method="get" asp-action="Index" asp-controller="BlogPosts">
+                    <button class=" btn btn-green btn-card">Blog</button>
+
+                </form>
             </div>
         </div>
     </div>
     <div class="col-sm-6">
         <div class="card white-card">
             <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <h5 class="card-title">Personal Loans</h5>
+                <p class="card-text">Looking to consolidate credit card balances into a lower rate personal loan? Check out our information on personal loans.</p>
+                <form method="get" asp-action="Index" asp-controller="UnsecuredPersonalLoans">
+                    <button class="btn btn-green btn-card">View Loans</button>
+                </form>
             </div>
         </div>
     </div>

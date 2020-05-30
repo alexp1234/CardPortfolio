@@ -19,6 +19,9 @@
 
                 <th>Secured Loan</th>
                 <th>LOW APR</th>
+                <th>HIGH APR</th>
+                <th>MINIMUM TERM</th>
+                <th>MAXIMUM TERM</th>
                 <th></th>
             </tr>
         </thead>
@@ -28,18 +31,48 @@
 
             @foreach (var item in Model)
             {
-                <tr>
+            <tr>
 
-                    <td>@item.Name</td>
-                    <td>@item.LowApr</td>
+                <td>@item.Name</td>
+                @if (item.LowApr != null)
+                {
+                    <td>@item.LowApr%</td>
+                }
+                else
+                {
+                    <td>Unknown</td>
+                }
+                @if (item.HighApr != null)
+                {
+                    <td>@item.HighApr%</td>
 
-                    <td>
-                        @Html.ActionLink("Details ", "Details", new { id = item.Id })
-                        @if (User.IsInRole("Administrator"))
-                        {
-                            @Html.ActionLink("Edit ", "Edit", new { id = item.Id })
-                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                        }
+                }
+                else
+                {
+                    <td>Unknown</td>
+                }
+                @if (item.MinimumTermInMonths != null)
+                {
+                    <td>@item.MinimumTermInMonths months</td>
+
+                }
+                else
+                {
+                    <td>Unknown</td>
+                }
+                @if (item.MaximumTermInMonths != null)
+                {
+                    <td>@item.MaximumTermInMonths months</td>
+
+                }
+
+                <td>
+                    @Html.ActionLink("Details ", "Details", new { id = item.Id })
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        @Html.ActionLink("Edit ", "Edit", new { id = item.Id })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    }
 
 
 
@@ -53,8 +86,8 @@
 
 
 
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
             }
         </tbody>

@@ -189,12 +189,26 @@ namespace CardPortfolio.Controllers
                     var removeStatus = _certificateAccountData.RemoveCertificateAccount(account);
                     if(removeStatus == 0)
                     {
-                        return RedirectToAction("Index");
+                        // remove succeeded
+                        var commitStatus = _certificateAccountData.Commit();
+                        if(commitStatus == 0)
+                        {
+                            // commit succeeded
+                            return RedirectToAction("Index");
+
+                        }
+                        else
+                        {
+                            // commit failed
+                            return RedirectToAction("Index");
+                        }
                     }
                     else
                     {
+                        // remove failed
                         return RedirectToAction("Index");
                     }
+
                 }
             }
             return View();

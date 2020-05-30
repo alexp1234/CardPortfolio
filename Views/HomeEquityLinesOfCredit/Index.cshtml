@@ -3,7 +3,7 @@
     ViewData["Title"] = "HELOCs";
 }
 
-<h1>All Cards</h1>
+<h1>All HELOCs</h1>
 
 @if (User.IsInRole("Administrator"))
 {
@@ -19,6 +19,8 @@
 
                 <th>HELOC Name</th>
                 <th>LOW APR</th>
+                <th>HIGH APR</th>
+                <th>LTV</th>
                 <th></th>
             </tr>
         </thead>
@@ -31,7 +33,10 @@
                 <tr>
 
                     <td>@item.Name</td>
-                    <td>@item.LowApr</td>
+                    <td>@item.LowApr%</td>
+                    <td>@item.HighApr%</td>
+                    <td>@item.LTV%</td>
+                    
 
                     <td>
                         @Html.ActionLink("Details ", "Details", new { id = item.Id })
@@ -39,6 +44,7 @@
                         {
                             @Html.ActionLink("Edit ", "Edit", new { id = item.Id })
                             @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                            
                         }
 
 
