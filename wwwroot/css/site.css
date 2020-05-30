@@ -44,9 +44,10 @@ body {
 
 #homePic{
     
-    width:115%;
+    width:118%;
     margin-left:-10%;
      margin-top:0%;
+     
 }
 
 .image-container {
@@ -85,7 +86,6 @@ body {
     min-height:90%;
     max-height:100%;
 }
-
 
 
 .advertiser-bar{
@@ -157,6 +157,7 @@ body {
     
 
     }
+
 
 .btn-custom {
     width: 100%;
@@ -402,4 +403,35 @@ body {
 
 .btn-blog-post-create{
     margin-bottom:10%;
+}
+
+
+.responsive-card{
+    width: 100%;
+    height:auto;
+}
+
+.responsive-image{
+    max-width: 50%;
+    margin-left:20%;
+}
+
+.grey-bottom-row {
+    background-color: #F8F8F8;
+    width: 120%;
+    margin-left:-10%;
+}
+
+.card-left-margin{
+    margin-left:8%;
+    margin-top:2%;
+    margin-right:10%;
+}
+
+.gutters-white{
+    background-color:white;
+}
+
+#viewLoanBtn{
+    margin-top:5%;
 }

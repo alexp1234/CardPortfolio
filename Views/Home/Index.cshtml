@@ -2,29 +2,29 @@
     ViewData["Title"] = "Home Page";
 }
 
+<div class="container-grey">
+<div class="row image-container">
+    <img src="~/images/site/blake-wisz-tE6th1h6Bfk-unsplash.jpg" id="homePic" />
+    <div class="top-right .text-center">
+        <h3 class="responsive-text">FIND THE <br />PERFECT CARD <br /> FOR YOU</h3>
+        <form method="get" asp-action="Index" asp-controller="CreditCards">
+            <!-- button here-->
+        </form>
+    </div>
 
-    <div class="row image-container">
-        <img src="~/images/site/blake-wisz-tE6th1h6Bfk-unsplash.jpg" id="homePic" />
-        <div class="top-right .text-center">
-            <h3 class="responsive-text">FIND THE <br />PERFECT CARD <br /> FOR YOU</h3>
-            <form method="get" asp-action="Index" asp-controller="CreditCards">
-<!-- button here-->
-            </form>
-        </div>
-        
-    </div>
-    <div class="row more-information">
-        <h2><span>Services:</span></h2>
-    </div>
+</div>
+<div class="row more-information">
+    <h2><span>Information:</span></h2>
+</div>
 <div class="row background-grey-row">
-    
+
     <div class="col-sm-6">
         <div class="card white-card">
             <div class="card-body">
                 <h5 class="card-title">Credit Cards</h5>
                 <p class="card-text">Whether you're looking for a great sign up bonus, amazing balance transfer offer, or all-around low rate card, we've got you covered.</p>
                 <form method="get" asp-action="Index" asp-controller="CreditCards">
-                <button class="btn btn-green">View Cards</button>
+                    <button class="btn btn-green" id="viewCardBtn">View Cards</button>
                 </form>
             </div>
         </div>
@@ -35,7 +35,7 @@
                 <h5 class="card-title">Banks and Credit Unions</h5>
                 <p class="card-text">Looking to join a new bank or Credit Union? Our site has information on Banks and Credit Unions, including Credit Unions anyone can join.</p>
                 <form method="get" asp-action="Index" asp-controller="Institutions">
-                    <button class="btn btn-green btn-card">View Institutions</button>
+                    <button class="btn btn-green btn-card" id="viewBankBtn">View Institutions</button>
                 </form>
             </div>
         </div>
@@ -48,7 +48,7 @@
                 <h5 class="card-title">Blog</h5>
                 <p class="card-text">Want to know our thoughts on the best cards, loans, and deposit accounts? We take no money from companies to promote their products, so you know your getting our honest opinion.</p>
                 <form method="get" asp-action="Index" asp-controller="BlogPosts">
-                    <button class=" btn btn-green btn-card">Blog</button>
+                    <button class=" btn btn-green btn-card" id="viewBlogBtn">Blog</button>
 
                 </form>
             </div>
@@ -60,9 +60,28 @@
                 <h5 class="card-title">Personal Loans</h5>
                 <p class="card-text">Looking to consolidate credit card balances into a lower rate personal loan? Check out our information on personal loans.</p>
                 <form method="get" asp-action="Index" asp-controller="UnsecuredPersonalLoans">
-                    <button class="btn btn-green btn-card">View Loans</button>
+                    <button class="btn btn-green btn-card" id="viewLoanBtn">View Loans</button>
                 </form>
             </div>
         </div>
     </div>
+</div>
+
+<div class="row grey-bottom-row">
+    <div class="row no-gutters gutters-white">
+        
+        <div class="col-md-4">
+            <img src="//placehold.it/200" class="img-fluid responsive-image" alt="">
+        </div>
+        <div class="col-md-7">
+            <div class="card-block px-2 card-left-margin">
+                <h4 class="card-title">How We're Different</h4>
+                <p class="card-text">At WalletBailout we take no money from banks to promote their products. This means that you're getting the best, unbiased information for absolutely free.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
 </div>
