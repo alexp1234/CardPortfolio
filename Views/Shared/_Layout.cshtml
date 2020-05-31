@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
     <script src="https://kit.fontawesome.com/940b615537.js" crossorigin="anonymous"></script>
 
 </head>
@@ -126,8 +127,8 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
+    <footer class="footer text-muted">
+        <div class="container footer-links">
             &copy; 2020 - CardPortfolio
             <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
             <a asp-area="" asp-controller="Home" asp-action="Contact">Contact Us</a>
@@ -138,7 +139,7 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
     <script>
-        $(".table").DataTable();
+        $(".table").DataTable({ "pagingType": "full_numbers" });
     </script>
     @RenderSection("Scripts", required: false)
 </body>

@@ -6,7 +6,8 @@
 <div class="row image-container">
     <img src="~/images/site/blake-wisz-tE6th1h6Bfk-unsplash.jpg" id="homePic" />
     <div class="top-right .text-center">
-        <h3 class="responsive-text">FIND THE <br />PERFECT CARD <br /> FOR YOU</h3>
+        <h3 class="responsive-text">Wallet Bailout <br /> The Internet's Largest <br> Credit Card Database</h3>
+
         <form method="get" asp-action="Index" asp-controller="CreditCards">
             <!-- button here-->
         </form>
@@ -14,7 +15,7 @@
 
 </div>
 <div class="row more-information">
-    <h2><span>Information:</span></h2>
+   
 </div>
 <div class="row background-grey-row">
 
@@ -70,18 +71,55 @@
 <div class="row grey-bottom-row">
     <div class="row no-gutters gutters-white">
         
-        <div class="col-md-4">
-            <img src="//placehold.it/200" class="img-fluid responsive-image" alt="">
+        <div class="col-md-4 no-margin-column" >
+            <img src="~/images/homepageCard.jpg" class="img-fluid responsive-image" alt="">
+           
         </div>
         <div class="col-md-7">
             <div class="card-block px-2 card-left-margin">
-                <h4 class="card-title">How We're Different</h4>
-                <p class="card-text">At WalletBailout we take no money from banks to promote their products. This means that you're getting the best, unbiased information for absolutely free.</p>
+                <h4 class="about-section">How We're Different</h4>
+                <p class="card-text about-section">At WalletBailout we take no money from banks to promote their products. This means that you're getting the best, unbiased information for absolutely free.</p>
             </div>
         </div>
     </div>
 
 </div>
+ <div class="row grey-bottom-row" id="recentPostsRow">
+     <h3 id="recentPostsTitle">RECENT POSTS</h3>
+ </div>
+<div class="row grey-bottom-row" id="bottomRowContainer">
+    @foreach (var post in ViewBag.ThreeRecentPosts)
+    {
+        <div class="col-md-4">
+        <!-- Blog Post-->
+        <div class="card mb-4 home-recent-posts-column">
+            @if (post.ImageUrl != null)
+            {
+                var photoPath = "~/images/" + post.ImageUrl;
+                <a class="container-fluid" href="#">
+                    <img class="card-img-top" src="@Url.Content(photoPath)" alt="Card image cap" />
+                </a>
+            }
+
+            else
+            {
+                <a class="container-fluid" href="#">
+                <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap" />
+                </a>
+            }
+
+            <a class="card-body" href="#">
+                <h2 class="card-title card-home-title">@post.Title</h2>
+                <p class="card-text card-home-text">@post.Abstract</p>
+            </a>
+
+        </div>
+            </div>
+    }
+</div>
+    
+
 
 
 </div>
+

@@ -218,9 +218,12 @@
                             if (post.ImageUrl != null)
                             {
                                 var photoPath = "~/images/" + post.ImageUrl;
-                                <p>Title @post.Title</p>
-                                <img class="img-thumbnail" src="@Url.Content(photoPath)" alt="Card image cap" />
-                                <p>Creation Date @post.CreationDate</p>
+                                <a class="h5" asp-items="" asp-action="Details" asp-controller="BlogPosts" asp-route-id="@post.Id">@post.Title</a>
+                                <a asp-items="" asp-action="Details" asp-controller="BlogPosts" asp-route-id="@post.Id">
+                                    <img class="img-thumbnail" src="@Url.Content(photoPath)" alt="Card image cap" />
+                                </a>
+                               <p>@post.CreationDate By WalletBailout</p>
+                                
                             }
                             else
                             {

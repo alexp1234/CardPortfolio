@@ -12,14 +12,16 @@ namespace CardPortfolio.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IBlogPostData _blogPostData;
+        public HomeController(ILogger<HomeController> logger, IBlogPostData blogPostData)
         {
             _logger = logger;
+            _blogPostData = blogPostData;
         }
 
         public IActionResult Index()
         {
+            ViewBag.ThreeRecentPosts = _blogPostData.GetThreeRecentPosts();
             return View();
         }
 
