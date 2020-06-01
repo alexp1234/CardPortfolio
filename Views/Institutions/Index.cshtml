@@ -41,16 +41,17 @@
                     {
                         <td>Unknown</td>
                     }
-                    <td>
-                        @if (User.IsInRole("Administrator"))
-                        {
-                            @Html.ActionLink("Edit ", "Edit", new { id = item.Id })
-                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                        }
-                       @Html.ActionLink("Details", "Details", "Institutions", new { id = item.Id })
+                <td>
+                    <a class="btn btn-green" asp-controller="Institutions" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        @Html.ActionLink(" Edit ", "Edit", new { id = item.Id })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    }
 
 
-</td>
+
+                </td>
                 </tr>
             }
         </tbody>

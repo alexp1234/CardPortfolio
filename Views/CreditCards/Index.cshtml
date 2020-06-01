@@ -13,7 +13,7 @@
 
 @if (Model != null)
 {
-<table class="table table-bordered dt-responsive" id="dataTable" width="100%" cellspacing="0">
+<table class="table dt-responsive stripe" id="dataTable" width="100%" cellspacing="0">
     <thead>
         <tr>
             
@@ -39,7 +39,7 @@
                
                 <td>
 
-                    @Html.ActionLink("Details ", "Details", new { id = item.Id })
+                   <a class="btn btn-green" asp-action="Details" asp-controller="CreditCards" asp-route-id="@item.Id">Details</a>
                     @if (User.IsInRole("Administrator"))
                     {
                     @Html.ActionLink("Delete ", "Delete", new { id = item.Id })

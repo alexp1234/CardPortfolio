@@ -3,7 +3,8 @@
     ViewData["Title"] = "All Auto Loans";
 }
 
-<h1>All Cards</h1>
+<h3 class="institution-titles">AUTO LOANS</h3>
+
 
 @if (User.IsInRole("Administrator"))
 {
@@ -13,13 +14,13 @@
 
 @if (Model != null)
 {
-    <table class="table table-bordered dt-responsive" id="dataTable" width="100%" cellspacing="0">
+    <table class="table dt-responsive stripe" id="dataTable" width="100%" cellspacing="0">
         <thead>
             <tr>
 
-                <th>Card Name</th>
-                <th>Card Network</th>
-                <th>Card Category</th>
+                <th> <small><strong>NAME</strong></small></th>
+                <th><small><strong>CATEGORY</strong></small></th>
+                <th><small><strong>APR</strong></small></th>
                 <th></th>
             </tr>
         </thead>
@@ -33,9 +34,25 @@
 
                     <td>@item.Name</td>
                     <td>@item.AutoLoanCategory</td>
-                    <td>@item.LowApr</td>
+                    @if(item.LowApr == null && item.HighApr == null)
+                    {
+                        <td>Unknown</td>
+                    }
+                    else if(item.LowApr == null && item.HighApr != null)
+                    {
+                        <td>Maximum of @item.HighApr%</td>
+                    }
+                    else if(item.LowApr != null && item.HighApr == null)
+                    {
+                        <td>As Low As @item.LowApr%</td>
+                    }
+                    else if(item.LowApr != null && item.HighApr != null)
+                    {
+                        <td>@item.LowApr% to @item.HighApr%</td>
+                    }
 
                     <td>
+                        <a class="btn btn-green" asp-action="Details" asp-controller="AutoLoans" asp-route-id="@item.Id">Details</a>
                         @if (User.IsInRole("Administrator"))
                         {
                             @Html.ActionLink("Edit ", "Edit", "AutoLoans", new { id = item.Id })
@@ -43,7 +60,7 @@
 
                         }
 
-                        @Html.ActionLink("Details", "Details", "AutoLoans", new { id = item.Id })
+                        
 
 
 

@@ -3,7 +3,8 @@
     ViewData["Title"] = "HELOCs";
 }
 
-<h1>All HELOCs</h1>
+<h3 class="institution-titles">HELOCs</h3>
+
 
 @if (User.IsInRole("Administrator"))
 {
@@ -13,14 +14,13 @@
 
 @if (Model != null)
 {
-    <table class="table table-bordered dt-responsive" id="dataTable" width="100%" cellspacing="0">
+    <table class="table dt-responsive stripe" id="dataTable" width="100%" cellspacing="0">
         <thead>
             <tr>
 
-                <th>HELOC Name</th>
-                <th>LOW APR</th>
-                <th>HIGH APR</th>
-                <th>LTV</th>
+                <th><small><strong>Name</strong></small> </th>
+                <th><small><strong>APR</strong></small></th>               
+                <th><small><strong>LTV</strong></small></th>
                 <th></th>
             </tr>
         </thead>
@@ -33,18 +33,33 @@
                 <tr>
 
                     <td>@item.Name</td>
-                    <td>@item.LowApr%</td>
-                    <td>@item.HighApr%</td>
-                    <td>@item.LTV%</td>
-                    
+                    @if(item.LowApr == null && item.HighApr == null)
+                    {
+                        <td>Unknown</td>
+                    }
+                    else if(item.LowApr == null && item.HighApr != null)
+                    {
+                        <td>Maximum of %@item.HighApr%</td>
+                    }
+                    else if(item.LowApr != null && item.HighApr == null)
+                    {
+                        <td>As Low as %@item.LowApr%</td>
+                    }
+                    else if(item.LowApr != null && item.HighApr != null)
+                    {
+                        <td>@item.LowApr% to @item.HighApr%</td>
+                    }
+
+                    <td>Up to @item.LTV%</td>
+
 
                     <td>
-                        @Html.ActionLink("Details ", "Details", new { id = item.Id })
+                        <a class="btn btn-green" asp-action="Details" asp-controller="HomeEquityLinesOfCredit" asp-route-id="@item.Id">Details</a>
                         @if (User.IsInRole("Administrator"))
                         {
                             @Html.ActionLink("Edit ", "Edit", new { id = item.Id })
                             @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                            
+
                         }
 
 

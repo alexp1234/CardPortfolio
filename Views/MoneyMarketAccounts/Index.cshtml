@@ -3,7 +3,7 @@
     ViewData["Title"] = "Money Market Accounts";
 }
 
-<h1>All Money Market Accounts</h1>
+<h3 class="institution-titles">MONEY MARKET ACCOUNTS</h3>
 
 @if (User.IsInRole("Administrator"))
 {
@@ -13,7 +13,7 @@
 
 @if (Model != null)
 {
-    <table class="table table-bordered dt-responsive" id="dataTable" width="100%" cellspacing="0">
+    <table class="table dt-responsive stripe" id="dataTable" width="100%" cellspacing="0">
         <thead>
             <tr>
 
@@ -36,7 +36,7 @@
 
 
                     <td>
-                        @Html.ActionLink("Details ", "Details", new { id = item.Id })
+                        <a class="btn btn-green" asp-action="Details" asp-controller="MoneyMarketAccounts" asp-route-id="@item.Id"></a>
                         @if (User.IsInRole("Administrator"))
                         {
                             @Html.ActionLink("Edit ", "Edit", new { id = item.Id })

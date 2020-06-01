@@ -3,7 +3,7 @@
     ViewData["Title"] = "Unsecured Loan";
 }
 
-<h1>Unsecured Loan</h1>
+<h3 class="institution-titles">UNSECURED PERSONAL LOANS</h3>
 
 @if (User.IsInRole("Administrator"))
 {
@@ -13,16 +13,14 @@
 
 @if (Model != null)
 {
-    <table class="table table-bordered dt-responsive" id="dataTable" width="100%" cellspacing="0">
+    <table class="table dt-responsive stripe" id="dataTable" width="100%" cellspacing="0">
         <thead>
             <tr>
 
-                <th><small>LOAN NAME</small></th>
-                <th><small>LOW APR</small></th>
-                <th><small>HIGH APR</small></th>
-                <th><small>MAX TERM</small></th>
-                <th><small>MIN AMOUNT</small></th>
-                <th><small>MAX AMOUNT</small></th>
+                <th><small><strong>NAME</strong></small></th>
+                <th><small><strong>APR</strong></small></th>
+                <th><small><strong>TERM</strong></small></th>
+                <th><small><strong>AMOUNT</strong></small></th>
                 <th></th>
             </tr>
         </thead>
@@ -33,41 +31,67 @@
             @foreach (var item in Model)
             {
             <tr>
-
                 <td>@item.Name</td>
-                <td>@item.LowApr%</td>
-                @if (item.HighApr != null)
-                {
-                    <td>@item.HighApr</td>
-
-                }
-                else
+                <!--APR SECTION-->
+                @if(item.LowApr == null && item.HighApr == null)
                 {
                     <td>Unknown</td>
                 }
-                <td>@item.MaximumTermInMonths months</td>
-                <td>@item.MinimumAmount</td>
-                <td>@item.MaximumAmount</td>
+                else if(item.LowApr != null && item.HighApr == null)
+                {
+                    <td>As low as @item.LowApr%</td>
+                }
+                else if(item.LowApr != null && item.HighApr != null)
+                {
+                    <td>@item.LowApr% to @item.HighApr%</td>
+                }
+                else if(item.LowApr == null && item.HighApr != null)
+                {
+                    <td>Unknown to @item.HighApr%</td>
+                }
+                <!-- TERM SECTION-->
+                @if(item.MinimumTermInMonths == null && item.MaximumTermInMonths == null)
+                {
+                    <td>Unknown</td>
+                }
+                else if (item.MinimumTermInMonths == null && item.MaximumTermInMonths != null)
+                {
+                    <td>Up to @item.MaximumTermInMonths months</td>
+                }
+                else if(item.MinimumTermInMonths != null && item.MaximumTermInMonths == null)
+                {
+                    <td>@item.MinimumTermInMonths months to Unknown</td>
+                }
+                else if(item.MinimumTermInMonths != null && item.MaximumTermInMonths != null)
+                {
+                    <td>@item.MinimumTermInMonths to @item.MaximumTermInMonths months</td>
+                }
+
+                <!-- AMOUNT SECTION -->
+                @if(item.MinimumAmount == null && item.MaximumAmount == null)
+                {
+                    <td>Unknown</td>
+                }
+                else if(item.MinimumAmount == null && item.MaximumAmount != null)
+                {
+                    <td>Up to $@item.MaximumAmount </td>
+                }
+                else if(item.MinimumAmount != null && item.MaximumAmount == null)
+                {
+                    <td>Minimum of $@item.MinimumAmount</td>
+                }
+                else if(item.MinimumAmount != null && item.MaximumAmount != null)
+                {
+                    <td>$@item.MinimumAmount to $@item.MaximumAmount</td>
+                }
 
                 <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.Id })
+                    <a class="btn btn-green" asp-action="Details" asp-controller="UnsecuredPersonalLoans" asp-route-id="@item.Id">Details</a>
                     @if (User.IsInRole("Administrator"))
                     {
                         @Html.ActionLink("Edit", "Edit", new { id = item.Id })
                         @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                     }
-
-
-
-
-
-
-
-
-
-
-
-
 
                 </td>
             </tr>
