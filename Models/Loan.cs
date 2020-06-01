@@ -18,5 +18,6 @@ namespace CardPortfolio.Models
         public bool HasFees { get; set; } 
         public double? OriginationFee { get; set; }
         public string Name { get; set; } //
+        public string LinkURL { get; set; }
     }
 }

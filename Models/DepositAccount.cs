@@ -34,7 +34,7 @@ namespace CardPortfolio.Models
 
         // If Minimum or Maximum Amount is not met
         public double? AprIfAmountNotMet {get; set;}
-
+        public string LinkURL { get; set; }
         
         
 

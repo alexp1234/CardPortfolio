@@ -101,7 +101,7 @@ namespace CardPortfolio.Controllers
         [Authorize(Roles ="Administrator")]
         public IActionResult Create(double? lowApr, double? highApr, double? minimumAmount, double? maximumAmount,
             int? minimumTermInMonths, int? maximumTermInMonths, bool hasFees, double? originationFee, 
-            string name, AutoLoanCategory autoLoanCategory, double? downPaymentPercentage, AutoLoan autoLoan )
+            string name, AutoLoanCategory autoLoanCategory, double? downPaymentPercentage, string linkURL, AutoLoan autoLoan )
         {
             if (ModelState.IsValid)
             {
@@ -116,6 +116,7 @@ namespace CardPortfolio.Controllers
                 autoLoan.Name = name;
                 autoLoan.AutoLoanCategory = autoLoanCategory;
                 autoLoan.DownPaymentPercentage = downPaymentPercentage;
+                autoLoan.LinkURL = linkURL;
 
                 
                var addStatus = _autoLoanData.AddAutoLoan(autoLoan);
@@ -230,7 +231,7 @@ namespace CardPortfolio.Controllers
         [Authorize(Roles ="Administrator")]
         public IActionResult Edit(double? lowApr, double? highApr, double? minimumAmount,
             double? maximumAmount, int? minTermInMonths, int? maxTermInMonths, bool hasFees,
-            double? originationFee, string name, AutoLoanCategory autoLoanCategory, double? downPaymentPercentage  )
+            double? originationFee, string name, AutoLoanCategory autoLoanCategory, double? downPaymentPercentage, string linkURL  )
         {
             if (ModelState.IsValid)
             {
@@ -249,6 +250,7 @@ namespace CardPortfolio.Controllers
                     autoLoan.Name = name;
                     autoLoan.AutoLoanCategory = autoLoanCategory;
                     autoLoan.DownPaymentPercentage = downPaymentPercentage;
+                    autoLoan.LinkURL = linkURL;
                     var status = _autoLoanData.Commit();
                     if(status == 0)
                     {
