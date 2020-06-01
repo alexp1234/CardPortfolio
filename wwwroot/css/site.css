@@ -44,8 +44,8 @@ body {
 
 #homePic{
     
-    width:118%;
-    margin-left:-10%;
+    width:116%;
+    margin-left:-9%;
      margin-top:0%;
      
 }
@@ -54,6 +54,8 @@ body {
     position: relative;
     text-align: center;
     color: white;
+    width:125%;
+    margin-left:-11%;
     
 }
 
@@ -61,14 +63,14 @@ body {
     position: absolute;
     bottom: 40%;
     right: 0px;
-    width:110%;   
+    width:100%;   
    
    
 }
 
 .top-right h3{
     color:white;
-    margin-left:35%;
+    margin-left:25%;
     min-width: 100%;
 }
 
@@ -120,12 +122,12 @@ body {
 
 .responsive-text {
     margin-bottom: 1%;
-    margin-right: 40%;
+    margin-right: 80%;
     font-size: 3vw;
     color: black;
     font-weight: bold;
     font-family: Arial;
-    min-width:10%;
+    min-width:50%;
 }
 
 .black-nav{
@@ -265,8 +267,10 @@ textarea {
     margin-left:-2%;
 }
 
-.cardRowHeader{
+.cardRowHeader {
     min-width: 115%;
+    background-color: rgb(0, 153, 219);
+    color:white;
 }
 
 .topnav {
@@ -313,6 +317,10 @@ html {
     html {
         font-size: 16px;
     }
+}
+
+.green-card-header {
+    color: rgb(50, 216, 100);
 }
 
 .border-top {
@@ -370,9 +378,15 @@ body {
     max-width: 100%;
 }
 
+.card-title-row{
+    margin-bottom:3%;
+    margin-top:3%;
+    margin-left:5%;
+}
+
 .collapsible {
-    background-color: #73e600;
-    color: white;
+    background-color:lightgray;
+    color: black;
     cursor: pointer;
     padding: 18px;
     width: 100%;
@@ -380,7 +394,8 @@ body {
     text-align: left;
     outline: none;
     font-size: 15px;
-    margin-top:2%;
+    margin-top: 2%;
+    font-weight: bold;
 }
 
     .active, .collapsible:hover {
@@ -391,7 +406,7 @@ body {
     padding: 0 18px;
     display: none;
     overflow: hidden;
-    background-color: #f1f1f1;
+    background-color: rgb(228, 250, 235);
 }
 
 
