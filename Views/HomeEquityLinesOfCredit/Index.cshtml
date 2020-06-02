@@ -20,7 +20,7 @@
 
                 <th><small><strong>Name</strong></small> </th>
                 <th><small><strong>APR</strong></small></th>               
-                <th><small><strong>LTV</strong></small></th>
+                <th><small><strong>AMOUNT</strong></small></th>
                 <th></th>
             </tr>
         </thead>
@@ -30,37 +30,53 @@
 
             @foreach (var item in Model)
             {
-                <tr>
+            <tr>
 
-                    <td>@item.Name</td>
-                    @if(item.LowApr == null && item.HighApr == null)
+                <td>@item.Name</td>
+                @if (item.LowApr == null && item.HighApr == null)
+                {
+                    <td>Unknown</td>
+                }
+                else if (item.LowApr == null && item.HighApr != null)
+                {
+                    <td>Maximum of @item.HighApr%</td>
+                }
+                else if (item.LowApr != null && item.HighApr == null)
+                {
+                    <td>As Low as @item.LowApr%</td>
+                }
+                else if (item.LowApr != null && item.HighApr != null)
+                {
+                    <td>@item.LowApr% to @item.HighApr%</td>
+                }
+
+                @if (item.MinimumAmount == null && item.MaximumAmount == null)
+                {
+                    <td>Unknown</td>
+                }
+                else if (item.MinimumAmount == null && item.MaximumAmount != null)
+                {
+                    <td>Up to $@item.MaximumAmount </td>
+                }
+                else if (item.MinimumAmount != null && item.MaximumAmount == null)
+                {
+                    <td>Minimum of $@item.MinimumAmount</td>
+                }
+                else if (item.MinimumAmount != null && item.MaximumAmount != null)
+                {
+                    <td>$@item.MinimumAmount to $@item.MaximumAmount</td>
+                }
+
+
+                <td>
+                    <a class="btn btn-green" href="@item.LinkURL" target="_blank">Link</a>
+                    @if (User.IsInRole("Administrator"))
                     {
-                        <td>Unknown</td>
-                    }
-                    else if(item.LowApr == null && item.HighApr != null)
-                    {
-                        <td>Maximum of %@item.HighApr%</td>
-                    }
-                    else if(item.LowApr != null && item.HighApr == null)
-                    {
-                        <td>As Low as %@item.LowApr%</td>
-                    }
-                    else if(item.LowApr != null && item.HighApr != null)
-                    {
-                        <td>@item.LowApr% to @item.HighApr%</td>
+                        @Html.ActionLink("Edit ", "Edit", new { id = item.Id })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+
                     }
 
-                    <td>Up to @item.LTV%</td>
-
-
-                    <td>
-                        <a class="btn btn-green" href="@item.LinkURL" target="_blank">Link</a>
-                        @if (User.IsInRole("Administrator"))
-                        {
-                            @Html.ActionLink("Edit ", "Edit", new { id = item.Id })
-                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-
-                        }
 
 
 
@@ -73,9 +89,8 @@
 
 
 
-
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
             }
         </tbody>

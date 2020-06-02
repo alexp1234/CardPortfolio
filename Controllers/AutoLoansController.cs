@@ -73,7 +73,7 @@ namespace CardPortfolio.Controllers
                     var status = _autoLoanData.Commit();
                     if(status == 0)
                     {
-                        return RedirectToAction("Details", new { id = (int)TempData["AutoLoanId"] });
+                        return RedirectToAction("Index");
                     }
                     else
                     {

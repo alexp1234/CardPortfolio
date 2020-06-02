@@ -166,8 +166,9 @@
 
                 <!-- Side Widget -->
                 <div class="card my-4">
-                    <h5 class="card-header blue-header">"Similar Posts"</h5>
+                    <h5 class="card-header blue-header">Similar Posts</h5>
                     <div class="card-body">
+                                                                                         
                         @foreach (var post in ViewBag.SimilarPosts)
                         {
                             if (post.ImageUrl != null)
@@ -185,6 +186,7 @@
                             }
 
                         }
+                        
                     </div>
                 </div>
 

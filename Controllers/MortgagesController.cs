@@ -72,7 +72,7 @@ namespace CardPortfolio.Controllers
                     if(commitStatus == 0)
                     {
                         // commit succeeded
-                        return RedirectToAction("Details", new { id = (int)TempData["MortgageId"] });
+                        return RedirectToAction("Index");
 
                     }
                     else
@@ -126,7 +126,7 @@ namespace CardPortfolio.Controllers
                     if(commitStatus == 0)
                     {
                         // commit succeeded
-                        return RedirectToAction("Details", new { id = mortgage.Id });
+                        return RedirectToAction("Index");
 
                     }
                     else
@@ -198,13 +198,6 @@ namespace CardPortfolio.Controllers
         }
 
 
-        // GET: Mortgages/Details/5
-        public IActionResult Details(int id)
-        {
-            var mortgage = _mortgageData.GetById(id);
-            return View(mortgage);
-        }
-
         // GET: Mortgages/Edit/5
         [Authorize(Roles = "Administrator")]
         public IActionResult Edit(int id)
@@ -253,7 +246,7 @@ namespace CardPortfolio.Controllers
                     if(commitStatus == 0)
                     {
                         // commit succeeded 
-                        return RedirectToAction("Details", new { id = mortgage.Id });
+                        return RedirectToAction("Index");
 
                     }
                     else

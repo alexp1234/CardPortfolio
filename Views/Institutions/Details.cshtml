@@ -7,15 +7,16 @@
 }
 
 
-    <div class="container-fluid">
-        <div class="row"><h2>@Model.Name</h2></div>
-        <img src="@Url.Content(photoPath)" id="institutionLogo" />
+    <div class="container-fluid content-container">
+        <div class="row"><img src="@Url.Content(photoPath)" id="institutionLogo" /></div>
+        <div class="row"><h2 class="institution-name-title">@Model.Name</h2></div>
+        
         <div class="row">
             <!-- Lending Button-->
             <div class="col-md-6">
                 <h3>Lending Products</h3>
 
-                <button type="button" class="collapsible more-info-button">See All</button>
+                <button type="button" class="collapsible more-info-button" id="btn1">See All</button>
                 <!-- ALL LOANS-->
                 <div class="content">
                     <!-- CREDIT CARDS-->
@@ -128,7 +129,7 @@
 
                                 <div class="row">
                                     <div class="col-md-6">
-                                        @loan.Name
+                                        @loan.Name                                     
                                     </div>
 
                                 </div>
@@ -160,7 +161,7 @@
                                         </div>
                                         <div class="col-md-2"></div>
                                         <div class="col-md-5 bt-info">
-                                            <p class="h5"> &nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Loan Amount <hr /></p>
+                                            <p class="h5"> &nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Amount <hr /></p>
                                             <ul class="card-info-list">
                                                 @if (loan.MinimumAmount != null && loan.MaximumAmount != null)
                                                 {
@@ -233,7 +234,7 @@
                                 </div>
                             }
                         }
-
+                      
                     </div>
 
                     <!-- HELOCS-->
@@ -1074,7 +1075,7 @@
             
             <div class="col-md-6">
                 <h3>Deposit Products</h3>
-            <button class="collapsible more-info-button">See All</button>
+            <button class="collapsible more-info-button" id="btn2">See All</button>
             <div class="content">
                 <!-- CDs -->
                 <button class="collapsible more-info-button">Certificate Accounts</button>
@@ -1107,7 +1108,7 @@
                                     </div>
                                     <div class="col-md-2"></div>
                                     <div class="col-md-5 bt-info">
-                                        <p class="h5"> &nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Term <hr /></p>
+                                        <p class="h5"> &nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Term<hr /></p>
                                         <ul class="card-info-list">
                                             <li>Term: @account.TermInMonths months</li>
                                         </ul>
@@ -1150,7 +1151,7 @@
 
                     @if (ViewBag.CheckingAccountList.Count == 0)
                     {
-                        <h5>No Content. Check Back Soon.</h5>
+                        <h5>No Information. Check Back Soon.</h5>
                     }
                     else
                     {
@@ -1323,7 +1324,7 @@
                 <div class="content">
                     @if (ViewBag.SavingsAccountList.Count == 0)
                     {
-                        <h5>No Content. Check Back Soon.</h5>
+                        <h5>No Information. Check Back Soon.</h5>
                     }
                     else
                     {
@@ -1410,7 +1411,7 @@
             
             </div>
         </div>
-
+     
       <!-- Word pad File Start Here-->
         
 

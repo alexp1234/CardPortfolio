@@ -17,9 +17,9 @@
         <thead>
             <tr>
 
-                <th>Certificate Name</th>
-                <th>Interest Rate</th>
-                <th>Term in Months</th>
+                <th><small><strong>NAME</strong></small></th>
+                <th><small><strong>APY</strong></small></th>
+                <th><small><strong>TERM</strong></small></th>
                 <th></th>
             </tr>
         </thead>
@@ -32,8 +32,8 @@
                 <tr>
 
                     <td>@item.Name</td>
-                    <td>@item.InterestRate</td>
-                    <td>@item.TermInMonths</td>
+                    <td>@item.InterestRate%</td>
+                    <td>@item.TermInMonths months</td>
 
                     <td>
                         <a class="btn btn-green" href="@item.LinkURL" target="_blank">Link</a>

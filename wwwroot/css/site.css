@@ -18,12 +18,12 @@ body {
     margin-bottom:2%;
 }
 
-.more-info-button{
-    margin-bottom: 2%;
-}
+
 .card-row-pic{
     max-height:80%;
 }
+
+
 
 .header-row {
     margin-bottom: 2em;
@@ -370,9 +370,16 @@ body {
     
 }
 
+.institution-name-title{
+    margin-left:25%;
+    margin-bottom:5%;
+    
+    
+}
+
 #institutionLogo {
-    max-width: 20%;
-    max-height: 20%;
+    max-width:50%;
+    margin-left:23%;
 }
 
 #cardDetailsPic{
@@ -542,4 +549,26 @@ a:hover{
 .footer-links{
     text-align:center;
     
+}
+
+#btn1, #btn2 {
+    background-color: rgb(0, 153, 219);
+    color: white;
+    
+}
+
+.content-container{
+    margin-bottom:20%;
+}
+
+.card-details-pic{
+    margin-bottom:4%;
+}
+
+.card-name{
+    margin-bottom:5%;
+}
+
+.bottom-card-details-row{
+    margin-top:5%;
 }

@@ -313,7 +313,7 @@ namespace CardPortfolio.Controllers
                     }
                 }
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Error404", "Error", null);
         }
 
         // GET: BlogPosts/Delete/3

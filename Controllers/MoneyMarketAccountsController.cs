@@ -26,13 +26,6 @@ namespace CardPortfolio.Controllers
             return View(list);
         }
 
-        // GET: MoneyMarketAccounts/Details/5
-        public ActionResult Details(int id)
-        {
-            var account = _moneyMarketAccountData.GetById(id);
-            if(account != null) { return View(account); }
-            return RedirectToAction("Index");
-        }
 
         // GET: MoneyMarketAccounts/Create
         [Authorize(Roles="Administrator")]
@@ -75,7 +68,7 @@ namespace CardPortfolio.Controllers
                     if(commitStatus == 0)
                     {
                         // commit succeeded
-                        return RedirectToAction("Details", new { id = account.Id });
+                        return RedirectToAction("Index");
 
                     }
                     else

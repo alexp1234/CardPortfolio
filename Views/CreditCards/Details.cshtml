@@ -5,29 +5,142 @@
     var photoPath = "~/images/" + Model.ImagePath;
 }
 
+<!-- Name Row-->
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-7">
+        <h3 class="card-name">@Model.Name</h3>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+<!-- Image Row-->
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-7">
+        <img src="@Url.Content(photoPath)" class="card-details-pic" />
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <h3>@Model.Name</h3>
-                <hr />
-                <img src="@Url.Content(photoPath)" id="cardDetailsPic" />
-            </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+
+<div class="row details-section">
+    <div class="col-md-5 bt-info">
+        <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Intro Offers <hr /></p>
+        <ul class="card-info-list">
+            @if (Model.HasIntroBalanceTransferOffer)
+            {
+                <li>Intro Balance Transfer: @Model.IntroBalanceTransferRate% for @Model.IntroBalanceTransferLengthInMonths months</li>
+                @if (Model.HasIntroBalanceTransferFee)
+                {
+                    <li>Intro Balance Transfer Fee: @Model.IntroBalanceTransferFee%</li>
+                }
+                else
+                {
+                    <li>Regular Balance Transfer Fee: @Model.RegularBalanceTransferFee%</li>
+                }
+            }
+            else
+            {
+                <li>No Intro Offers</li>
+            }
+
+        </ul>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-5 bt-info">
+        <p class="h5"> &nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Fee Information <hr /></p>
+        <ul class="card-info-list">
+            <li>Annual Fee: $@Model.AnnualFee </li>
+            <li>Balance Transfer: @Model.RegularBalanceTransferFee% of each transaction</li>
+            <li>Cash Advance: @Model.CashAdvanceFee% of each advance</li>
+        </ul>
+    </div>
+</div>
+
+<div class="row details-section">
+    <div class="col-md-5 bt-info">
+        <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Interest Rate Information <hr /></p>
+        <ul class="card-info-list">
+            @if (!Model.IsFixedRate)
+            {
+                <li>Purchase: @Model.LowAPRPurchases% to @Model.HighAPRPurchases% variable rate  </li>
+                <li>Balance Transfer: @Model.LowAPRBalanceTransfer% to @Model.HighAPRBalanceTransfer% variable rate</li>
+                <li>Cash Advance: @Model.LowAPRCashAdvance% to @Model.HighAPRCashAdvance% variable rate</li>
+            }
+            else
+            {
+                <li>Purchase: @Model.LowAPRPurchases% to @Model.HighAPRPurchases% fixed rate  </li>
+                <li>Balance Transfer: @Model.LowAPRBalanceTransfer% to @Model.HighAPRBalanceTransfer% fixed rate</li>
+                <li>Cash Advance: @Model.LowAPRCashAdvance% to @Model.HighAPRCashAdvance% fixed rate</li>
+
+            }
+        </ul>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-5 bt-info">
+        <p class="h5"> &nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Miscellaneous  <hr /></p>
+        <ul class="card-info-list">
+            <li>Card Type: @Model.CardCategory</li>
+            <li>Card Network: @Model.CardNetwork</li>
+        </ul>
+    </div>
+</div>
+<div class="row details-section">
+    @if (Model.HasCashBack)
+    {
+        <div class="col-md-5 bt-info">
+            <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Cash Back <hr /></p>
+            <ul class="card-info-list">
+                <li>@Model.Description</li>
+            </ul>
         </div>
-       
+        <div class="col-md-2"></div>
+    }
+    else
+    {
+        <div class="col-md-5 bt-info">
+            <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Cash Back <hr /></p>
+            <ul class="card-info-list">
+                <li>No Cash Back</li>
+            </ul>
+        </div>
+        <div class="col-md-2"></div>
+    }
+    @if (Model.HasSignUpBonus)
+    {
+        <div class="col-md-5 bt-info">
+            <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Sign Up Bonus  <hr /></p>
+            <ul class="card-info-list">
+                <li>Spend Requirement: $@Model.SignUpBonusSpendRequirement</li>
+                <li>Bonus Amount: $@Model.SignUpBonusAmount</li>
+            </ul>
+        </div>
+    }
+    else
+    {
+        <div class="col-md-5 bt-info">
+            <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Sign Up Bonus  <hr /></p>
+            <ul class="card-info-list">
+                <li>No Sign Up Bonus</li>
+            </ul>
+        </div>
+    }
+</div>
+<div class="row bottom-card-details-row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <a class="btn btn-green" href="@Model.Url">Link</a>
+    </div>
+</div>
 
-            
-                              
-       
-      </div> 
-    <div>
+
+
+
         @if (User.IsInRole("Administrator"))
         {
             @Html.ActionLink("Edit ", "Edit", new { id = Model.Id })
-            @Html.ActionLink("Add Image ", "AddImage", new { id = Model.Id })
-            @Html.ActionLink("Add Cash Back", "AddCashBackToCard", "CashBacks", new { id = Model.Id })
+            @Html.ActionLink("Add Image ", "AddImage", new { id = Model.Id })            
         }
 
 
-        <a asp-action="Index">Back to List</a>
-    </div>

@@ -24,12 +24,7 @@ namespace CardPortfolio.Controllers
             return View(list);
         }
 
-        // GET: CheckingAccounts/Details/5
-        public ActionResult Details(int id)
-        {
-            var account = _checkingAccountData.GetById(id);
-            return View(account);
-        }
+       
 
         // GET: CheckingAccounts/Create
         [Authorize(Roles = "Administrator")]
@@ -76,7 +71,7 @@ namespace CardPortfolio.Controllers
                     var commitStatus = _checkingAccountData.Commit();
                     if(commitStatus == 0)
                     {
-                        return RedirectToAction("Details", new { id = checkingAccount.Id });
+                        return RedirectToAction("Index");
                     }
                     
                 }
@@ -137,7 +132,7 @@ namespace CardPortfolio.Controllers
                     var commitStatus = _checkingAccountData.Commit();
                     if(commitStatus == 0)
                     {
-                        return RedirectToAction("Details", new { id = checkingAccount.Id });
+                        return RedirectToAction("Index");
                     }
                     else
                     {

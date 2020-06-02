@@ -67,7 +67,7 @@ namespace CardPortfolio.Controllers
                     if(commitStatus == 0)
                     {
                         // commit succeeded
-                        return RedirectToAction("Details", new { id = (int)TempData["UnsecuredLoanId"] });
+                        return RedirectToAction("Index");
 
                     }
                     else
@@ -121,7 +121,7 @@ namespace CardPortfolio.Controllers
                     if(commitStatus == 0)
                     {
                         // commit succeeded
-                        return RedirectToAction("Details", new { id = loan.Id });
+                        return RedirectToAction("Index");
 
                     }
                     else
@@ -243,7 +243,7 @@ namespace CardPortfolio.Controllers
                     if(commitStatus == 0)
                     {
                         // commit succeeded
-                        return RedirectToAction("Details", new { id = loan.Id });
+                        return RedirectToAction("Index");
 
                     }
                     else

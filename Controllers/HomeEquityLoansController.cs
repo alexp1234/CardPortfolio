@@ -70,7 +70,7 @@ namespace CardPortfolio.Controllers
                     var commitStatus = _homeEquityLoanData.Commit();
                     if (commitStatus == 0)
                     {
-                        return RedirectToAction("Details", new { id = (int)TempData["HomeEquityLoanId"] });
+                        return RedirectToAction("Index");
                     }
                     else
                     {
@@ -116,7 +116,7 @@ namespace CardPortfolio.Controllers
                     var commitStatus = _homeEquityLoanData.Commit();
                     if(commitStatus == 0)
                     {
-                        return RedirectToAction("Details", new { id = heLoan.Id });
+                        return RedirectToAction("Index");
                     }
                     else
                     {
@@ -180,21 +180,6 @@ namespace CardPortfolio.Controllers
         }
 
 
-        // GET: HomeEquityLoans/Details/5
-        public IActionResult Details(int id)
-        {
-            // Refactor
-            var heLoan = _homeEquityLoanData.GetById(id);
-            if(heLoan != null)
-            {
-                return View(heLoan);
-            }
-            else
-            {
-                return RedirectToAction("Index");
-            }
-        }
-
         // GET: HomeEquityLoans/Edit/5
         [Authorize(Roles = "Administrator")]
         public IActionResult Edit(int id)
@@ -239,7 +224,7 @@ namespace CardPortfolio.Controllers
                     var commitStatus = _homeEquityLoanData.Commit();
                     if(commitStatus == 0)
                     {
-                        return RedirectToAction("Details", new { id = heLoan.Id });
+                        return RedirectToAction("Index");
                     }
                     else
                     {

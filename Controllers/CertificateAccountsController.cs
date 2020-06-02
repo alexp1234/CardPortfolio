@@ -30,20 +30,6 @@ namespace CardPortfolio.Controllers
             return View(list);
         }
 
-        // GET: CertificateAccounts/Details/5
-        public ActionResult Details(int id)
-        {
-            var certificateAccount = _certificateAccountData.GetById(id);
-            if(certificateAccount != null)
-            {
-                return View(certificateAccount);
-            }
-
-            // TODO: Replace with 404 page
-            return RedirectToAction("Index");
-        }
-
-       
 
         // GET: CertificateAccounts/Create
         [Authorize(Roles ="Administrator")]
@@ -84,16 +70,16 @@ namespace CardPortfolio.Controllers
                     var commitStatus = _certificateAccountData.Commit();
                     if(commitStatus == 0)
                     {
-                        return RedirectToAction("Details", "CertificateAccounts", new { id = certificateAccount.Id });
+                        return RedirectToAction("Index");
                     }
                     else
                     {
-                        // add logging message
+                        return RedirectToAction("Index");
                     }
                 }
                 else
                 {
-                    // add logging message
+                    return RedirectToAction("Index");
                 }
                 
                
@@ -149,7 +135,7 @@ namespace CardPortfolio.Controllers
                     var commitStatus = _certificateAccountData.Commit();
                     if(commitStatus == 0)
                     {
-                        return RedirectToAction("Details", new { id = certificateAccount.Id });
+                        return RedirectToAction("Index");
                     }
                     else
                     {
