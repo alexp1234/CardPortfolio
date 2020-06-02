@@ -100,7 +100,7 @@ namespace CardPortfolio.Controllers
         public IActionResult Create(double? lowApr, double? highApr, int? institutionId, 
             double? minimumAmount, double? maximumAmount, int? minimumTermInMonths,
             int? maximumTermInMonths, bool hasFees, double? originationFee, string name, double? loanToValue,
-            MortgageType mortgageType, double? downPaymentPercent, Mortgage mortgage)
+            MortgageType mortgageType, double? downPaymentPercent, string linkURL, Mortgage mortgage)
         {
             if (ModelState.IsValid)
             {
@@ -117,6 +117,7 @@ namespace CardPortfolio.Controllers
                 mortgage.LoanToValue = loanToValue;
                 mortgage.MortgageType = mortgageType;
                 mortgage.DownPaymentPercentage = downPaymentPercent;
+                mortgage.LinkURL = linkURL;
                 var addStatus = _mortgageData.AddMortgage(mortgage);
                 if(addStatus == 0)
                 {
@@ -227,7 +228,7 @@ namespace CardPortfolio.Controllers
         public IActionResult Edit(double? lowApr, double? highApr, double? minimumAmount,
             double? maximumAmount, int? minimumTermInMonths, int? maximumTermInMonths,
             bool hasFees, double? originationFee, string name, double loanToValue, 
-            MortgageType mortgageType, double? downPaymentPercentage)
+            MortgageType mortgageType, double? downPaymentPercentage, string linkURL)
         {
             if (ModelState.IsValid)
             {
@@ -247,6 +248,7 @@ namespace CardPortfolio.Controllers
                     mortgage.LoanToValue = loanToValue;
                     mortgage.MortgageType = mortgageType;
                     mortgage.DownPaymentPercentage = downPaymentPercentage;
+                    mortgage.LinkURL = linkURL;
                     var commitStatus = _mortgageData.Commit();
                     if(commitStatus == 0)
                     {

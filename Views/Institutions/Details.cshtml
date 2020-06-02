@@ -3,194 +3,1419 @@
 @{
     ViewData["Title"] = Model.Name;
     var photoPath = "~/images/" + Model.ImagePath;
-   
+
 }
 
 
     <div class="container-fluid">
-
+        <div class="row"><h2>@Model.Name</h2></div>
         <img src="@Url.Content(photoPath)" id="institutionLogo" />
-        <p class="alert-heading">@Model.Description</p>
+        <div class="row">
+            <!-- Lending Button-->
+            <div class="col-md-6">
+                <h3>Lending Products</h3>
 
-        <!-- Credit Card Section-->
-        <div class="card-header"><h3>Cards</h3></div>
-        @foreach (var card in ViewBag.CardList)
-        {
-            var cardPhotoPath = "~/images/" + card.ImagePath;
+                <button type="button" class="collapsible more-info-button">See All</button>
+                <!-- ALL LOANS-->
+                <div class="content">
+                    <!-- CREDIT CARDS-->
+                    <button class="collapsible more-info-button">Credit Cards</button>
+                    <div class="content">
 
-            <div class="card-header">
-                <h3>@card.Name</h3>
+                        @if (ViewBag.CardList.Count == 0)
+                        {
+                            <h5>No information. Check Back Soon.</h5>
+                        }
+                        else
+                        {
+
+                            @foreach (var card in ViewBag.CardList)
+                            {
+                                <p>@card.Name</p>
+                                var cardPath = "~/images/" + card.ImagePath;
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <img src="@Url.Content(cardPath)" class="card-row-pic" />
+                                    </div>
+
+                                </div>
+                                <!-- Button For Modal-->
+                                <button type="button" class="collapsible more-info-button">Info</button>
+                                <div class="content">
+                                    <div class="row details-section">
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; APR <hr /></p>
+                                            <ul class="card-info-list">
+                                                <li>Purchase: @card.LowAPRPurchases% to @card.HighAPRPurchases%  </li>
+                                                <li>Balance Transfer: @card.LowAPRBalanceTransfer% to @card.HighAPRBalanceTransfer%</li>
+                                                <li>Cash Advance: @card.LowAPRCashAdvance% to @card.HighAPRCashAdvance%</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5"> &nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Fees <hr /></p>
+                                            <ul class="card-info-list">
+                                                <li>Annual Fee: $@card.AnnualFee </li>
+                                                <li>Balance Transfer: @card.RegularBalanceTransferFee% of each transaction</li>
+                                                <li>Cash Advance: @card.CashAdvanceFee% of each advance</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="row details-section">
+                                        @if (card.HasCashBack)
+                                        {
+                                            <div class="col-md-5 bt-info">
+                                                <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Cash Back <hr /></p>
+                                                <ul class="card-info-list">
+                                                    <li>@card.Description</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-2"></div>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-md-5 bt-info">
+                                                <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Cash Back <hr /></p>
+                                                <ul class="card-info-list">
+                                                    <li>No Cash Back</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-2"></div>
+                                        }
+                                        @if (card.HasSignUpBonus)
+                                        {
+                                            <div class="col-md-5 bt-info">
+                                                <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Sign Up Bonus  <hr /></p>
+                                                <ul class="card-info-list">
+                                                    <li>Spend Requirement: $@card.SignUpBonusSpendRequirement</li>
+                                                    <li>Bonus Amount: $@card.SignUpBonusAmount</li>
+                                                </ul>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-md-5 bt-info">
+                                                <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Sign Up Bonus  <hr /></p>
+                                                <ul class="card-info-list">
+                                                    <li>No Sign Up Bonus</li>
+                                                </ul>
+                                            </div>
+                                        }
+                                    </div>
+                                    <div class="row details-section">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-5">
+                                            <a class="btn btn-green" asp-action="Details" asp-controller="CreditCards" asp-route-id="@card.Id">More Info</a>
+                                        </div>
+                                        <div class="col-md-3"></div>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                    </div>
+                    <!-- AUTO LOANS-->
+                    <button class="collapsible more-info-button">Auto Loans</button>
+                    <div class="content">
+                        @if (ViewBag.AutoLoanList.Count == 0)
+                        {
+                            <h5>No Information. Check Back Soon.</h5>
+                        }
+                        else
+                        {
+                            @foreach (var loan in ViewBag.AutoLoanList)
+                            {
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @loan.Name
+                                    </div>
+
+                                </div>
+                                <!-- Button For SlideDown-->
+                                <button type="button" class="collapsible more-info-button">More Info</button>
+                                <div class="content">
+                                    <div class="row details-section">
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; APR <hr /></p>
+                                            <ul class="card-info-list">
+                                                @if (loan.LowApr == null && loan.HighApr == null)
+                                                {
+                                                    <li>Unknown</li>
+                                                }
+                                                else if (loan.LowApr == null && loan.HighApr != null)
+                                                {
+                                                    <li>Maximum of @loan.HighApr%</li>
+                                                }
+                                                else if (loan.LowApr != null && loan.HighApr == null)
+                                                {
+                                                    <li>As low as @loan.LowApr%</li>
+                                                }
+                                                else if (loan.LowApr != null && loan.HighApr != null)
+                                                {
+                                                    <li>APR: @loan.LowApr% to @loan.HighApr%</li>
+                                                }
+
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5"> &nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Loan Amount <hr /></p>
+                                            <ul class="card-info-list">
+                                                @if (loan.MinimumAmount != null && loan.MaximumAmount != null)
+                                                {
+                                                    <li>Amount: $@loan.MinimumAmount to $@loan.MaximumAmount </li>
+                                                }
+                                                else if (loan.MinimumAmount != null && loan.MaximumAmount == null)
+                                                {
+                                                    <li>Minimum of $@loan.MinimumAmount</li>
+                                                }
+                                                else if (loan.MinimumAmount == null && loan.MaximumAmount != null)
+                                                {
+                                                    <li>Maximum of $@loan.MaximumAmount</li>
+                                                }
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="row details-section">
+                                        <!-- Term Information-->
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Term <hr /></p>
+                                            <ul class="card-info-list">
+                                                @if (loan.MinimumTermInMonths != null && loan.MaximumTermInMonths != null)
+                                                {
+                                                    <li>@loan.MinimumTermInMonths to @loan.MaximumTermInMonths months</li>
+
+                                                }
+                                                else if (loan.MinimumTermInMonths == null && loan.MaximumTermInMonths != null)
+                                                {
+                                                    <li>Maximum of @loan.MaximumTermInMonths months</li>
+                                                }
+                                                else if (loan.MinimumTermInMonths != null && loan.MaximumTermInMonths == null)
+                                                {
+                                                    <li>Minimum of @loan.MinimumTermInMonths months</li>
+                                                }
+                                                else
+                                                {
+                                                    <li>Unknown</li>
+                                                }
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-2"></div>
+
+                                        <!-- Fee Information-->
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Fees  <hr /></p>
+                                            <ul class="card-info-list">
+                                                @if (loan.HasFees)
+                                                {
+                                                    <li>Origination Fee: $@loan.OriginationFee</li>
+
+                                                }
+                                                else
+                                                {
+                                                    <li>Origination Fee: $0</li>
+                                                }
+
+                                            </ul>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="row details-section">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-5">
+                                            <a class="btn btn-green" href="@loan.LinkURL" target="_blank">Link</a>
+                                        </div>
+                                        <div class="col-md-3"></div>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                    </div>
+
+                    <!-- HELOCS-->
+                    <button class="collapsible more-info-button">Home Equity Lines of Credit</button>
+                    <div class="content">
+
+                        @if (ViewBag.HELOCList.Count == 0)
+                        {
+                            <h5>No information. Check Back Soon</h5>
+                        }
+                        else
+                        {
+                            @foreach (var account in ViewBag.HELOCList)
+                            {
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @account.Name
+                                    </div>
+
+                                </div>
+                                <!-- Button For SlideDown-->
+                                <button type="button" class="collapsible">More Info</button>
+                                <div class="content">
+                                    <div class="row details-section">
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; APR <hr /></p>
+                                            <ul class="card-info-list">
+                                                @if (account.LowApr != null && account.HighApr != null)
+                                                {
+                                                    <li>@account.LowApr% to @account.HighApr%</li>
+
+                                                }
+                                                else if (account.LowApr != null && account.HighApr == null)
+                                                {
+                                                    <li>As Low As @account.LowApr%</li>
+                                                }
+                                                else if (account.LowApr == null && account.HighApr != null)
+                                                {
+                                                    <li>Maximum of @account.HighApr%</li>
+                                                }
+                                                else
+                                                {
+                                                    <li>Unknown</li>
+                                                }
+
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5"> &nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; LTV <hr /></p>
+                                            <ul class="card-info-list">
+                                                @if (account.LTV != null)
+                                                {
+                                                    <li>LTV: Up To @account.LTV% </li>
+
+                                                }
+                                                else
+                                                {
+                                                    <li>Unknown</li>
+                                                }
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="row details-section">
+                                        <!-- Term Information-->
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Fees <hr /></p>
+                                            <ul class="card-info-list">
+                                                @if (!account.HasOriginationFee && !account.HasAnnualFee && !account.HasAdvanceFee)
+                                                {
+                                                    <li>No Fees</li>
+
+                                                }
+                                                else
+                                                {
+                                                    @if (account.HasOriginationFee)
+                                                    {
+                                                        <li>Origination Fee: $@account.OriginationFee</li>
+                                                    }
+                                                    @if (account.HasAnnualFee)
+                                                    {
+                                                        <li>Annual Fee: $@account.AnnualFee</li>
+                                                    }
+                                                    @if (account.HasAdvanceFee)
+                                                    {
+                                                        <li>Advance Fee: $@account.AdvanceFee</li>
+                                                    }
+                                                }
+                                            </ul>
+
+                                        </div>
+
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Amount <hr /></p>
+                                            <ul class="card-info-list">
+                                                @if (account.MinimumAmount != null && account.MaximumAmount != null)
+                                                {
+                                                    <li>$@account.MinimumAmount to $@account.MaximumAmount</li>
+                                                }
+                                                else if (account.MinimumAmount != null && account.MaximumAmount == null)
+                                                {
+                                                    <li>Minimum of $@account.MinimumAmount</li>
+                                                }
+                                                else if (account.MinimumAmount == null && account.MaximumAmount != null)
+                                                {
+                                                    <li>Maximum of $@account.MaximumAmount</li>
+                                                }
+                                                else
+                                                {
+                                                    <li>Unknown</li>
+                                                }
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                    <div class="row details-section">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-5">
+                                            <a class="btn btn-green" href="@account.LinkURL" target="_blank">Link</a>
+                                        </div>
+                                        <div class="col-md-3"></div>
+                                    </div>
+                                </div>
+                            }
+
+                        }
+                    </div>
+
+                    <!-- HOME EQUITY LOANS-->
+                    <button class="collapsible more-info-button">Home Equity Loans</button>
+                    <div class="content">
+
+                        @if (ViewBag.HELOANList.Count == 0)
+                        {
+                            <h5>No information. Check Back Soon</h5>
+                        }
+                        else
+                        {
+                            @foreach (var account in ViewBag.HELOANList)
+                            {
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @account.Name
+                                    </div>
+
+                                </div>
+                                <!-- Button For SlideDown-->
+                                <button type="button" class="collapsible">More Info</button>
+                                <div class="content">
+                                    <div class="row details-section">
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; APR <hr /></p>
+                                            <ul class="card-info-list">
+                                                @if (account.LowApr != null && account.HighApr != null)
+                                                {
+                                                    <li>@account.LowApr% to @account.HighApr%</li>
+
+                                                }
+                                                else if (account.LowApr != null && account.HighApr == null)
+                                                {
+                                                    <li>As Low As @account.LowApr%</li>
+                                                }
+                                                else if (account.LowApr == null && account.HighApr != null)
+                                                {
+                                                    <li>Maximum of @account.HighApr%</li>
+                                                }
+                                                else
+                                                {
+                                                    <li>Unknown</li>
+                                                }
+
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5"> &nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; LTV <hr /></p>
+                                            <ul class="card-info-list">
+                                                @if (account.LTV != null)
+                                                {
+                                                    <li>LTV: Up to @account.LTV% </li>
+
+                                                }
+                                                else
+                                                {
+                                                    <li>Unknown</li>
+                                                }
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="row details-section">
+                                        <!-- Term Information-->
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Fees <hr /></p>
+                                            <ul class="card-info-list">
+                                                @if (!account.HasFees)
+                                                {
+                                                    <li>No Fees</li>
+
+                                                }
+                                                else
+                                                {
+                                                    @if (account.OriginationFee != null)
+                                                    {
+                                                        <li>Origination Fee: $@account.OriginationFee</li>
+                                                    }
+
+                                                }
+                                            </ul>
+
+                                        </div>
+
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Amount <hr /></p>
+                                            <ul class="card-info-list">
+                                                @if (account.MinimumAmount != null && account.MaximumAmount != null)
+                                                {
+                                                    <li>$@account.MinimumAmount to $@account.MaximumAmount</li>
+                                                }
+                                                else if (account.MinimumAmount != null && account.MaximumAmount == null)
+                                                {
+                                                    <li>Minimum of $@account.MinimumAmount</li>
+                                                }
+                                                else if (account.MinimumAmount == null && account.MaximumAmount != null)
+                                                {
+                                                    <li>Maximum of $@account.MaximumAmount</li>
+                                                }
+                                                else
+                                                {
+                                                    <li>Unknown</li>
+                                                }
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                    <div class="row details-section">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-5">
+                                            <a class="btn btn-green" href="@account.LinkURL" target="_blank">Link</a>
+                                        </div>
+                                        <div class="col-md-3"></div>
+                                    </div>
+                                </div>
+                            }
+
+                        }
+                    </div>
+
+                    <!-- MORTGAGES-->
+                    <button class="collapsible more-info-button">Mortgages</button>
+                    <div class="content">
+                        @if (ViewBag.MortgageList.Count == 0)
+                        {
+                            <h5>No information. Check Back Soon</h5>
+                        }
+                        else
+                        {
+                            @foreach (var account in ViewBag.MortgageList)
+                            {
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @account.Name
+                                    </div>
+
+                                </div>
+                                <!-- Button For SlideDown-->
+                                <button type="button" class="collapsible">More Info</button>
+                                <div class="content">
+                                    <div class="row details-section">
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; APR <hr /></p>
+                                            <ul class="card-info-list">
+                                                @if (account.LowApr != null && account.HighApr != null)
+                                                {
+                                                    <li>@account.LowApr% to @account.HighApr%</li>
+
+                                                }
+                                                else if (account.LowApr != null && account.HighApr == null)
+                                                {
+                                                    <li>As Low As @account.LowApr%</li>
+                                                }
+                                                else if (account.LowApr == null && account.HighApr != null)
+                                                {
+                                                    <li>Maximum of @account.HighApr%</li>
+                                                }
+                                                else
+                                                {
+                                                    <li>Unknown</li>
+                                                }
+
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5"> &nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; LTV <hr /></p>
+                                            <ul class="card-info-list">
+                                                @if (account.LoanToValue != null)
+                                                {
+                                                    <li>LTV: Up to @account.LoanToValue% </li>
+
+                                                }
+                                                else
+                                                {
+                                                    <li>Unknown</li>
+                                                }
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="row details-section">
+                                        <!-- Term Information-->
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Fees <hr /></p>
+                                            <ul class="card-info-list">
+                                                @if (!account.HasFees)
+                                                {
+                                                    <li>No Fees</li>
+
+                                                }
+                                                else
+                                                {
+                                                    @if (account.OriginationFee != null)
+                                                    {
+                                                        <li>Origination Fee: $@account.OriginationFee</li>
+                                                    }
+
+                                                }
+                                            </ul>
+
+                                        </div>
+
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Amount <hr /></p>
+                                            <ul class="card-info-list">
+                                                @if (account.MinimumAmount != null && account.MaximumAmount != null)
+                                                {
+                                                    <li>$@account.MinimumAmount to $@account.MaximumAmount</li>
+                                                }
+                                                else if (account.MinimumAmount != null && account.MaximumAmount == null)
+                                                {
+                                                    <li>Minimum of $@account.MinimumAmount</li>
+                                                }
+                                                else if (account.MinimumAmount == null && account.MaximumAmount != null)
+                                                {
+                                                    <li>Maximum of $@account.MaximumAmount</li>
+                                                }
+                                                else
+                                                {
+                                                    <li>Unknown</li>
+                                                }
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                    <div class="row details-section">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-5">
+                                            <a class="btn btn-green" href="@account.LinkURL" target="_blank">Link</a>
+                                        </div>
+                                        <div class="col-md-3"></div>
+                                    </div>
+                                </div>
+                            }
+
+                        }
+
+                    </div>
+
+                    <!--SECURED LINES OF CREDIT-->
+                    <button class="collapsible more-info-button">Secured Lines of Credit</button>
+                    <div class="content">
+                        @if (ViewBag.SecuredLocList.Count == 0)
+                        {
+                            <h5>No information. Check Back Soon</h5>
+                        }
+                        else
+                        {
+                            @foreach (var account in ViewBag.SecuredLocList)
+                            {
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @account.Name
+                                    </div>
+
+                                </div>
+                                <!-- Button For SlideDown-->
+                                <button type="button" class="collapsible">More Info</button>
+                                <div class="content">
+                                    <div class="row details-section">
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; APR <hr /></p>
+                                            <ul class="card-info-list">
+                                                @if (account.LowApr != null && account.HighApr != null)
+                                                {
+                                                    <li>@account.LowApr% to @account.HighApr%</li>
+
+                                                }
+                                                else if (account.LowApr != null && account.HighApr == null)
+                                                {
+                                                    <li>As Low As @account.LowApr%</li>
+                                                }
+                                                else if (account.LowApr == null && account.HighApr != null)
+                                                {
+                                                    <li>Maximum of @account.HighApr%</li>
+                                                }
+                                                else
+                                                {
+                                                    <li>Unknown</li>
+                                                }
+
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5"> &nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; LTC Ratio <hr /></p>
+                                            <ul class="card-info-list">
+                                                @if (account.CollateralToLocRatio != null)
+                                                {
+                                                    <li>LTV: Up To @account.CollateralToLocRatio% of pledged amount </li>
+
+                                                }
+                                                else
+                                                {
+                                                    <li>Unknown</li>
+                                                }
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="row details-section">
+                                        <!-- Term Information-->
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Fees <hr /></p>
+                                            <ul class="card-info-list">
+                                                @if (!account.HasOriginationFee && !account.HasAnnualFee && !account.HasAdvanceFee)
+                                                {
+                                                    <li>No Fees</li>
+
+                                                }
+                                                else
+                                                {
+                                                    @if (account.HasOriginationFee)
+                                                    {
+                                                        <li>Origination Fee: $@account.OriginationFee</li>
+                                                    }
+                                                    @if (account.HasAnnualFee)
+                                                    {
+                                                        <li>Annual Fee: $@account.AnnualFee</li>
+                                                    }
+                                                    @if (account.HasAdvanceFee)
+                                                    {
+                                                        <li>Advance Fee: $@account.AdvanceFee</li>
+                                                    }
+                                                }
+                                            </ul>
+
+                                        </div>
+
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Amount <hr /></p>
+                                            <ul class="card-info-list">
+                                                @if (account.MinimumAmount != null && account.MaximumAmount != null)
+                                                {
+                                                    <li>$@account.MinimumAmount to $@account.MaximumAmount</li>
+                                                }
+                                                else if (account.MinimumAmount != null && account.MaximumAmount == null)
+                                                {
+                                                    <li>Minimum of $@account.MinimumAmount</li>
+                                                }
+                                                else if (account.MinimumAmount == null && account.MaximumAmount != null)
+                                                {
+                                                    <li>Maximum of $@account.MaximumAmount</li>
+                                                }
+                                                else
+                                                {
+                                                    <li>Unknown</li>
+                                                }
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                    <div class="row details-section">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-5">
+                                            <a class="btn btn-green" href="@account.LinkURL" target="_blank">Link</a>
+                                        </div>
+                                        <div class="col-md-3"></div>
+                                    </div>
+                                </div>
+                            }
+
+                        }
+                    </div>
+
+                    <!-- SECURED LOANS-->
+                    <button class="collapsible more-info-button">Secured Loans</button>
+                    <div class="content">
+                        @if (ViewBag.SecuredLoanList.Count == 0)
+                        {
+                            <h5>No information. Check Back Soon</h5>
+                        }
+                        else
+                        {
+                            @foreach (var account in ViewBag.SecuredLoanList)
+                            {
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @account.Name
+                                    </div>
+
+                                </div>
+                                <!-- Button For SlideDown-->
+                                <button type="button" class="collapsible">More Info</button>
+                                <div class="content">
+                                    <div class="row details-section">
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; APR <hr /></p>
+                                            <ul class="card-info-list">
+                                                @if (account.LowApr != null && account.HighApr != null)
+                                                {
+                                                    <li>@account.LowApr% to @account.HighApr%</li>
+
+                                                }
+                                                else if (account.LowApr != null && account.HighApr == null)
+                                                {
+                                                    <li>As Low As @account.LowApr%</li>
+                                                }
+                                                else if (account.LowApr == null && account.HighApr != null)
+                                                {
+                                                    <li>Maximum of @account.HighApr%</li>
+                                                }
+                                                else
+                                                {
+                                                    <li>Unknown</li>
+                                                }
+
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5"> &nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; LTC Ratio <hr /></p>
+                                            <ul class="card-info-list">
+                                                @if (account.CollateralToLoanRatio != null)
+                                                {
+                                                    <li>LTV: Up To @account.CollateralToLoanRatio% of pledged amount </li>
+
+                                                }
+                                                else
+                                                {
+                                                    <li>Unknown</li>
+                                                }
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="row details-section">
+                                        <!-- Term Information-->
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Fees <hr /></p>
+                                            <ul class="card-info-list">
+                                                @if (!account.HasFees )
+                                                {
+                                                    <li>No Fees</li>
+
+                                                }
+                                                else
+                                                {
+                                                    @if (account.OriginationFee != 0 && account.OriginationFee != null)
+                                                    {
+                                                        <li>Origination Fee: $@account.OriginationFee</li>
+                                                    }
+                                                    
+                                                }
+                                            </ul>
+
+                                        </div>
+
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Amount <hr /></p>
+                                            <ul class="card-info-list">
+                                                @if (account.MinimumAmount != null && account.MaximumAmount != null)
+                                                {
+                                                    <li>$@account.MinimumAmount to $@account.MaximumAmount</li>
+                                                }
+                                                else if (account.MinimumAmount != null && account.MaximumAmount == null)
+                                                {
+                                                    <li>Minimum of $@account.MinimumAmount</li>
+                                                }
+                                                else if (account.MinimumAmount == null && account.MaximumAmount != null)
+                                                {
+                                                    <li>Maximum of $@account.MaximumAmount</li>
+                                                }
+                                                else
+                                                {
+                                                    <li>Unknown</li>
+                                                }
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                    <div class="row details-section">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-5">
+                                            <a class="btn btn-green" href="@account.LinkURL" target="_blank">Link</a>
+                                        </div>
+                                        <div class="col-md-3"></div>
+                                    </div>
+                                </div>
+                            }
+
+                        }
+                    </div>
+                    <!-- UNSECURED LINES OF CREDIT-->
+                    <button class="collapsible more-info-button">Unsecured Lines of Credit</button>
+                    <div class="content">
+                        @if (ViewBag.UnsecuredLocList.Count == 0)
+                        {
+                            <h5>No information. Check Back Soon</h5>
+                        }
+                        else
+                        {
+                            @foreach (var account in ViewBag.UnsecuredLocList)
+                            {
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @account.Name
+                                    </div>
+
+                                </div>
+                                <!-- Button For SlideDown-->
+                                <button type="button" class="collapsible">More Info</button>
+                                <div class="content">
+                                    <div class="row details-section">
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; APR <hr /></p>
+                                            <ul class="card-info-list">
+                                                @if (account.LowApr != null && account.HighApr != null)
+                                                {
+                                                    <li>@account.LowApr% to @account.HighApr%</li>
+
+                                                }
+                                                else if (account.LowApr != null && account.HighApr == null)
+                                                {
+                                                    <li>As Low As @account.LowApr%</li>
+                                                }
+                                                else if (account.LowApr == null && account.HighApr != null)
+                                                {
+                                                    <li>Maximum of @account.HighApr%</li>
+                                                }
+                                                else
+                                                {
+                                                    <li>Unknown</li>
+                                                }
+
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-2"></div>
+
+                                    </div>
+                                    <div class="row details-section">
+                                        <!-- Term Information-->
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Fees <hr /></p>
+                                            <ul class="card-info-list">
+                                                @if (!account.HasOriginationFee && !account.HasAnnualFee && !account.HasAdvanceFee)
+                                                {
+                                                    <li>No Fees</li>
+
+                                                }
+                                                else
+                                                {
+                                                    @if (account.HasOriginationFee)
+                                                    {
+                                                        <li>Origination Fee: $@account.OriginationFee</li>
+                                                    }
+                                                    @if (account.HasAnnualFee)
+                                                    {
+                                                        <li>Annual Fee: $@account.AnnualFee</li>
+                                                    }
+                                                    @if (account.HasAdvanceFee)
+                                                    {
+                                                        <li>Advance Fee: $@account.AdvanceFee</li>
+                                                    }
+                                                }
+                                            </ul>
+
+                                        </div>
+
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Amount <hr /></p>
+                                            <ul class="card-info-list">
+                                                @if (account.MinimumAmount != null && account.MaximumAmount != null)
+                                                {
+                                                    <li>$@account.MinimumAmount to $@account.MaximumAmount</li>
+                                                }
+                                                else if (account.MinimumAmount != null && account.MaximumAmount == null)
+                                                {
+                                                    <li>Minimum of $@account.MinimumAmount</li>
+                                                }
+                                                else if (account.MinimumAmount == null && account.MaximumAmount != null)
+                                                {
+                                                    <li>Maximum of $@account.MaximumAmount</li>
+                                                }
+                                                else
+                                                {
+                                                    <li>Unknown</li>
+                                                }
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                    <div class="row details-section">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-5">
+                                            <a class="btn btn-green" href="@account.LinkURL" target="_blank">Link</a>
+                                        </div>
+                                        <div class="col-md-3"></div>
+                                    </div>
+                                </div>
+                            }
+
+                        }
+                    </div>
+                    <!-- UNSECURED LOANS-->
+                    <button class="collapsible more-info-button">Unsecured Loans</button>
+                    <div class="content">
+                        @if (ViewBag.UnsecuredLoanList.Count == 0)
+                        {
+                            <h5>No information. Check Back Soon</h5>
+                        }
+                        else
+                        {
+                            @foreach (var account in ViewBag.UnsecuredLoanList)
+                            {
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @account.Name
+                                    </div>
+
+                                </div>
+                                <!-- Button For SlideDown-->
+                                <button type="button" class="collapsible">More Info</button>
+                                <div class="content">
+                                    <div class="row details-section">
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; APR <hr /></p>
+                                            <ul class="card-info-list">
+                                                @if (account.LowApr != null && account.HighApr != null)
+                                                {
+                                                    <li>@account.LowApr% to @account.HighApr%</li>
+
+                                                }
+                                                else if (account.LowApr != null && account.HighApr == null)
+                                                {
+                                                    <li>As Low As @account.LowApr%</li>
+                                                }
+                                                else if (account.LowApr == null && account.HighApr != null)
+                                                {
+                                                    <li>Maximum of @account.HighApr%</li>
+                                                }
+                                                else
+                                                {
+                                                    <li>Unknown</li>
+                                                }
+
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                    </div>
+                                    <div class="row details-section">
+                                        <!-- Term Information-->
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Fees <hr /></p>
+                                            <ul class="card-info-list">
+                                                @if (!account.HasFees)
+                                                {
+                                                    <li>No Fees</li>
+
+                                                }
+                                                else
+                                                {
+                                                    @if (account.OriginationFee != 0 && account.OriginationFee != null)
+                                                    {
+                                                        <li>Origination Fee: $@account.OriginationFee</li>
+                                                    }
+
+                                                }
+                                            </ul>
+
+                                        </div>
+
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-5 bt-info">
+                                            <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Amount <hr /></p>
+                                            <ul class="card-info-list">
+                                                @if (account.MinimumAmount != null && account.MaximumAmount != null)
+                                                {
+                                                    <li>$@account.MinimumAmount to $@account.MaximumAmount</li>
+                                                }
+                                                else if (account.MinimumAmount != null && account.MaximumAmount == null)
+                                                {
+                                                    <li>Minimum of $@account.MinimumAmount</li>
+                                                }
+                                                else if (account.MinimumAmount == null && account.MaximumAmount != null)
+                                                {
+                                                    <li>Maximum of $@account.MaximumAmount</li>
+                                                }
+                                                else
+                                                {
+                                                    <li>Unknown</li>
+                                                }
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                    <div class="row details-section">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-5">
+                                            <a class="btn btn-green" href="@account.LinkURL" target="_blank">Link</a>
+                                        </div>
+                                        <div class="col-md-3"></div>
+                                    </div>
+                                </div>
+                            }
+
+                        }
+                    </div>
+
+                </div>
             </div>
-            <div class="card-body">
-
-
-                <!-- Card Section-->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <img src="@Url.Content(cardPhotoPath)" id="institionDetailsCardPic" />
-                        </div>
-                        <div class="col-md-6">
-                            <ul class="card-info-list">
-                                @if (card.HasIntroPurchaseOffer)
-                                {
-                                    <li>@card.IntroPurchaseRate% intro purchase offer for @card.IntroPurchaseLengthInMonths months </li>
-                                }
-                                @if (card.HasIntroBalanceTransferOffer)
-                                {
-                                    @if (card.HasIntroBalanceTransferFee)
-                                    {
-                                        <li>@card.IntroBalanceTransferRate% on Balance Transfers for @card.IntroBalanceTransferLengthInMonths months</li>
-                                        <li> @card.IntroBalanceTransferFee% Intro Balance Transfer Fee</li>
-                                    }
-                                    else
-                                    {
-                                        <li>@card.IntroBalanceTransferRate% on Balance Transfers for @card.IntroBalanceTransferLengthInMonths months </li>
-                                        <li>@card.RegularBalanceTransferFee% Balance Transfer Fee</li>
-                                    }
-                                    @if (card.HasSignUpBonus && card.SignUpBonusCategory == SignUpBonusCategory.Cash)
-                                    {
-                                        <li>$@card.SignUpBonusAmount Sign Up Bonus when you spend $@card.SignUpBonusSpendRequirement</li>
-                                    }
-                                }
-                                @if (card.LowAPRPurchases == card.LowAPRBalanceTransfer && card.HighAPRPurchases == card.HighAPRBalanceTransfer)
-                                {
-                                    <li>
-                                        @card.LowAPRPurchases% - @card.HighAPRPurchases% Regular APR on Purchases and Balance Transfers
-                                    </li>
-                                }
-                                else
-                                {
-                                    <li>
-                                        @card.LowAPRPurchases% - @card.HighAPRPurchases% Regular APR on Purchases
-                                    </li>
-                                    <li>
-                                        @card.LowAPRBalanceTransfer% - @card.HighAPRBalanceTransfer% Regular APR on Balance Transfers
-                                    </li>
-                                }
-                                <li>
-                                    @card.LowAPRCashAdvance% - @card.HighAPRCashAdvance% Regular APR on Cash Advances
-                                </li>
-
-
-                            </ul>
-                        </div>
-
-
-                        <hr />
-                    </div>
-                    @Html.ActionLink("Card Details", "Details", "CreditCards", new { id = card.Id })
-                    @Html.ActionLink("Remove Card", "RemoveCard", "CreditCards", new { id = card.Id })
-
-                </div>
-
-            </div>
-        }
-
-        <!-- Unsecured Personal Loan Section-->
-
-        @if (ViewBag.UnsecuredLoanList.Count == 0)
-        {
-            <div class="card-header"><h3>Unsecured Personal Loans</h3></div>
-            <p>No current information on unsecured personal loans from @Model.Name, check back soon.</p>
-        }
-        else
-        {
-
-
-            @foreach (var loan in ViewBag.UnsecuredLoanList)
-            {
-
-                var cardPhotoPath = "~/images/" + loan.ImageUrl;
-
-                <div class="card-header">
-                    <h3>Personal Loans</h3>
-                </div>
-                <div class="card-body">
-
-
-                    <!-- Features of loan Turn into DropDown-->
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <p>@loan.Name</p>
-                            </div>
-                            <div class="col-md-6">
-                                <ul class="card-info-list">
-                                    @if (loan.HighApr == null)
-                                    {
-                                        <li>APR Range: As Low as @loan.LowApr%</li>
-                                    }
-                                    else
-                                    {
-                                        <li>APR Range: @loan.LowApr% to @loan.HighApr%</li>
-                                    }
-
-                                    <li>Term: @loan.MinimumTermInMonths months to @loan.MaximumTermInMonths months</li>
-                                </ul>
-                            </div>
-                            <hr />
-                        </div>
-                        @Html.ActionLink("Loan Details", "Details", "UnsecuredLoans", new { id = loan.Id })
-                        @Html.ActionLink("Remove Loan", "RemoveLoan", "UnsecuredLoans", new { id = loan.Id })
-
-                    </div>
-
-                </div>
-            }
-
-        }
-
-
-        <!-- Unsecured Lines of Credit Section-->
-        @foreach (var loan in ViewBag.UnsecuredLocList)
-        {
-            <div class="card-header"><h3>Unsecured Personal Loans</h3></div>
-            @if (ViewBag.UnsecuredLoanList.Count == 0)
-            {
-                <p>No current information on unsecured lines of credit from @Model.Name, check back soon.</p>
-            }
-            @foreach (var uloc in ViewBag.UnsecuredLocList)
-            {
-                {
-                    var cardPhotoPath = "~/images/" + uloc.ImagePath;
-
-                    <div class="card-header">
-                        <h3>@uloc.Name</h3>
-                    </div>
-                    <div class="card-body">
-
-
-                        <!-- Features of Card-->
-                        <div class="container">
+            
+            <div class="col-md-6">
+                <h3>Deposit Products</h3>
+            <button class="collapsible more-info-button">See All</button>
+            <div class="content">
+                <!-- CDs -->
+                <button class="collapsible more-info-button">Certificate Accounts</button>
+                <div class="content">
+                    @if (ViewBag.CertificateAccountList.Count == 0)
+                    {
+                        <h5>No Information. Check Back Soon.</h5>
+                    }
+                    else
+                    {
+                        @foreach (var account in ViewBag.CertificateAccountList)
+                        {
                             <div class="row">
                                 <div class="col-md-6">
-                                    <img src="@Url.Content(cardPhotoPath)" id="institionDetailsCardPic" />
-                                </div>
-                                <div class="col-md-6">
-                                    <ul class="card-info-list">
-                                        <li>APR Range: @uloc.LowApr% to @uloc.HighApr%</li>
-                                        <li>Term: @uloc.MinimumTermInMonths months to @uloc.MaximumTermInMonths months</li>
-                                        <li>Amount: $@uloc.MinimumAmount to $@uloc.MaximumAmount </li>
-                                        <li>Fee Information: ADD SECTION HERE</li>
-                                    </ul>
+                                    @account.Name
                                 </div>
 
-
-                                <hr />
                             </div>
-                            @Html.ActionLink("Loan Details", "Details", "UnsecuredLoans", new { id = loan.Id })
-                            @Html.ActionLink("Remove Loan", "RemoveLoan", "UnsecuredLoans", new { id = loan.Id })
+                            <!-- Button For SlideDown-->
+                            <button type="button" class="collapsible">More Info</button>
+                            <div class="content">
+                                <div class="row details-section">
+                                    <div class="col-md-5 bt-info">
+                                        <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; APY <hr /></p>
+                                        <ul class="card-info-list">
+                                            <li>Interest Rate: @account.InterestRate%</li>
 
-                        </div>
 
-                    </div>
-                }
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-5 bt-info">
+                                        <p class="h5"> &nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Term <hr /></p>
+                                        <ul class="card-info-list">
+                                            <li>Term: @account.TermInMonths months</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="row details-section">
+                                    <!-- Term Information-->
+                                    <div class="col-md-5 bt-info">
+                                        <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Minimum<hr /></p>
+                                        <ul class="card-info-list">
+                                            @if (account.MinimumToOpenAccount != null)
+                                            {
+                                                <li>Minimum to Open Account: $@account.MinimumToOpenAccount</li>
 
-            }
+                                            }
+                                            else
+                                            {
+                                                <li>Unknown</li>
+                                            }
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                </div>
+                                <div class="row details-section">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-5">
+                                        <a class="btn btn-green" href="@account.LinkURL" target="_blank">Link</a>
+                                    </div>
+                                    <div class="col-md-3"></div>
+                                </div>
+                            </div>
+                        }
+                    }
 
-        }
+                </div>
+                <!-- Checking Accounts-->
+                <button class="collapsible more-info-button">Checking Accounts</button>
+                <div class="content">
 
+
+                    @if (ViewBag.CheckingAccountList.Count == 0)
+                    {
+                        <h5>No Content. Check Back Soon.</h5>
+                    }
+                    else
+                    {
+
+
+                        @foreach (var account in ViewBag.CheckingAccountList)
+                        {
+                            <div class="row">
+                                <div class="col-md-6">
+                                    @account.Name
+                                </div>
+
+                            </div>
+                            <!-- Button For SlideDown-->
+                            <button type="button" class="collapsible">More Info</button>
+                            <div class="content">
+                                <div class="row details-section">
+                                    <div class="col-md-5 bt-info">
+                                        <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; APY <hr /></p>
+                                        <ul class="card-info-list">
+                                            @if (account.HasDirectDepositRequirementForAPR)
+                                            {
+                                                <li>Interest Rate: @account.InterestRate% with a monthly direct deposit of $@account.DirectDepositRequirementsForAPR</li>
+                                                <li>If requirements aren't met, Interest Rate of: @account.InterestRateIfDDRequirementsNotMet%</li>
+
+                                            }
+                                            else
+                                            {
+                                                <li>@account.InterestRate%</li>
+                                            }
+
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-5 bt-info">
+                                        <p class="h5"> &nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Fees <hr /></p>
+                                        <ul class="card-info-list">
+                                            @if (account.HasMonthlyFee)
+                                            {
+                                                <li>Monthly Fee $@account.MonthlyFee </li>
+
+                                            }
+                                            @if (account.DirectDepositToAvoidMonthlyFee != null)
+                                            {
+                                                <li>Direct Deposit to Avoid Fee $@account.DirectDepositToAvoidMonthlyFee</li>
+                                            }
+                                            @if (account.BalanceToAvoidFee != null)
+                                            {
+                                                <li>Balance to Avoid Fee: $@account.BalanceToAvoidFee</li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="row details-section">
+                                    <!-- Term Information-->
+                                    <div class="col-md-5 bt-info">
+                                        <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Minimum <hr /></p>
+                                        <ul class="card-info-list">
+                                            @if (account.HasMinimumToOpenAccount)
+                                            {
+                                                <li>Minimum to Open Account: $@account.MinimumToOpenAccount</li>
+                                            }
+                                            else
+                                            {
+                                                <li>No minimum</li>
+                                            }
+
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                </div>
+                                <div class="row details-section">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-5">
+                                        <a class="btn btn-green" href="@account.LinkURL" target="_blank">Link</a>
+                                    </div>
+                                    <div class="col-md-3"></div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+                </div>
+                <!-- Money Market Accounts-->
+                <button class="collapsible more-info-button">Money Market Accounts</button>
+                <div class="content">
+
+                    @if (ViewBag.MoneyMarketAccountList.Count == 0)
+                    {
+                        <h5>No Content. Check Back Soon.</h5>
+                    }
+                    else
+                    {
+
+
+                        @foreach (var account in ViewBag.MoneyMarketAccountList)
+                        {
+                            <div class="row">
+                                <div class="col-md-6">
+                                    @account.Name
+                                </div>
+
+                            </div>
+                            <!-- Button For SlideDown-->
+                            <button type="button" class="collapsible">More Info</button>
+                            <div class="content">
+                                <div class="row details-section">
+                                    <div class="col-md-6 bt-info">
+                                        <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; APY <hr /></p>
+                                        <ul class="card-info-list">
+                                            <li>@account.InterestRate%</li>
+                                            @if (account.HasMinimumAmountForApr)
+                                            {
+                                                <li>Minimum Amount to earn Interest:  $@account.MinimumAmountForApr</li>
+                                                
+                                            }
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="col-md-6 bt-info">
+                                        <p class="h5"> &nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Fees <hr /></p>
+                                        <ul class="card-info-list">
+                                            @if (account.HasMonthlyFee)
+                                            {
+                                                <li>Monthly Fee $@account.MonthlyFee </li>
+                                                if(account.BalanceToAvoidFee != null)
+                                                {
+                                                    <li>Balance to Avoid Fee: $@account.BalanceToAvoidFee</li>
+                                                }
+
+                                            }
+                                            else
+                                            {
+                                                <li>No Monthly Fee</li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="row details-section">
+                                    <!-- Term Information-->
+                                    <div class="col-md-5 bt-info">
+                                        <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Minimum <hr /></p>
+                                        <ul class="card-info-list">
+                                            @if (account.HasMinimumToOpenAccount)
+                                            {
+                                                <li>Minimum to Open Account: $@account.MinimumToOpenAccount</li>
+                                            }
+                                            else
+                                            {
+                                                <li>No minimum</li>
+                                            }
+
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                </div>
+                                <div class="row details-section">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-5">
+                                        <a class="btn btn-green" href="@account.LinkURL" target="_blank">Link</a>
+                                    </div>
+                                    <div class="col-md-3"></div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+                <!-- Savings Accounts-->
+                <button class="collapsible more-info-button">Savings Accounts</button>
+                <div class="content">
+                    @if (ViewBag.SavingsAccountList.Count == 0)
+                    {
+                        <h5>No Content. Check Back Soon.</h5>
+                    }
+                    else
+                    {
+
+
+                        @foreach (var account in ViewBag.SavingsAccountList)
+                        {
+                            <div class="row">
+                                <div class="col-md-6">
+                                    @account.Name
+                                </div>
+
+                            </div>
+                            <!-- Button For SlideDown-->
+                            <button type="button" class="collapsible">More Info</button>
+                            <div class="content">
+                                <div class="row details-section">
+                                    <div class="col-md-6 bt-info">
+                                        <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; APY <hr /></p>
+                                        <ul class="card-info-list">
+                                            <li>@account.InterestRate%</li>
+                                            @if (account.HasMinimumAmountForApr)
+                                            {
+                                                <li>Minimum Amount to earn Interest:  $@account.MinimumAmountForApr</li>
+
+                                            }
+                                            @if (account.HasMaximumAmountForApr)
+                                            {
+                                                <li>Interest Applies to first $@account.MaximumAmountForApr, %@account.AprIfAmountNotMet on all additional amounts</li>
+                                            }
+                                        </ul>
+                                    </div>
+
+                                    <div class="col-md-6 bt-info">
+                                        <p class="h5"> &nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Fees <hr /></p>
+                                        <ul class="card-info-list">
+                                            @if (account.HasMonthlyFee)
+                                            {
+                                                <li>Monthly Fee $@account.MonthlyFee </li>
+                                                if (account.BalanceToAvoidFee != null)
+                                                {
+                                                    <li>Balance to Avoid Fee: $@account.BalanceToAvoidFee</li>
+                                                }
+
+                                            }
+                                            else
+                                            {
+                                                <li>No Monthly Fee</li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="row details-section">
+                                    <!-- Term Information-->
+                                    <div class="col-md-5 bt-info">
+                                        <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Minimum <hr /></p>
+                                        <ul class="card-info-list">
+                                            @if (account.HasMinimumToOpenAccount)
+                                            {
+                                                <li>Minimum to Open Account: $@account.MinimumToOpenAccount</li>
+                                            }
+                                            else
+                                            {
+                                                <li>No minimum</li>
+                                            }
+
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                </div>
+                                <div class="row details-section">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-5">
+                                        <a class="btn btn-green" href="@account.LinkURL" target="_blank">Link</a>
+                                    </div>
+                                    <div class="col-md-3"></div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+
+            </div>
+            
+            </div>
+        </div>
+
+      <!-- Word pad File Start Here-->
+        
+
+
+        <!-- Word pad FIle ENd Here-->
 
 
 
@@ -225,3 +1450,20 @@
 
 
     </div>
+
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    }
+</script>

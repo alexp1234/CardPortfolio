@@ -108,7 +108,7 @@ namespace CardPortfolio.Controllers
                 autoLoan.LowApr = lowApr;
                 autoLoan.HighApr = highApr;
                 autoLoan.MinimumAmount = minimumAmount;
-                autoLoan.MinimumAmount = maximumAmount;
+                autoLoan.MaximumAmount = maximumAmount;
                 autoLoan.MinimumTermInMonths = minimumTermInMonths;
                 autoLoan.MaximumTermInMonths = maximumTermInMonths;
                 autoLoan.HasFees = hasFees;
@@ -116,16 +116,14 @@ namespace CardPortfolio.Controllers
                 autoLoan.Name = name;
                 autoLoan.AutoLoanCategory = autoLoanCategory;
                 autoLoan.DownPaymentPercentage = downPaymentPercentage;
-                autoLoan.LinkURL = linkURL;
-
-                
+                autoLoan.LinkURL = linkURL;               
                var addStatus = _autoLoanData.AddAutoLoan(autoLoan);
                if(addStatus == 0)
                 {
                     var status = _autoLoanData.Commit();
                     if(status == 0)
                     {
-                        return RedirectToAction("Details", new { id = autoLoan.Id });
+                        return RedirectToAction("Index");
                     }
                     else
                     {
@@ -194,18 +192,7 @@ namespace CardPortfolio.Controllers
         }
 
 
-        // GET: AutoLoans/Details/5
-        public IActionResult Details(int id)
-        {
-            // Refactor
-            var autoLoan = _autoLoanData.GetAutoLoanById(id);
-            if(autoLoan != null)
-            {
-                return View(autoLoan);
-            }
-            return RedirectToAction("Index");
-            
-        }
+
 
         // GET: AutoLoans/Edit/5
         [Authorize(Roles ="Administrator")]
@@ -254,7 +241,7 @@ namespace CardPortfolio.Controllers
                     var status = _autoLoanData.Commit();
                     if(status == 0)
                     {
-                        return RedirectToAction("Details", new { id = autoLoan.Id });
+                        return RedirectToAction("Index");
                     }
                     else
                     {

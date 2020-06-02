@@ -96,7 +96,7 @@ namespace CardPortfolio.Controllers
             double? maximumAmount, int? minimumTermInMonths, int? maximumTermInMonths,
             bool hasOriginationFee, double? originationFee, bool hasAnnualFee, double? annualFee,
             bool hasAdvanceFee, double? advanceFee, string name, bool arePaymentsInterestOnly, 
-            double? minimumPayment, double? Ltv, HomeEquityLineOfCredit homeEquityLoc )
+            double? minimumPayment, double? Ltv, string linkURL, HomeEquityLineOfCredit homeEquityLoc )
         {
             if (ModelState.IsValid)
             {
@@ -116,8 +116,7 @@ namespace CardPortfolio.Controllers
                 homeEquityLoc.ArePaymentsInterestOnly = arePaymentsInterestOnly;
                 homeEquityLoc.MinimumPayment = minimumPayment;
                 homeEquityLoc.LTV = Ltv;
-
-                // TODO: Refactor
+                homeEquityLoc.LinkURL = linkURL;
                var addStatus = _homeEquityLineOfCreditData.AddHomeEquityLineOfCredit(homeEquityLoc);
                 if(addStatus == 0)
                 {
@@ -226,7 +225,7 @@ namespace CardPortfolio.Controllers
             double? maximumAmount, int? minimumTermInMonths, int? maximumTermInMonths, 
             bool hasOriginationFee, double? originationFee, bool hasAnnualFee, double? annualFee, 
             bool hasAdvanceFee, double? advanceFee, string name, bool arePaymentsInterestOnly,
-            double? minimumPayment, double? Ltv)
+            double? minimumPayment, double? Ltv, string linkURL)
         {
             if (ModelState.IsValid)
             {
@@ -250,6 +249,7 @@ namespace CardPortfolio.Controllers
                     homeEquityLoc.ArePaymentsInterestOnly = arePaymentsInterestOnly;
                     homeEquityLoc.MinimumPayment = minimumPayment;
                     homeEquityLoc.LTV = Ltv;
+                    homeEquityLoc.LinkURL = linkURL;
                     var commitStatus = _homeEquityLineOfCreditData.Commit();
                     if(commitStatus == 0)
                     {

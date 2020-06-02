@@ -35,7 +35,7 @@
                     <td>@item.LowApr</td>
 
                     <td>
-                        <a class="btn btn-green" asp-action="Details" asp-controller="HomeEquityLoans" asp-route-id="@item.Id"></a>
+                        <a class="btn btn-green" href="@item.LinkURL" target="_blank">Link</a>
                         @if (User.IsInRole("Administrator"))
                         {
                             @Html.ActionLink("Edit ", "Edit", new { id = item.Id })

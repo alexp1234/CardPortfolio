@@ -60,7 +60,7 @@ namespace CardPortfolio.Controllers
             double? minimumToOpenAccount, bool hasMonhtlyFee, double monthlyFee,
             double? balanceToAvoidFee, bool hasMinimumAmountForApr,
             double? minimumAmountForApr, bool hasMaximimumAmountForApr, double? maximumAmountForApr,
-            double? aprIfAmountNotMet, double termInMonths, string name, CertificateAccount certificateAccount)
+            double? aprIfAmountNotMet, double termInMonths, string name, string linkURL, CertificateAccount certificateAccount)
         {
             if (ModelState.IsValid)
             {
@@ -77,6 +77,7 @@ namespace CardPortfolio.Controllers
                 certificateAccount.AprIfAmountNotMet = aprIfAmountNotMet;
                 certificateAccount.TermInMonths = termInMonths;
                 certificateAccount.Name = name;
+                certificateAccount.LinkURL = linkURL;
                 var addStatus = _certificateAccountData.AddCertificateAccount(certificateAccount);
                 if(addStatus == 0)
                 {
@@ -123,7 +124,7 @@ namespace CardPortfolio.Controllers
             double? minimumToOpenAccount, bool hasMonhtlyFee, double monthlyFee,
             double? balanceToAvoidFee, bool hasMinimumAmountForApr,
             double? minimumAmountForApr, bool hasMaximimumAmountForApr, double? maximumAmountForApr,
-            double? aprIfAmountNotMet, double termInMonths, string name)
+            double? aprIfAmountNotMet, double termInMonths, string name, string linkURL)
         {
             if (ModelState.IsValid)
             {
@@ -144,6 +145,7 @@ namespace CardPortfolio.Controllers
                     certificateAccount.AprIfAmountNotMet = aprIfAmountNotMet;
                     certificateAccount.TermInMonths = termInMonths;
                     certificateAccount.Name = name;
+                    certificateAccount.LinkURL = linkURL;
                     var commitStatus = _certificateAccountData.Commit();
                     if(commitStatus == 0)
                     {

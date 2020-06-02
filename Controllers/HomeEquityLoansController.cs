@@ -95,7 +95,7 @@ namespace CardPortfolio.Controllers
         [Authorize(Roles = "Administrator")]
         public IActionResult Create(double? lowApr, double? highApr, double? minimumAmount,
             double? maximumAmount, int? minimumTermInMonths, int? maximumTermInMonths, bool hasFees,
-            double? originationFee, string name, double Ltv, HomeEquityLoan heLoan)
+            double? originationFee, string name, double Ltv, string linkURL, HomeEquityLoan heLoan)
         {
             if (ModelState.IsValid)
             {
@@ -109,7 +109,7 @@ namespace CardPortfolio.Controllers
                 heLoan.OriginationFee = originationFee;
                 heLoan.Name = name;
                 heLoan.LTV = Ltv;
-
+                heLoan.LinkURL = linkURL;
                 var addStatus = _homeEquityLoanData.AddHomeEquityLoan(heLoan);
                 if(addStatus == 0)
                 {
@@ -217,7 +217,7 @@ namespace CardPortfolio.Controllers
         [Authorize(Roles = "Administrator")]
         public IActionResult Edit(double? lowApr, double? highApr, double? minimumAmount,
             double? maximumAmount, int? minimumTermInMonths, int? maximumTermInMonths, 
-            bool hasFees, double? originationFee, string name, double Ltv)
+            bool hasFees, double? originationFee, string name, double Ltv, string linkURL)
         {
             if (ModelState.IsValid)
             {
@@ -235,6 +235,7 @@ namespace CardPortfolio.Controllers
                     heLoan.OriginationFee = originationFee;
                     heLoan.Name = name;
                     heLoan.LTV = Ltv;
+                    heLoan.LinkURL = linkURL;
                     var commitStatus = _homeEquityLoanData.Commit();
                     if(commitStatus == 0)
                     {

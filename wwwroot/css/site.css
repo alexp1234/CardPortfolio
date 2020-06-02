@@ -13,6 +13,14 @@ body {
         
 }
 
+
+.institution-details-card-header{
+    margin-bottom:2%;
+}
+
+.more-info-button{
+    margin-bottom: 2%;
+}
 .card-row-pic{
     max-height:80%;
 }

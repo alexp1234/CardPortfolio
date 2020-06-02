@@ -37,7 +37,7 @@
 
 
                     <td>
-                        @Html.ActionLink("Details ", "Details", new { id = item.Id })
+                       <a class="btn btn-green" href="@item.LinkURL" target="_blank">Link</a>
                         @if (User.IsInRole("Administrator"))
                         {
                             @Html.ActionLink("Edit ", "Edit", new { id = item.Id })

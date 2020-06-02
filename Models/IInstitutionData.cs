@@ -34,6 +34,8 @@ namespace CardPortfolio.Models
         IEnumerable<CheckingAccount> GetInstitutionsCheckingAccounts(int id);
         IEnumerable<MoneyMarketAccount> GetInstitutionsMoneyMarketAccount(int id);
         IEnumerable<SavingsAccount> GetInstitutionsSavingsAccounts(int id);
+        IEnumerable<HomeEquityLineOfCredit> GetInstitutionHomeEquityLinesOfCredit(int id);
+        IEnumerable<HomeEquityLoan> GetInstitutionsHomeEquityLoans(int id);
 
         int Commit();
     }

@@ -120,6 +120,11 @@ namespace CardPortfolio.Models
 
         }
 
+        public IEnumerable<HomeEquityLineOfCredit> GetInstitutionHomeEquityLinesOfCredit(int id)
+        {
+            return _db.HomeEquityLinesOfCredit.Where(h => h.InstitutionId == id).ToList();
+        }
+
         public IEnumerable<AutoLoan> GetInstitutionsAutoLoans(int id)
         {
             return _db.AutoLoans.Where(a => a.InstitutionId == id).ToList();
@@ -145,6 +150,11 @@ namespace CardPortfolio.Models
         {
           
             return _db.CreditCards.Where(c => c.InstitutionId == id).ToList();
+        }
+
+        public IEnumerable<HomeEquityLoan> GetInstitutionsHomeEquityLoans(int id)
+        {
+            return _db.HomeEquityLoans.Where(h => h.InstitutionId == id).ToList();
         }
 
         public IEnumerable<MoneyMarketAccount> GetInstitutionsMoneyMarketAccount(int id)

@@ -49,8 +49,8 @@ namespace CardPortfolio.Controllers
             bool hasMinimumToOpenAccount, double? minimumToOpenAccount,
             bool hasMonthlyFee, double MonthlyFee, double? balanceToAvoidFee,
             bool hasMinimumAmountForApr, double? minimumAmountForApr, 
-            bool hasMaximumAmountForApr, double? maximumAmountForApr, double? aprIfAmountNotMet, string name,
-            MoneyMarketAccount account)
+            bool hasMaximumAmountForApr, double? maximumAmountForApr, double? aprIfAmountNotMet,
+            string name, string linkURL, MoneyMarketAccount account)
         {
             if (ModelState.IsValid)
             {
@@ -66,6 +66,7 @@ namespace CardPortfolio.Controllers
                 account.MaximumAmountForApr = maximumAmountForApr;
                 account.AprIfAmountNotMet = aprIfAmountNotMet;
                 account.Name = name;
+                account.LinkURL = linkURL;
                 var addStatus = _moneyMarketAccountData.AddMoneyMarketAccount(account);
                 if(addStatus == 0)
                 {
@@ -118,7 +119,8 @@ namespace CardPortfolio.Controllers
             bool hasMinimumToOpenAccount, double? minimumToOpenAccount,
             bool hasMonthlyFee, double MonthlyFee, double? balanceToAvoidFee,
             bool hasMinimumAmountForApr, double? minimumAmountForApr,
-            bool hasMaximumAmountForApr, double? maximumAmountForApr, double? aprIfAmountNotMet, string name)
+            bool hasMaximumAmountForApr, double? maximumAmountForApr,
+            double? aprIfAmountNotMet, string name, string linkURL)
         {
             if (ModelState.IsValid)
             {
@@ -138,6 +140,7 @@ namespace CardPortfolio.Controllers
                     account.MaximumAmountForApr = maximumAmountForApr;
                     account.AprIfAmountNotMet = aprIfAmountNotMet;
                     account.Name = name;
+                    account.LinkURL = linkURL;
                     var commitStatus = _moneyMarketAccountData.Commit();
                     if (commitStatus == 0)
                     {

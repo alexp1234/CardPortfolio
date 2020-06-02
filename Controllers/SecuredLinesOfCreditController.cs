@@ -101,7 +101,8 @@ namespace CardPortfolio.Controllers
             double? highApr, double? minimumAmount, double? maximumAmount, 
             int? minimumTermInMonths, int? maximumTermInMonths, bool hasOriginationFee,
             double? originationFee, bool hasAnnualFee, double? annualFee, bool hasAdvanceFee,
-            double? advanceFee, string name, bool arePaymentsInterestOnly, double? minimumPayment, SecuredLineOfCredit securedLineOfCredit )
+            double? advanceFee, string name, bool arePaymentsInterestOnly, double? minimumPayment,
+            string linkURL, SecuredLineOfCredit securedLineOfCredit )
         {
             if (ModelState.IsValid)
             {
@@ -122,6 +123,7 @@ namespace CardPortfolio.Controllers
                 securedLineOfCredit.Name = name;
                 securedLineOfCredit.ArePaymentsInterestOnly = arePaymentsInterestOnly;
                 securedLineOfCredit.MinimumPayment = minimumPayment;
+                securedLineOfCredit.LinkURL = linkURL;
                 var addStatus = _securedLineOfCreditData.AddSecuredLineOfCredit(securedLineOfCredit);
                 if(addStatus == 0)
                 {
@@ -242,7 +244,8 @@ namespace CardPortfolio.Controllers
             double? highApr, double? minimumAmount, double? maximumAmount,
             int? minimumTermInMonths, int? maximumTermInMonths, bool hasOriginationFee,
             double? originationFee, bool hasAnnualFee, double? annualFee, bool hasAdvanceFee,
-            double? advanceFee, string name, bool arePaymentsInterestOnly, double? minimumPayment)
+            double? advanceFee, string name, bool arePaymentsInterestOnly, double? minimumPayment,
+            string linkURL)
         {
             if (ModelState.IsValid)
             {
@@ -266,6 +269,7 @@ namespace CardPortfolio.Controllers
                     loc.Name = name;
                     loc.ArePaymentsInterestOnly = arePaymentsInterestOnly;
                     loc.MinimumPayment = minimumPayment;
+                    loc.LinkURL = linkURL;
 
                     var commitStatus = _securedLineOfCreditData.Commit();
                     if(commitStatus == 0)

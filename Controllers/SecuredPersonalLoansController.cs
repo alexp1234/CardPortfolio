@@ -102,7 +102,7 @@ namespace CardPortfolio.Controllers
         [Authorize(Roles = "Administrator")]
         public IActionResult Create(double? lowApr, double? highApr, double? minimumAmount,
             double? maximumAmount, int? minimumTermInMonths, int? maximumTermInMonths,
-            bool hasFees, double? originationFee, string name, double? collateralToLoanRatio, SecuredPersonalLoan loan)
+            bool hasFees, double? originationFee, string name, double? collateralToLoanRatio, string linkURL,  SecuredPersonalLoan loan)
         {
             if (ModelState.IsValid)
             {
@@ -116,6 +116,7 @@ namespace CardPortfolio.Controllers
                 loan.OriginationFee = originationFee;
                 loan.Name = name;
                 loan.CollateralToLoanRatio = collateralToLoanRatio;
+                loan.LinkURL = linkURL;
                 var addStatus = _securedPersonalLoanData.AddSecuredPersoanlLoan(loan);
                 if (addStatus == 0)
                 {
@@ -240,7 +241,7 @@ namespace CardPortfolio.Controllers
         [Authorize(Roles = "Administrator")]
         public IActionResult Edit(double? lowApr, double? highApr, double? minimumAmount,
             double? maximumAmount, int? minimumTermInMonths, int? maximumTermInMonths,
-            bool hasFees, double? originationFee, string name, double? collateralToLoanRatio)
+            bool hasFees, double? originationFee, string name, double? collateralToLoanRatio, string linkURL)
         {
             if (ModelState.IsValid)
             {
@@ -258,6 +259,7 @@ namespace CardPortfolio.Controllers
                     loan.OriginationFee = originationFee;
                     loan.Name = name;
                     loan.CollateralToLoanRatio = collateralToLoanRatio;
+                    loan.LinkURL = linkURL;
 
                     var commitStatus = _securedPersonalLoanData.Commit();
                     if(commitStatus == 0)

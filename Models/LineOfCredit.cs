@@ -25,6 +25,6 @@ namespace CardPortfolio.Models
         public string Name { get; set; }//
         public bool ArePaymentsInterestOnly { get; set; }
         public double? MinimumPayment { get; set; }
-        public string LinkUrl { get; set; }
+        public string LinkURL { get; set; }
     }
 }

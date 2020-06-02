@@ -143,6 +143,9 @@ namespace CardPortfolio.Migrations
                     b.Property<double>("InterestRate")
                         .HasColumnType("float");
 
+                    b.Property<string>("LinkURL")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<double?>("MaximumAmountForApr")
                         .HasColumnType("float");
 
@@ -211,6 +214,9 @@ namespace CardPortfolio.Migrations
 
                     b.Property<double?>("InterestRateIfDDRequirementsNotMet")
                         .HasColumnType("float");
+
+                    b.Property<string>("LinkURL")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double?>("MaximumAmountForApr")
                         .HasColumnType("float");
@@ -392,7 +398,7 @@ namespace CardPortfolio.Migrations
                     b.Property<double?>("LTV")
                         .HasColumnType("float");
 
-                    b.Property<string>("LinkUrl")
+                    b.Property<string>("LinkURL")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double?>("LowApr")
@@ -554,6 +560,9 @@ namespace CardPortfolio.Migrations
                     b.Property<double>("InterestRate")
                         .HasColumnType("float");
 
+                    b.Property<string>("LinkURL")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<double?>("MaximumAmountForApr")
                         .HasColumnType("float");
 
@@ -665,6 +674,9 @@ namespace CardPortfolio.Migrations
                     b.Property<double>("InterestRate")
                         .HasColumnType("float");
 
+                    b.Property<string>("LinkURL")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<double?>("MaximumAmountForApr")
                         .HasColumnType("float");
 
@@ -722,7 +734,7 @@ namespace CardPortfolio.Migrations
                     b.Property<int?>("InstitutionId")
                         .HasColumnType("int");
 
-                    b.Property<string>("LinkUrl")
+                    b.Property<string>("LinkURL")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double?>("LowApr")
@@ -839,7 +851,7 @@ namespace CardPortfolio.Migrations
                     b.Property<int?>("InstitutionId")
                         .HasColumnType("int");
 
-                    b.Property<string>("LinkUrl")
+                    b.Property<string>("LinkURL")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double?>("LowApr")
@@ -948,8 +960,8 @@ namespace CardPortfolio.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ae17e69a-a97e-4196-8791-5e44a6d8a6c4",
-                            ConcurrencyStamp = "9046dc22-4fee-488c-bbad-5221bcdba40c",
+                            Id = "de1299c3-d820-4396-8014-5a7e8d75a359",
+                            ConcurrencyStamp = "4d4743ea-69bb-475b-b2fa-69e0ee7f4e2b",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

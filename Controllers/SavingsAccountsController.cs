@@ -54,7 +54,8 @@ namespace CardPortfolio.Controllers
             double? minimumToOpenAccount, bool hasMonthlyFee,
             double monthlyFee, double? balanceToAvoidFee, bool hasMinimumAmountForApr,
             double? minimumAmountForApr, bool hasMaximumAmountForApr, 
-            double? maximumAmountForApr, double? aprIfAmountNotMet, string name, SavingsAccount account)
+            double? maximumAmountForApr, double? aprIfAmountNotMet, string name,
+            string linkURL, SavingsAccount account)
         {
             if (ModelState.IsValid)
             {
@@ -70,8 +71,7 @@ namespace CardPortfolio.Controllers
                 account.MaximumAmountForApr = maximumAmountForApr;
                 account.AprIfAmountNotMet = aprIfAmountNotMet;
                 account.Name = name;
-                // _db.SavingsAccounts.Add(account);
-                // _db.SaveChanges();
+                account.LinkURL = linkURL;
                 var addStatus = _savingsAccountData.AddSavingsAccount(account);
                 if(addStatus == 0)
                 {
@@ -124,7 +124,8 @@ namespace CardPortfolio.Controllers
             double? minimumToOpenAccount, bool hasMonthlyFee,
             double monthlyFee, double? balanceToAvoidFee, bool hasMinimumAmountForApr,
             double? minimumAmountForApr, bool hasMaximumAmountForApr,
-            double? maximumAmountForApr, double? aprIfAmountNotMet, string name)
+            double? maximumAmountForApr, double? aprIfAmountNotMet, string name,
+            string linkURL)
         {
             if (ModelState.IsValid)
             {
@@ -144,6 +145,7 @@ namespace CardPortfolio.Controllers
                     account.MaximumAmountForApr = maximumAmountForApr;
                     account.AprIfAmountNotMet = aprIfAmountNotMet;
                     account.Name = name;
+                    account.LinkURL = linkURL;
                     var commitStatus = _savingsAccountData.Commit();
                     if(commitStatus == 0)
                     {

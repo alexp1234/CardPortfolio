@@ -110,8 +110,8 @@ namespace CardPortfolio.Controllers
         public IActionResult AddCertificateAccount(int id)
         {
             TempData["InstitutionId"] = id;
-            var list = _certificateAccountData.GetUnassignedCertificateAccounts();
-            ViewBag.CertificateAccountId = new SelectList(list, "Id", "Name");
+            var certificateAccountList = _certificateAccountData.GetUnassignedCertificateAccounts();
+            ViewBag.CertificateAccountId = new SelectList(certificateAccountList, "Id", "Name");
             return View();
         }
 
@@ -119,11 +119,11 @@ namespace CardPortfolio.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles ="Administrator")]
-        public IActionResult AddCertificateAccount(int id, string filler = null)
+        public IActionResult AddCertificateAccount(int certificateAccountId, string filler = null)
         {
             if (ModelState.IsValid)
             {
-                var account = _certificateAccountData.GetById(id);
+                var account = _certificateAccountData.GetById(certificateAccountId);
                 var institutionId = (int)TempData["InstitutionId"];
                 var institution = _institutionData.GetById(institutionId);
                 if(account != null && institution != null)
@@ -152,8 +152,8 @@ namespace CardPortfolio.Controllers
         public IActionResult AddCheckingAccount(int id)
         {
             TempData["InstitutionId"] = id;
-            var list = _checkingAccountData.GetUnassignedCheckingAccounts();
-            ViewBag.CheckingAccountId = new SelectList(list, "Id", "Name");
+            var checkingAccountList = _checkingAccountData.GetUnassignedCheckingAccounts();
+            ViewBag.CheckingAccountId = new SelectList(checkingAccountList, "Id", "Name");
             return View();
         }
 
@@ -162,11 +162,11 @@ namespace CardPortfolio.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator")]
-        public IActionResult AddCheckingAccount(int id, string filler = null)
+        public IActionResult AddCheckingAccount(int checkingAccountId, string filler = null)
         {
             if (ModelState.IsValid)
             {
-                var account = _checkingAccountData.GetById(id);
+                var account = _checkingAccountData.GetById(checkingAccountId);
                 var institutionId = (int)TempData["InstitutionId"];
                 var institution = _institutionData.GetById(institutionId);
                 if (account != null && institution != null)
@@ -197,8 +197,8 @@ namespace CardPortfolio.Controllers
         public IActionResult AddMoneyMarketAccount(int id)
         {
             TempData["InstitutionId"] = id;
-            var list = _moneyMarketAccountData.GetUnassignedMoneyMarketAccounts(); 
-            ViewBag.MoneyMarketAccountId = new SelectList(list, "Id", "Name");
+            var moneyMarketAccountList = _moneyMarketAccountData.GetUnassignedMoneyMarketAccounts(); 
+            ViewBag.MoneyMarketAccountId = new SelectList(moneyMarketAccountList, "Id", "Name");
             return View();
         }
 
@@ -206,11 +206,11 @@ namespace CardPortfolio.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator")]
-        public IActionResult AddMoneyMarketAccount(int id, string filler = null)
+        public IActionResult AddMoneyMarketAccount(int moneyMarketAccountId, string filler = null)
         {
             if (ModelState.IsValid)
             {
-                var account = _moneyMarketAccountData.GetById(id);
+                var account = _moneyMarketAccountData.GetById(moneyMarketAccountId);
                 var institutionId = (int)TempData["InstitutionId"];
                 var institution = _institutionData.GetById(institutionId);
                 if (account != null && institution != null)
@@ -241,8 +241,8 @@ namespace CardPortfolio.Controllers
         public IActionResult AddSavingsAccount(int id)
         {
             TempData["InstitutionId"] = id;
-            var list = _savingsAccountData.GetUnassignedSavingsAccounts();
-            ViewBag.SavingsAccountId = new SelectList(list, "Id", "Name");
+            var savingsAccountList = _savingsAccountData.GetUnassignedSavingsAccounts();
+            ViewBag.SavingsAccountId = new SelectList(savingsAccountList, "Id", "Name");
             return View();
         }
 
@@ -250,11 +250,11 @@ namespace CardPortfolio.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Administrator")]
-        public IActionResult AddSavingsAccount(int id, string filler = null)
+        public IActionResult AddSavingsAccount(int savingsAccountId, string filler = null)
         {
             if (ModelState.IsValid)
             {
-                var account = _savingsAccountData.GetById(id);
+                var account = _savingsAccountData.GetById(savingsAccountId);
                 var institutionId = (int)TempData["InstitutionId"];
                 var institution = _institutionData.GetById(institutionId);
                 if (account != null && institution != null)
@@ -810,7 +810,8 @@ namespace CardPortfolio.Controllers
                 ViewBag.CertificateAccountList = _institutionData.GetInstitutionsCds(institution.Id);
                 ViewBag.CheckingAccountList = _institutionData.GetInstitutionsCheckingAccounts(institution.Id);
                 ViewBag.MoneyMarketAccountList = _institutionData.GetInstitutionsMoneyMarketAccount(institution.Id);
-
+                ViewBag.HELOCList = _institutionData.GetInstitutionHomeEquityLinesOfCredit(institution.Id);
+                ViewBag.HELOANList = _institutionData.GetInstitutionsHomeEquityLoans(institution.Id);
             }
 
             return View(institution);

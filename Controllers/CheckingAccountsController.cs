@@ -48,7 +48,8 @@ namespace CardPortfolio.Controllers
             double monthlyFee, double? balanceToAvoidFee, bool hasMinimumForApr, 
             double? minimumAmountForApr, bool hasMaximumAmountForApr, double? maximumAmountForApr,
             double? aprIfAmountNotMet, bool hasDirectDepositRequirementForAPR, double? directDepositRequirementForAPR, 
-            double? interestRateIfDDRequirementNotMet, double? directDepositToAvoidMonthlyFee, string name, CheckingAccount checkingAccount)
+            double? interestRateIfDDRequirementNotMet, double? directDepositToAvoidMonthlyFee, string name,
+            string linkURL, CheckingAccount checkingAccount)
         {
             if (ModelState.IsValid)
             {
@@ -68,6 +69,7 @@ namespace CardPortfolio.Controllers
                 checkingAccount.InterestRateIfDDRequirementsNotMet = interestRateIfDDRequirementNotMet;
                 checkingAccount.DirectDepositToAvoidMonthlyFee = directDepositToAvoidMonthlyFee;
                 checkingAccount.Name = name;
+                checkingAccount.LinkURL = linkURL;
                 var addStatus = _checkingAccountData.AddCheckingAccount(checkingAccount);
                 if(addStatus == 0)
                 {
@@ -107,7 +109,7 @@ namespace CardPortfolio.Controllers
             double monthlyFee, double? balanceToAvoidFee, bool hasMinimumForApr,
             double? minimumAmountForApr, bool hasMaximumAmountForApr, double? maximumAmountForApr,
             double? aprIfAmountNotMet, bool hasDirectDepositRequirementForAPR, double? directDepositRequirementForAPR,
-            double? interestRateIfDDRequirementNotMet, double? directDepositToAvoidMonthlyFee, string name)
+            double? interestRateIfDDRequirementNotMet, double? directDepositToAvoidMonthlyFee, string name, string linkURL)
         {
             if (ModelState.IsValid)
             {
@@ -131,6 +133,7 @@ namespace CardPortfolio.Controllers
                     checkingAccount.InterestRateIfDDRequirementsNotMet = interestRateIfDDRequirementNotMet;
                     checkingAccount.DirectDepositToAvoidMonthlyFee = directDepositToAvoidMonthlyFee;
                     checkingAccount.Name = name;
+                    checkingAccount.LinkURL = linkURL;
                     var commitStatus = _checkingAccountData.Commit();
                     if(commitStatus == 0)
                     {

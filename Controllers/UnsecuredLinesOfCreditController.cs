@@ -101,7 +101,7 @@ namespace CardPortfolio.Controllers
             double? minimumAmount, double? maximumAmount, int? minimumTerm,
             int? maximumTerm, bool hasOriginationFee, double? originationFee, bool hasAnnualFee,
             double? annualFee, bool hasAdvanceFee, double? advanceFee, string name,
-            bool arePaymentsInterestOnly, double? minimumPayment, UnsecuredLineOfCredit loc)
+            bool arePaymentsInterestOnly, double? minimumPayment, string linkURL, UnsecuredLineOfCredit loc)
         {
             if (ModelState.IsValid)
             {
@@ -120,6 +120,7 @@ namespace CardPortfolio.Controllers
                 loc.Name = name;
                 loc.ArePaymentsInterestOnly = arePaymentsInterestOnly;
                 loc.MinimumPayment = minimumPayment;
+                loc.LinkURL = linkURL;
                 var addStatus = _unsecuredLineOfCreditData.AddUnsecuredLineOfCredit(loc);
                 if(addStatus == 0)
                 {
@@ -234,7 +235,7 @@ namespace CardPortfolio.Controllers
             double? minimumAmount, double? maximumAmount, int? minimumTerm,
             int? maximumTerm, bool hasOriginationFee, double? originationFee, bool hasAnnualFee,
             double? annualFee, bool hasAdvanceFee, double? advanceFee, string name,
-            bool arePaymentsInterestOnly, double? minimumPayment)
+            bool arePaymentsInterestOnly, double? minimumPayment, string linkURL)
         {
             if (ModelState.IsValid)
             {
