@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Low APR Cash Advance Cards";
 }
+<meta description="Credit Cards with the Lowest Cash Advance APR" />
     <div class="row card-title-row">
         <h1>@ViewBag.PageHeader</h1>
     </div>
@@ -30,7 +31,16 @@
                                 <p class="h4"><i class="fas fa-highlighter"></i>&nbsp; Highlights</p> <hr />
                                 <ul class="card-info-list">
                                     <li>@card.LowAPRCashAdvance% to @card.HighAPRCashAdvance% regular APR on Cash Advances
-                                    <li>Cash Advance Fee: @card.CashAdvanceFee% of each advance</li>
+                                    @if(card.CashAdvanceFee > 0)
+                                    {
+                                        <li>Cash Advance Fee: @card.CashAdvanceFee% of each advance</li>
+                                    }
+                                    else
+                                    {
+                                        var am = card.CashAdvanceFee * 100;
+                                        <li>Cash Advance Fee: $@am for each transaction</li>
+                                    }
+
                                     @if (card.AnnualFee != 0 && card.AnnualFee != null)
                                     {
                                         <li>Annual Fee: $@card.AnnualFee</li>
@@ -59,8 +69,27 @@
                                 <p class="h5"> &nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Fee Information <hr /></p>
                                 <ul class="card-info-list">
                                     <li>Annual Fee: $@card.AnnualFee </li>
-                                    <li>Balance Transfer: @card.RegularBalanceTransferFee% of each transaction</li>
-                                    <li>Cash Advance: @card.CashAdvanceFee% of each advance</li>
+                                    @if (card.RegularBalanceTransferFee >= 1)
+                                    {
+                                        <li>Balance Transfer: @card.RegularBalanceTransferFee% of each transaction</li>
+
+                                    }
+                                    else
+                                    {
+                                        var am = card.RegularBalanceTransferFee * 100;
+                                        <li>Balance Transfer: $@am for each transaction</li>
+                                    }
+                                    @if (card.CashAdvanceFee >= 1)
+                                    {
+                                        <li>Cash Advance: @card.CashAdvanceFee% of each advance</li>
+
+                                    }
+                                    else
+                                    {
+                                        var am = card.CashAdvanceFee * 100;
+                                        <li>Cash Advance: $@am</li>
+                                    }
+                                    
                                 </ul>
                             </div>
                         </div>

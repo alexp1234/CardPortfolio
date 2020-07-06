@@ -1,125 +1,126 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-<title>HI EVERYONE</title>
-<div class="container-grey">
-<div class="row image-container">
-    <img src="~/images/site/blake-wisz-tE6th1h6Bfk-unsplash.jpg" id="homePic" />
-    <div class="top-right .text-center">
-        <h3 class="responsive-text">Wallet Bailout <br /> The Internet's Largest <br> Credit Card Database</h3>
+<meta description="WalletBailout is home of the largest credit card database on the internet." />
+<script data-ad-client="ca-pub-7526110760455484" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<title>Home</title>
 
-        <form method="get" asp-action="Index" asp-controller="CreditCards">
-            <!-- button here-->
-        </form>
-    </div>
-
-</div>
-<div class="row more-information">
-   
-</div>
-<div class="row background-grey-row">
-
-    <div class="col-sm-6">
-        <div class="card white-card">
-            <div class="card-body">
-                <h5 class="card-title">Credit Cards</h5>
-                <p class="card-text">Whether you're looking for a great sign up bonus, amazing balance transfer offer, or all-around low rate card, we've got you covered.</p>
-                <form method="get" asp-action="Index" asp-controller="CreditCards">
-                    <button class="btn btn-green" id="viewCardBtn">View Cards</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="card white-card">
-            <div class="card-body">
-                <h5 class="card-title">Banks and Credit Unions</h5>
-                <p class="card-text">Looking to join a new bank or Credit Union? Our site has information on Banks and Credit Unions, including Credit Unions anyone can join.</p>
-                <form method="get" asp-action="Index" asp-controller="Institutions">
-                    <button class="btn btn-green btn-card" id="viewBankBtn">View Institutions</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row background-grey-row background-grey-row-2">
-    <div class="col-sm-6">
-        <div class="card white-card card-row-2">
-            <div class="card-body">
-                <h5 class="card-title">Blog</h5>
-                <p class="card-text">Want to know our thoughts on the best cards, loans, and deposit accounts? We take no money from companies to promote their products, so you know your getting our honest opinion.</p>
-                <form method="get" asp-action="Index" asp-controller="BlogPosts">
-                    <button class=" btn btn-green btn-card" id="viewBlogBtn">Blog</button>
-
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="card white-card card-row-2">
-            <div class="card-body">
-                <h5 class="card-title">Personal Loans</h5>
-                <p class="card-text">Looking to consolidate credit card balances into a lower rate personal loan? Check out our information on personal loans.</p>
-                <form method="get" asp-action="Index" asp-controller="UnsecuredPersonalLoans">
-                    <button class="btn btn-green btn-card" id="viewLoanBtn">View Loans</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row grey-bottom-row">
-    <div class="row no-gutters gutters-white">
-        
-        <div class="col-md-4 no-margin-column" >
-            <img src="~/images/homepageCard.jpg" class="img-fluid responsive-image" alt="">
-           
-        </div>
-        <div class="col-md-7">
-            <div class="card-block px-2 card-left-margin">
-                <h4 class="about-section">How We're Different</h4>
-                <p class="card-text about-section">At WalletBailout we take no money from banks to promote their products. This means that you're getting the best, unbiased information for absolutely free.</p>
-            </div>
-        </div>
-    </div>
-
-</div>
- <div class="row grey-bottom-row" id="recentPostsRow">
-     <h3 id="recentPostsTitle">RECENT POSTS</h3>
- </div>
-<div class="row grey-bottom-row" id="bottomRowContainer">
-    @foreach (var post in ViewBag.ThreeRecentPosts)
-    {
-        <div class="col-md-4">
-        <!-- Blog Post-->
-        <div class="card mb-4 home-recent-posts-column">
-            @if (post.ImageUrl != null)
-            {
-                var photoPath = "~/images/" + post.ImageUrl;
-                <a class="container-fluid" href="#">
-                    <img class="card-img-top" src="@Url.Content(photoPath)" alt="Card image cap" />
-                </a>
-            }
-
-            else
-            {
-                <a class="container-fluid" href="#">
-                <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap" />
-                </a>
-            }
-
-            <a class="card-body" href="#">
-                <h2 class="card-title card-home-title">@post.Title</h2>
-                <p class="card-text card-home-text">@post.Abstract</p>
-            </a>
-
-        </div>
-            </div>
-    }
-</div>
+<div class="container image-container" id="imageContainer">
     
+    <img src="~/images/site/homeimage (2).jpg" class="img-fluid" id="homeImage" />
+    <div class="top-right">&nbsp; &nbsp;The Internet's Largest <br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Credit Card <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Database</div>
+</div>
+     
+
+<div class="container-grey">
+
+
+    <div class="row grey-bottom-row">
+        <div class="row no-gutters gutters-white">
+
+            <div class="col-md-4 no-margin-column">
+                <img src="~/images/homepageCard.jpg" class="img-fluid responsive-image" alt="">
+
+            </div>
+            <div class="col-md-7">
+                <div class="card-block px-2 card-left-margin">
+                    <h2 class="about-section">About WalletBailout</h2>
+                    <p class="card-text about-section">At WalletBailout we believe that consumers deserve a free and unbiased way to search for the best credit cards for their personal needs. Unlike other sites that let you research products, we take no money from institutions to promote certain products. This means that whether you're looking for the best credit card for cash advances, balance transfers, sign up bonuses or something else, we've got you covered.  </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="row background-grey-row">
+
+        <div class="col-sm-6">
+            <div class="card white-card">
+                <div class="card-body">
+                    <h5 class="card-title">All Credit Cards</h5>
+                    <p class="card-text">Check out our growing database, with regularly updated information on over 500 credit cards.</p>
+                    <form method="get" asp-action="Index" asp-controller="CreditCards">
+                        <button class="btn btn-green" id="viewCardBtn">View Cards</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card white-card">
+                <div class="card-body">
+                    <h5 class="card-title">Cash Advance Cards</h5>
+                    <p class="card-text">Looking for a cash advance? We've got you covered with information on the best current cash advance cards including no fee, low interest cards.</p>
+                    <form method="get" asp-action="LowestCashAdvanceAprCards" asp-controller="CreditCards">
+                        <button class="btn btn-green btn-card" id="viewBankBtn">View Cards</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row background-grey-row background-grey-row-2">
+        <div class="col-sm-6">
+            <div class="card white-card card-row-2">
+                <div class="card-body">
+                    <h5 class="card-title">Balance Transfer Cards</h5>
+                    <p class="card-text">Looking to transfer high interest rate debt to a lower-cost option? Check out our information on the best cards for a balance transfer.</p>
+                    <form method="get" asp-action="BalanceTransferCards" asp-controller="CreditCards">
+                        <button class=" btn btn-green btn-card" id="viewBlogBtn">View Cards</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card white-card card-row-2">
+                <div class="card-body">
+                    <h5 class="card-title">Sign Up Bonus Cards</h5>
+                    <p class="card-text">Looking to get rewarded for your purchases? Check out our information on the best sign up bonuses, including cards with low spend requirements.</p>
+                    <form method="get" asp-action="CashSignUpBonusCards" asp-controller="CreditCards">
+                        <button class="btn btn-green btn-card" id="viewLoanBtn">View Cards</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row grey-bottom-row" id="recentPostsRow">
+        <h3 id="recentPostsTitle">RECENT POSTS</h3>
+    </div>
+    <div class="row grey-bottom-row" id="bottomRowContainer">
+        @foreach (var post in ViewBag.ThreeRecentPosts)
+        {
+            <div class="col-md-4">
+                <!-- Blog Post-->
+                <div class="card mb-4 home-recent-posts-column">
+                    @if (post.ImageUrl != null)
+                    {
+                        var photoPath = "~/images/" + post.ImageUrl;
+                        <a class="container-fluid" asp-action="Details" asp-controller="BlogPosts" asp-route-id="@post.Id">
+                            <img class="card-img-top" src="@Url.Content(photoPath)" alt="Card image cap" />
+                        </a>
+                    }
+                    
+                    else
+                    {
+                        <a class="container-fluid" asp-action="Details" asp-controller="BlogPosts" asp-route-id="@post.Id">
+                            <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap" />
+                        </a>
+                    }
+
+                    <a class="card-body" asp-action="Details" asp-controller="BlogPosts" asp-route-id="@post.Id">
+                        <h2 class="card-title card-home-title">@post.Title</h2>
+                        <p class="card-text card-home-text">@post.Abstract</p>
+                    </a>
+
+                </div>
+            </div>
+        }
+    </div>
+
 
 
 
 </div>
-

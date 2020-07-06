@@ -17,9 +17,8 @@
         <thead>
             <tr>
                 <th><small><strong>NAME</strong></small></th>
-                <th><small><strong>TYPE</strong></small></th>
-                <th><small><strong>CREDIT BUREAU</strong></small></th>
-                <th><small><strong>SCORE FOR BEST APR</strong></small></th>
+                <th><small><strong>TYPE</strong></small></th>               
+                
                 <th></th>
             </tr>
         </thead>
@@ -32,15 +31,7 @@
                 <tr>
                     <td>@item.Name</td>
                     <td>@item.InstitutionType</td>
-                    <td>@item.CreditBureau</td>
-                    @if (item.ScoreForLowestAPR != null)
-                    {
-                        <td>@item.ScoreForLowestAPR</td>
-                    }
-                    else
-                    {
-                        <td>Unknown</td>
-                    }
+                 
                 <td>
                     <a class="btn btn-green" asp-controller="Institutions" asp-action="Details" asp-route-id="@item.Id">Details</a>
                     @if (User.IsInRole("Administrator"))

@@ -8,8 +8,8 @@
 
 
     <div class="container-fluid content-container">
-        <div class="row"><img src="@Url.Content(photoPath)" id="institutionLogo" /></div>
-        <div class="row"><h2 class="institution-name-title">@Model.Name</h2></div>
+        <div class="row top-img-row"><img src="@Url.Content(photoPath)" id="institutionLogo" /></div>
+        
         
         <div class="row">
             <!-- Lending Button-->
@@ -57,8 +57,26 @@
                                             <p class="h5"> &nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Fees <hr /></p>
                                             <ul class="card-info-list">
                                                 <li>Annual Fee: $@card.AnnualFee </li>
-                                                <li>Balance Transfer: @card.RegularBalanceTransferFee% of each transaction</li>
-                                                <li>Cash Advance: @card.CashAdvanceFee% of each advance</li>
+                                                @if (card.RegularBalanceTransferFee >= 1)
+                                                {
+                                                    <li>Balance Transfer: @card.RegularBalanceTransferFee% of each transaction</li>
+
+                                                }
+                                                else
+                                                {
+                                                    var am = card.RegularBalanceTransferFee * 100;
+                                                    <li>Balance Transfer: $@am  for each transaction</li>
+                                                }
+                                                @if (card.CashAdvanceFee >= 1)
+                                                {
+                                                    <li>Cash Advance: @card.CashAdvanceFee% of each advance</li>
+
+                                                }
+                                                else
+                                                {
+                                                    var am = card.CashAdvanceFee * 100;
+                                                    <li>Cash Advance: $@am for each transaction</li>
+                                                }
                                             </ul>
                                         </div>
                                     </div>

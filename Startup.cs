@@ -22,34 +22,23 @@ namespace CardPortfolio
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            
         }
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("WalletBailoutDb")));
             services.AddDefaultIdentity<IdentityUser>().AddRoles<IdentityRole>()
                .AddEntityFrameworkStores<ApplicationDbContext>();
            
             services.AddScoped<IInstitutionData, InstitutionData>();
             services.AddScoped<ICreditCardData, CreditCardData>();
-            services.AddScoped<IBlogPostData, BlogPostData>();
-            services.AddScoped<IAutoLoanData, AutoLoanData>();
-            services.AddScoped<ICertificateAccountData, CertificateAccountData>();
-            services.AddScoped<ICheckingAccountData, CheckingAccountData>();
-            services.AddScoped<IHomeEquityLineOfCreditData, HomeEquityLineOfCreditData>();
-            services.AddScoped<IHomeEquityLoanData, HomeEquityLoanData>();
-            services.AddScoped<IMortgageData, MortgageData>();
-            services.AddScoped<ISecuredLineOfCreditData, SecuredLineOfCreditData>();
-            services.AddScoped<ISecuredPersonalLoanData, SecuredPersonalLoanData>();
-            services.AddScoped<ISavingsAccountData, SavingsAccountData>();
-            services.AddScoped<IUnsecuredLineOfCreditData, UnsecuredLineOfCreditData>();
-            services.AddScoped<IUnsecuredPersonalLoanData, UnsecuredPersonalLoanData>();
-            services.AddScoped<IMoneyMarketAccountData, MoneyMarketAccountData>();
+            services.AddScoped<IBlogPostData, BlogPostData>();           
             services.AddControllersWithViews();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
@@ -58,7 +47,7 @@ namespace CardPortfolio
         }
 
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -77,7 +66,7 @@ namespace CardPortfolio
             app.UseRouting();
 
             app.UseAuthentication();
-            MyIdentityDataInitializer.SeedData(userManager, roleManager);
+            
             app.UseAuthorization();
             
             app.UseEndpoints(endpoints =>

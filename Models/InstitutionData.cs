@@ -120,31 +120,12 @@ namespace CardPortfolio.Models
 
         }
 
-        public IEnumerable<HomeEquityLineOfCredit> GetInstitutionHomeEquityLinesOfCredit(int id)
-        {
-            return _db.HomeEquityLinesOfCredit.Where(h => h.InstitutionId == id).ToList();
-        }
-
-        public IEnumerable<AutoLoan> GetInstitutionsAutoLoans(int id)
-        {
-            return _db.AutoLoans.Where(a => a.InstitutionId == id).ToList();
-        }
 
         public IEnumerable<Institution> GetInstitutionsByInstitutionType(InstitutionType type)
         {
             return _db.Institutions.Where(i => i.InstitutionType == type).ToList();
         }
 
-        public IEnumerable<CertificateAccount> GetInstitutionsCds(int id)
-        {
-            return _db.CertificateAccounts.Where(c => c.InstitutionId == id).ToList();
-        }
-
-        public IEnumerable<CheckingAccount> GetInstitutionsCheckingAccounts(int id)
-        {
-            return _db.CheckingAccounts.Where(c => c.InstitutionId == id).ToList();
-
-        }
 
         public IEnumerable<CreditCard> GetInstitutionsCreditCards(int id)
         {
@@ -152,45 +133,6 @@ namespace CardPortfolio.Models
             return _db.CreditCards.Where(c => c.InstitutionId == id).ToList();
         }
 
-        public IEnumerable<HomeEquityLoan> GetInstitutionsHomeEquityLoans(int id)
-        {
-            return _db.HomeEquityLoans.Where(h => h.InstitutionId == id).ToList();
-        }
-
-        public IEnumerable<MoneyMarketAccount> GetInstitutionsMoneyMarketAccount(int id)
-        {
-            return _db.MoneyMarketAccounts.Where(m => m.InstitutionId == id).ToList();
-        }
-
-        public IEnumerable<Mortgage> GetInstitutionsMortgages(int id)
-        {
-            return _db.Mortgages.Where(m => m.InstitutionId == id).ToList();
-        }
-
-        public IEnumerable<SavingsAccount> GetInstitutionsSavingsAccounts(int id)
-        {
-            return _db.SavingsAccounts.Where(s => s.InstitutionId == id).ToList();
-        }
-
-        public IEnumerable<SecuredLineOfCredit> GetInstitutionsSecuredLinesOfCredit(int id)
-        {
-            return _db.SecuredLinesOfCredit.Where(s => s.InstitutionId == id).ToList();
-        }
-
-        public IEnumerable<SecuredPersonalLoan> GetInstitutionsSecuredPersonalLoans(int id)
-        {
-            return _db.SecuredPersonalLoans.Where(s => s.InstitutionId == id).ToList();
-        }
-
-        public IEnumerable<UnsecuredLineOfCredit> GetInstitutionsUnsecuredLinesOfCredit(int id)
-        {
-            return _db.UnsecuredLinesOfCredit.Where(u => u.InstitutionId == id).ToList();
-        }
-
-        public IEnumerable<UnsecuredPersonalLoan> GetInstitutionsUnsecuredPersonalLoans(int id)
-        {
-            return _db.UnsecuredPersonalLoans.Where(u => u.InstitutionId == id).ToList();
-        }
     }
 }
 

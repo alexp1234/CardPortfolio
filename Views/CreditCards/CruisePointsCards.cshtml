@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Cruise Sign Up Bonus Cards";
 }
-
+<meta description="Best Credit Cards for Cruise Points Sign Up Bonuses" />
     <div class="row card-title-row">
         <h1>@ViewBag.PageHeader</h1>
     </div>
@@ -49,7 +49,7 @@
                             <div class="col-md-5 bt-info">
                                 <p class="h5">&nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Interest Rate Information <hr /></p>
                                 <ul class="card-info-list">
-                                    <li>Purchase: @card.LowAPRPurchases% to @card.HighAPRPurchases%  </li>
+                                    <li>Purchase: @card.LowAPRPurchases% to @card.HighAPRPurchases%  </li>                                   
                                     <li>Balance Transfer: @card.LowAPRBalanceTransfer% to @card.HighAPRBalanceTransfer%</li>
                                     <li>Cash Advance: @card.LowAPRCashAdvance% to @card.HighAPRCashAdvance%</li>
                                 </ul>
@@ -59,8 +59,26 @@
                                 <p class="h5"> &nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Fee Information <hr /></p>
                                 <ul class="card-info-list">
                                     <li>Annual Fee: $@card.AnnualFee </li>
-                                    <li>Balance Transfer: @card.RegularBalanceTransferFee% of each transaction</li>
-                                    <li>Cash Advance: @card.CashAdvanceFee% of each advance</li>
+                                    @if (card.RegularBalanceTransferFee >= 1)
+                                    {
+                                        <li>Balance Transfer: @card.RegularBalanceTransferFee% of each transaction</li>
+
+                                    }
+                                    else
+                                    {
+                                        var am = card.RegularBalanceTransferFee * 100;
+                                        <li>Balance Transfer: $@am for each transaction</li>
+                                    }
+                                    @if (card.CashAdvanceFee >= 1)
+                                    {
+                                        <li>Cash Advance: @card.CashAdvanceFee% of each advance</li>
+
+                                    }
+                                    else
+                                    {
+                                        var am = card.CashAdvanceFee * 100;
+                                        <li>Cash Advance: $@am for each advance</li>
+                                    }
                                 </ul>
                             </div>
                         </div>

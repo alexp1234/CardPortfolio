@@ -20,11 +20,14 @@ namespace CardPortfolio.Controllers
         private readonly IHostingEnvironment _hostingEnvironment;
         private readonly IHtmlHelper _htmlHelper;
         private readonly IBlogPostData _blogPostData;
-        public BlogPostsController( IHostingEnvironment hostingEnvironment, IHtmlHelper htmlHelper, IBlogPostData blogPostData)
+        
+        public BlogPostsController( IHostingEnvironment hostingEnvironment, IHtmlHelper htmlHelper, 
+            IBlogPostData blogPostData)
         {
             _hostingEnvironment = hostingEnvironment;
             _htmlHelper = htmlHelper;
             _blogPostData = blogPostData;
+            
         }
         public async Task<IActionResult> Index(string searchString, string sortOrder, string currentFilter, int? pageNumber, string categoryName)
         {
@@ -187,6 +190,7 @@ namespace CardPortfolio.Controllers
 
             
             int pageSize = 3;
+            
             return View(await PaginatedList<BlogPost>.CreateAsync(posts.AsNoTracking(), pageNumber ?? 1, pageSize));
             
         }
@@ -313,6 +317,7 @@ namespace CardPortfolio.Controllers
                     }
                 }
             }
+            
             return RedirectToAction("Error404", "Error", null);
         }
 

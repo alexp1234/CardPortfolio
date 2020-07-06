@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Best Balance Transfer Cards";
 }
-
+<meta descripton="Best Credit Cards for a Balance Transfer" />
 <div class="row card-title-row">
     <h1>@ViewBag.PageHeader</h1>
 </div>
@@ -17,7 +17,7 @@
 
             <div class="card-header cardRowHeader">
                 <h5>@card.Name</h5>
-                <!-- Below is just for testing-->
+               
             </div>
             <div class="card-body">
                 <div class="container">
@@ -31,13 +31,26 @@
                                 <p class="h4"><i class="fas fa-highlighter"></i>&nbsp Highlights</p> <hr />
                                 <ul class="card-info-list">
                                     <li>@card.IntroBalanceTransferRate% for  @card.IntroBalanceTransferLengthInMonths months </li>
-                                    @if (card.HasIntroBalanceTransferFee)
+                                    @if (card.HasIntroBalanceTransferFee && card.IntroBalanceTransferFee >= 1)
                                     {
                                         <li>Intro Balance Transer Fee:@card.IntroBalanceTransferFee%</li>
                                     }
+                                    else if(card.HasIntroBalanceTransferFee && card.IntroBalanceTransferFee < 1)
+                                    {
+                                        var am = card.IntroBalanceTransferFee * 100;
+                                        <li>Intro Balance Transfer Fee: $@am for each transfer</li>
+                                    }
                                     else
                                     {
-                                        <li>Balance Transfer Fee: @card.RegularBalanceTransferFee%</li>
+                                        if(card.RegularBalanceTransferFee >= 1)
+                                        {
+                                            <li>Regular Balance Transfer Fee: @card.RegularBalanceTransferFee%</li>
+                                        }
+                                        else
+                                        {
+                                            var am = card.RegularBalanceTransferFee * 100;
+                                            <li>Regular Balance Transfer Fee: $@am</li>
+                                        }
                                     }
                                     @if (card.AnnualFee != 0 && card.AnnualFee != null)
                                     {
@@ -71,8 +84,26 @@
                                 <p class="h5"> &nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Fee Information <hr /></p>
                                 <ul class="card-info-list">
                                     <li>Annual Fee: $@card.AnnualFee </li>
-                                    <li>Balance Transfer: @card.RegularBalanceTransferFee% of each transaction</li>
-                                    <li>Cash Advance: @card.CashAdvanceFee% of each advance</li>
+                                    @if (card.RegularBalanceTransferFee >= 1)
+                                    {
+                                        <li>Balance Transfer: @card.RegularBalanceTransferFee% of each transaction</li>
+                                    }
+                                    else
+                                    {
+                                        var am = card.RegularBalanceTransferFee * 100;
+                                        <li>Balance Transfer: $@am for each transaction</li>
+                                    }
+                                   
+
+                                    @if (card.CashAdvanceFee >= 1)
+                                    {
+                                        <li>Cash Advance: @card.CashAdvanceFee% of each advance</li>
+                                    }
+                                    else
+                                    {
+                                        <li>Cash Advance: $@card.CashAdvanceFee for each transaction</li>
+                                    }
+
                                 </ul>
                             </div>
                         </div>
@@ -117,6 +148,7 @@
                                 </div>
                             }
                         </div>
+                        <a class="btn btn-card" asp-action="Details" asp-route-id="@card.Id" asp-controller="CreditCards">Full Details</a>
                     </div>
 
 

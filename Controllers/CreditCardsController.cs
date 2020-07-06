@@ -13,6 +13,7 @@ using CardPortfolio.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Policy;
 
 namespace CardPortfolio.Controllers
 {
@@ -24,12 +25,15 @@ namespace CardPortfolio.Controllers
         private readonly IInstitutionData _institutionData;
         private readonly IHtmlHelper _htmlHelper;
         private readonly IHostingEnvironment _hostingEnvironment;
-        public CreditCardsController(ICreditCardData creditCardData, IInstitutionData institutionData, IHtmlHelper htmlHelper, IHostingEnvironment hostingEnvironment)
+     
+        public CreditCardsController(ICreditCardData creditCardData, IInstitutionData institutionData,
+            IHtmlHelper htmlHelper, IHostingEnvironment hostingEnvironment)
         {
             _creditCardData = creditCardData;
             _institutionData = institutionData;
             _htmlHelper = htmlHelper;
             _hostingEnvironment = hostingEnvironment;
+           
 
         }
 
@@ -41,6 +45,7 @@ namespace CardPortfolio.Controllers
             ViewBag.PageHeader = "Cash Sign Up Bonus";
             var cards = _creditCardData.CashSignUpBonusCards();
             int pageSize = 10;
+            
             return View(await PaginatedList<CreditCard>.CreateAsync(cards.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
@@ -52,6 +57,7 @@ namespace CardPortfolio.Controllers
             ViewBag.PageHeader = "Airline Sign Up Bonus Cards";
             var cards = _creditCardData.AirlineSignUpBonusCards();
             int pageSize = 10;
+            
             return View(await PaginatedList<CreditCard>.CreateAsync(cards.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
@@ -61,6 +67,7 @@ namespace CardPortfolio.Controllers
             ViewBag.PageHeader = "Store Bonus Cards";
             var cards = _creditCardData.StorePointsBonusCards();
             int pageSize = 10;
+            
             return View(await PaginatedList<CreditCard>.CreateAsync(cards.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
@@ -70,6 +77,7 @@ namespace CardPortfolio.Controllers
             ViewBag.PageHeader = "Hotel Points Cards";
             var cards = _creditCardData.HotelPointsBonusCards();
             int pageSize = 10;
+            
             return View(await PaginatedList<CreditCard>.CreateAsync(cards.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
@@ -79,6 +87,7 @@ namespace CardPortfolio.Controllers
             ViewBag.PageHeader = "Cruise Points Cards";
             var cards = _creditCardData.CruisePointsBonusCards();
             int pageSize = 10;
+            
             return View(await PaginatedList<CreditCard>.CreateAsync(cards.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
@@ -88,6 +97,7 @@ namespace CardPortfolio.Controllers
             ViewBag.PageHeader = "No Cash Adance Fee Cards";
             var cards = _creditCardData.NoCashAdvanceFeeCards();
             int pageSize = 10;
+            
             return View(await PaginatedList<CreditCard>.CreateAsync(cards.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
       
@@ -97,6 +107,7 @@ namespace CardPortfolio.Controllers
             ViewBag.PageHeader = "No Balance Transfer Fee Cards";
             var cards = _creditCardData.NoBalanceTransferFeeCards();
             int pageSize = 10;
+            
             return View(await PaginatedList<CreditCard>.CreateAsync(cards.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
@@ -106,6 +117,7 @@ namespace CardPortfolio.Controllers
             ViewBag.PageHeader = "Best Balance Transfer Cards";
             var cards = _creditCardData.GetBestBalanceTransferCardsByRate();
             int pageSize = 10;
+            
             return View(await PaginatedList<CreditCard>.CreateAsync(cards.AsNoTracking(), pageNumber ?? 1, pageSize));
 
         }
@@ -116,6 +128,7 @@ namespace CardPortfolio.Controllers
             ViewBag.PageHeader = "Lowest Regular Balance Transfer APR";
             var cards = _creditCardData.LowestRegularBalanceTransferCards();
             int pageSize = 10;
+            
             return View(await PaginatedList<CreditCard>.CreateAsync(cards.AsNoTracking(), pageNumber ?? 1, pageSize));
 
 
@@ -128,6 +141,7 @@ namespace CardPortfolio.Controllers
             ViewBag.PageHeader = "Longest Balance Transfer Offers";
             var cards = _creditCardData.GetLongestIntroBalanceTransferCards();
             int pageSize = 10;
+            
             return View(await PaginatedList<CreditCard>.CreateAsync(cards.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
@@ -136,12 +150,14 @@ namespace CardPortfolio.Controllers
             ViewBag.PageHeader = "Lowest Cash Advance APR Cards";
             var cards = _creditCardData.LowestCashAdvanceAPRCards();
             int pageSize = 10;
+            
             return View(await PaginatedList<CreditCard>.CreateAsync(cards.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
         //GET: CreditCards/Index
         public IActionResult Index()
         {
             var creditCardList = _creditCardData.GetAllCreditCards();
+            
             return View(creditCardList);
         }
 

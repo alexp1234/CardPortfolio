@@ -4,6 +4,7 @@
     ViewData["Title"] = "Details";
     var photoPath = "~/images/" + Model.ImagePath;
 }
+<meta descripton ="Information on @Model.Name" />
 
 <!-- Name Row-->
 <div class="row">
@@ -37,8 +38,21 @@
                 }
                 else
                 {
-                    <li>Regular Balance Transfer Fee: @Model.RegularBalanceTransferFee%</li>
+                    if(Model.RegularBalanceTransferFee >= 1)
+                    {
+                       <li>Regular Balance Transfer Fee: @Model.RegularBalanceTransferFee%</li>
+                    }
+                    else
+                    {
+                        var am = Model.RegularBalanceTransferFee * 100;
+                        <li>Regular Balance Transfer Fee: $@am for each transaction</li>
+                    }
+
                 }
+            }
+            @if (Model.HasIntroPurchaseOffer)
+            {
+                <li>Intro Purchase Offer: @Model.IntroPurchaseRate% for @Model.IntroPurchaseLengthInMonths months</li>
             }
             else
             {
@@ -52,8 +66,26 @@
         <p class="h5"> &nbsp; <i class="fas fa-money-check-alt"></i> &nbsp; Fee Information <hr /></p>
         <ul class="card-info-list">
             <li>Annual Fee: $@Model.AnnualFee </li>
-            <li>Balance Transfer: @Model.RegularBalanceTransferFee% of each transaction</li>
-            <li>Cash Advance: @Model.CashAdvanceFee% of each advance</li>
+            @if (Model.RegularBalanceTransferFee >= 1)
+            {
+                <li>Balance Transfer: @Model.RegularBalanceTransferFee% of each transaction</li>
+            }
+            else
+            {
+                var am = Model.RegularBalanceTransferFee * 100;
+                <li>Balance Transfer: $@am for each transaction</li>
+            }
+
+            @if (Model.CashAdvanceFee >= 1)
+            {
+                <li>Cash Advance: @Model.CashAdvanceFee% of each advance</li>
+
+            }
+            else
+            {
+                var am = Model.CashAdvanceFee * 100;
+                <li>Cash Advance:$@am for each transaction </li>
+            }
         </ul>
     </div>
 </div>
@@ -130,7 +162,7 @@
 <div class="row bottom-card-details-row">
     <div class="col-md-3"></div>
     <div class="col-md-6">
-        <a class="btn btn-green" href="@Model.Url">Link</a>
+        <a class="btn btn-green" href="@Model.Url" target="_blank">Link</a>
     </div>
 </div>
 

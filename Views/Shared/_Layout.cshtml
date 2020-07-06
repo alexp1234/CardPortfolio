@@ -18,9 +18,6 @@
 </head>
 <body>
     <header id="headerBar">
-
-
-
         <div class="row advertiser-bar">
             <img src="~/images/LOGO 2.png" class="img-fluid" id="siteLogo" />
         </div>
@@ -50,72 +47,52 @@
                             <a class="dropdown-item" asp-area="" asp-controller="BlogPosts" asp-action="Index" asp-route-categoryName="Savings Accounts"><i class="fas fa-blog nav-fa"></i>Best Savings Accounts</a>
                         </div>
                     </li>
-
-                    <!--Institutions-->
+                    <!--ALl Credit Cards-->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle white-nav" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-university nav-fa"></i>Institutions
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" asp-area="" asp-controller="Institutions" asp-action="Index"><i class="fas fa-database nav-fa"></i>View All</a>
-                            <a class="dropdown-item" asp-area="" asp-controller="Institutions" asp-action="GetAllBanks"><i class="fas fa-university nav-fa"></i>Banks</a>
-                            <a class="dropdown-item" asp-area="" asp-controller="Institutions" asp-action="GetAllCreditUnions"><i class="fas fa-university nav-fa"></i>Credit Unions</a>
-                            <a class="dropdown-item" asp-area="" asp-controller="Institutions" asp-action="CreditUnionsAnyoneCanJoin"><i class="fas fa-user-friends nav-fa"></i>Credit Unions Anyone Can Join</a>
-                        </div>
-                    </li>
-                    <!--Credit Cards-->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle white-nav" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-money-check nav-fa"></i>Credit Cards
+                            <i class="fas fa-money-check nav-fa"></i>All Cards
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" asp-area="" asp-controller="CreditCards" asp-action="Index"><i class="fas fa-database nav-fa"></i>Credit Card Database</a>
+                        </div>
+                    </li>
+                    <!--Cash Advance Cards-->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle white-nav" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-university nav-fa"></i>Cash Advance Cards
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" asp-area="" asp-controller="CreditCards" asp-action="NoCashAdvanceFee"><i class="fas fa-times nav-fa"></i>No Cash Advance Fee Cards</a>
+                            <a class="dropdown-item" asp-area="" asp-controller="CreditCards" asp-action="LowestCashAdvanceAprCards"><i class="fas fa-long-arrow-alt-down nav-fa"></i>Lowest Rate Cash Advance Cards</a>
+                        </div>
+                    </li>
+                    <!-- Balance Transfer Cards-->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle white-nav" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-hand-holding-usd nav-fa"></i>Balance Transfer Cards
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" asp-area="" asp-controller="CreditCards" asp-action="BalanceTransferCards"><i class="fas fa-balance-scale-left nav-fa"></i>Best Intro Balance Transfer Offers</a>
                             <a class="dropdown-item" asp-area="" asp-controller="CreditCards" asp-action="LongestBalanceTransferOffer"><i class="fas fa-clock nav-fa"></i>Longest Intro Rate for Balance Transfers</a>
                             <a class="dropdown-item" asp-area="" asp-controller="CreditCards" asp-action="LowestRegularBalanceTransferAPR"><i class="fas fa-balance-scale nav-fa"></i>Lowest Regular Rate For Balance Transfer</a>
                             <a class="dropdown-item" asp-area="" asp-controller="CreditCards" asp-action="NoBalanceTransferFeeCards"><i class="fas fa-times nav-fa"></i>Cards with No Balance Transfer Fee</a>
-                            <a class="dropdown-item" asp-area="" asp-controller="CreditCards" asp-action="NoCashAdvanceFee"><i class="fas fa-times nav-fa"></i>No Cash Advance Fee Cards</a>
-                            <a class="dropdown-item" asp-area="" asp-controller="CreditCards" asp-action="LowestCashAdvanceAprCards"><i class="fas fa-long-arrow-alt-down nav-fa"></i>Lowest Rate Cash Advance Cards</a>
+
+                        </div>
+                    </li>
+                    <!-- Sign Up Bonus Cards-->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle white-nav" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-hand-holding-usd nav-fa"></i>Sign Up Bonuses
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" asp-area="" asp-controller="CreditCards" asp-action="CashSignUpBonusCards"><i class="fas fa-dollar-sign nav-fa"></i>Cash Sign Up Bonuses</a>
                             <a class="dropdown-item" asp-area="" asp-controller="CreditCards" asp-action="AirlineBonusCards"><i class="fas fa-plane nav-fa"></i>Airline Rewards Sign Up Bonus</a>
                             <a class="dropdown-item" asp-area="" asp-controller="CreditCards" asp-action="StoreBonusCards"><i class="fas fa-store nav-fa"></i>Store Points Sign Up Bonus</a>
                             <a class="dropdown-item" asp-area="" asp-controller="CreditCards" asp-action="HotelPointsCards"><i class="fas fa-hotel nav-fa"></i>Hotel Points Sign Up Bonus</a>
                             <a class="dropdown-item" asp-area="" asp-controller="CreditCards" asp-action="CruisePointsCards"><i class="fas fa-ship nav-fa"></i>Cruise Points Sign Up Bonus</a>
+
                         </div>
                     </li>
-                    <!-- Loans/Lines of Credit-->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle white-nav" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-hand-holding-usd nav-fa"></i>Loans/Lines of Credit
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" asp-area="" asp-controller="UnsecuredPersonalLoans" asp-action="Index"><i class="fas fa-lock-open nav-fa"></i>Unsecured Personal Loans</a>
-                            <a class="dropdown-item" asp-area="" asp-controller="SecuredPersonalLoans" asp-action="Index"><i class="fas fa-lock nav-fa"></i>Secured Personal Loans</a>
-                            <a class="dropdown-item" asp-area="" asp-controller="AutoLoans" asp-action="Index"><i class="fas fa-car nav-fa"></i>Auto Loans</a>
-                            <a class="dropdown-item" asp-area="" asp-controller="Mortgages" asp-action="Index"><i class="fas fa-home nav-fa"></i>Mortgages</a>
-                            <a class="dropdown-item" asp-area="" asp-controller="UnsecuredLinesOfCredit" asp-action="Index"><i class="fas fa-lock-open nav-fa"></i>Unsecured Personal Lines of Credit</a>
-                            <a class="dropdown-item" asp-area="" asp-controller="SecuredLinesOfCredit" asp-action="Index"><i class="fas fa-lock nav-fa"></i>Secured Personal Lines of Credit</a>
-                            <a class="dropdown-item" asp-area="" asp-controller="HomeEquityLoans" asp-action="Index"><i class="fas fa-home nav-fa"></i>Home Equity Loan</a>
-                            <a class="dropdown-item" asp-area="" asp-controller="HomeEquityLinesOfCredit" asp-action="Index"><i class="fas fa-home nav-fa"></i>Home Equity Line of Credit</a>
-                        </div>
-                    </li>
-                    <!-- Deposit Accounts change font awesoem-->                    
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle white-nav" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-hand-holding-usd nav-fa"></i>Deposit Accounts
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" asp-area="" asp-controller="CertificateAccounts" asp-action="Index"><i class="fas fa-lock-open nav-fa"></i>Certificate Accounts</a>
-                            <a class="dropdown-item" asp-area="" asp-controller="CheckingAccounts" asp-action="Index"><i class="fas fa-lock nav-fa"></i>Checking Accounts</a>
-                            <a class="dropdown-item" asp-area="" asp-controller="MoneyMarketAccounts" asp-action="Index"><i class="fas fa-car nav-fa"></i>Money Market Accounts</a>
-                            <a class="dropdown-item" asp-area="" asp-controller="SavingsAccounts" asp-action="Index"><i class="fas fa-home nav-fa"></i>Savings Accounts</a>
-                        </div>
-                    </li>
-
-
-
-
-
 
 
 
@@ -133,9 +110,10 @@
 
     <footer class="footer text-muted">
         <div class="container footer-links">
-            &copy; 2020 - CardPortfolio
-            <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2020 - WalletBailout.com
+            
             <a asp-area="" asp-controller="Home" asp-action="Contact">Contact Us</a>
+            <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
